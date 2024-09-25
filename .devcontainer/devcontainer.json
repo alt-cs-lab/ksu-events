@@ -1,0 +1,18 @@
+{
+    "name": "KSU Events Package Dev",
+    "image": "mcr.microsoft.com/devcontainers/python:3.12-bullseye",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "ms-python.python",
+                "ms-python.pylint",
+                "ms-python.vscode-pylance",
+                "ms-azuretools.vscode-docker"
+            ],
+            "settings": {
+                "editor.formatOnSave": true
+            }
+        }
+    },
+    "postCreateCommand": "pip install -e .[dev]"
+}
