@@ -1,17 +1,17 @@
 {
     "name": "KSU Events Package Dev",
-    "image": "mcr.microsoft.com/devcontainers/python:3.12-bullseye",
+    "image": "mcr.microsoft.com/devcontainers/python:3.12-bullseye", // python 3.12 debian image
     "customizations": {
         "vscode": {
             "extensions": [
-                "ms-python.python",
-                "ms-python.pylint",
-                "ms-python.vscode-pylance"
+                "ms-python.python", // python
+                "ms-python.pylint", // python linter
+                "ms-python.vscode-pylance" // python rich language support and intellisense
             ],
             "settings": {
-                "editor.formatOnSave": true
+                "editor.formatOnSave": true // auto format on save to maintain consistent formatting
             }
         }
     },
-    "postCreateCommand": "pip install -e .[dev]"
+    "postCreateCommand": "pip install -e .[dev]" // pip install in editable mode using dev dependencies
 }
