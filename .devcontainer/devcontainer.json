@@ -1,10 +1,12 @@
 {
     "name": "KSU Events Package Dev",
-    "image": "mcr.microsoft.com/devcontainers/python:3.12-bullseye", // python 3.12 debian image
+    "dockerComposeFile": "docker-compose.yml", // Reference to docker-compose file
+    "service": "dev", // Name of the service defined in docker-compose.yml
+    "workspaceFolder": "/workspace", // Syncs the local folder with the container workspace
     "customizations": {
         "vscode": {
             "extensions": [
-                "ms-python.python", // python
+                "ms-python.python", // python extension
                 "ms-python.pylint", // python linter
                 "ms-python.vscode-pylance" // python rich language support and intellisense
             ],

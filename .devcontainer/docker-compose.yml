@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  dev:
+    image: mcr.microsoft.com/devcontainers/python:3.12-bullseye
+    volumes:
+      - ..:/workspace:rw
+    command: sleep infinity  # Keeps the container running for the dev environment
+    working_dir: /workspace
+    environment:
+      - PYTHONUNBUFFERED=1
