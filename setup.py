@@ -7,6 +7,7 @@ setup(
     include_package_data=True,
     install_requires=[
         'django>=5',  # package requires django 5
+        'django-cas-ng>=5',  # cas auth
     ],
     description='KSU Events Django package with shared code for KSU Events Django Projects',
     long_description=open('README.md').read(),
