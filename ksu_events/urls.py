@@ -20,7 +20,4 @@ from . import views
 
 urlpatterns = [
     path('', views.home),
-    path('accounts/login/', cas_views.LoginView.as_view(), name='cas_ng_login'),
-    path('accounts/logout/', cas_views.LogoutView.as_view(), name='cas_ng_logout'),
-    path('accounts/', include('django.contrib.auth.urls')),
 ]
