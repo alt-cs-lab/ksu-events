@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 setup(
     name='ksu_events',  # package import name
     version='0.1',
-    packages=['ksu_events.base', 'ksu_events.ksu_cas_auth'],
+    packages=['ksu_events', 'ksu_events.base', 'ksu_events.ksu_cas_auth'],
     include_package_data=True,
     install_requires=[
         'django>=5',  # package requires django 5
