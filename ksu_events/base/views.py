@@ -4,7 +4,8 @@ from django.contrib.auth.decorators import login_required
 
 
 def home(request):
-    return HttpResponse("Hello world, this msg is from the events pkg")
+    return render(request, 'templates/home_page.html')
+    #return HttpResponse("Hello world, this msg is from the events pkg")
 
 
 @login_required
