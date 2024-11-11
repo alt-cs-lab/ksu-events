@@ -5,6 +5,9 @@ class OAuth2Config(AppConfig):
     name = 'ksu_events.oauth2'
 
     def ready(self):
+        from allauth.socialaccount.providers import registry
+        from .provider import MLHProvider
+        registry.register(MLHProvider)
         # Override the default settings with package defaults if not provided by the consumer
         default_settings = {
             'SOCIALACCOUNT_PROVIDERS': {
