@@ -3,7 +3,7 @@ from django.urls import reverse
 # from hackkstate.models import Hackathon
 # from registration.models import Registrations
 
-class AccountAdapter(DefaultAccountAdapter):
+class CustomAccountAdapter(DefaultAccountAdapter):
 
     def get_login_redirect_url(self, request):
         url = super().get_login_redirect_url(request)
