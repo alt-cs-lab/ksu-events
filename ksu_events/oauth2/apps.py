@@ -3,6 +3,7 @@ from django.conf import settings
 
 class OAuth2Config(AppConfig):
     name = 'ksu_events.oauth2'
+    label = 'ksu_events_oauth2'
 
     def ready(self):
         from allauth.socialaccount.providers import registry
