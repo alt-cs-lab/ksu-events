@@ -24,7 +24,7 @@ class MLHAccount(ProviderAccount):
 
 
 class MLHProvider(OAuth2Provider):
-    id = 'MLH'
+    id = 'mlh'
     name = 'Major League Hacking'
     account_class = MLHAccount
 

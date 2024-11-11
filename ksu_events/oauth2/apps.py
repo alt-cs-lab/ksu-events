@@ -12,7 +12,7 @@ class OAuth2Config(AppConfig):
         # Override the default settings with package defaults if not provided by the consumer
         default_settings = {
             'SOCIALACCOUNT_PROVIDERS': {
-                'MLH': {
+                'mlh': {
                     'APP': {
                         'client_id': getattr(settings, 'MLH_CLIENT_ID', ''),
                         'secret': getattr(settings, 'MLH_SECRET', ''),
