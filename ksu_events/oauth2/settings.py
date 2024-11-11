@@ -1,4 +1,3 @@
-# ksu_events/oauth2/settings.py
 from django.conf import settings
 
 # default social account providers configuration
