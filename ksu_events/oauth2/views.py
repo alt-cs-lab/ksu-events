@@ -5,3 +5,6 @@ class LoginView(AllauthLoginView):
 
 class LogoutView(AllauthLogoutView):
     template_name = 'oauth/logout.html'
+
+oauth2_login = LoginView
+oauth2_callback = LogoutView
