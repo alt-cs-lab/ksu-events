@@ -1,20 +1,20 @@
 from django.db import models
 from django.core.exceptions import ValidationError
 
-from base.models.mixins import TimeStampMixin
+from ksu_events.base.models.mixins import TimeStampMixin
 
-class EventManager(models.manager):
+class EventManager(models.Manager):
     def get_active_season(self):
-        active_season = self.get_active_season_qurey()
+        active_season = self.get_active_season_query().first()
         if active_season:
             return active_season.season
-        else: 
+        else:
             return None
         
     def get_active_season_query(self):
-        result = self.filter(status='active').first()
+        result = self.filter(status='active')
         if result:
-            return result.get()
+            return result
         return None
 
 class Event(TimeStampMixin, models.Model):
@@ -39,7 +39,7 @@ class Event(TimeStampMixin, models.Model):
     objects = EventManager()
 
     def __str__(self):
-        return ''.join([self.pk])
+        return str(self.name)
     def toObj(self):
         return { 'id': self.pk, 
                  'season': self.season,
