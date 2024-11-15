@@ -2,4 +2,4 @@ from django.apps import AppConfig
 
 
 class BaseConfig(AppConfig):
-    name = 'ksu_events.base'
+    name = 'ksu_events.ksu_events'

@@ -1,7 +1,7 @@
 from django.db import models
 from django.core.exceptions import ValidationError
 
-from ksu_events.base.models.mixins import TimeStampMixin
+from ksu_events.ksu_events.models.mixins import TimeStampMixin
 
 class EventManager(models.Manager):
     def get_active_season(self):
