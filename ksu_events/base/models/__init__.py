@@ -1,0 +1,1 @@
+from ksu_events.base.models.model_events import Event
