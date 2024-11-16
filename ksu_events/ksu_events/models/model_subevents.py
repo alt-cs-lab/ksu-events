@@ -16,4 +16,4 @@ class SubEvent(TimeStampMixin, models.Model):
         return '{}-{}'.format(self.pk, self.subevent_name)
 
     class Meta: 
-        unique_together = (("subevent_name", "event"))
+        unique_together = (("subevent_name", "parent_event"))
