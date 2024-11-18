@@ -1,0 +1,102 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #111827;
+    color: #ffffff;
+}
+
+header {
+    position: relative;
+    text-align: center;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: #1F2937;
+}
+
+nav .logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+}
+
+.nav-links a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 1rem;
+}
+
+.sign-in {
+    background-color: #4CAF50;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.hero {
+    position: relative;
+    padding: 5rem 2rem;
+    background: url('hackk-state.png') center/cover no-repeat;
+    color: #ffffff;
+}
+
+.hero h1 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.hero p {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.hero button {
+    background-color: #007bff;
+    color: #ffffff;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+main {
+    padding: 2rem;
+}
+
+.info {
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+    padding: 2rem 0;
+}
+
+.info-box {
+    max-width: 300px;
+}
+
+.info-box h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.info-box p {
+    font-size: 1rem;
+    color: #D1D5DB;
+}
