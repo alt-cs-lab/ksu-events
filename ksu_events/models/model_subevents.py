@@ -1,6 +1,6 @@
 from django.db import models
-from ksu_events.ksu_events.models.mixins import TimeStampMixin
-from ksu_events.ksu_events.models.model_events import Event
+from ksu_events.models.mixins import TimeStampMixin
+from ksu_events.models.model_events import Event
 
 class SubEvent(TimeStampMixin, models.Model):
     

@@ -1,1 +1,3 @@
 include README.md
+
+recursive-include ksu_events/templates 
