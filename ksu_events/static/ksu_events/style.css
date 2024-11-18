@@ -6,7 +6,7 @@
 }
 
 body {
-    background-color: #111827;
+    background-color: #5f007c;
     color: #ffffff;
 }
 
@@ -20,7 +20,7 @@ nav {
     justify-content: space-between;
     align-items: center;
     padding: 1rem 2rem;
-    background-color: #1F2937;
+    background-color: #000000;
 }
 
 nav .logo {
@@ -67,7 +67,7 @@ nav .logo {
 }
 
 .hero button {
-    background-color: #007bff;
+    background-color: #000000;
     color: #ffffff;
     padding: 0.75rem 1.5rem;
     font-size: 1rem;
