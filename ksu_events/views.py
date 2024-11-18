@@ -3,7 +3,7 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 
 
-def home(request):
+def home(request): 
     return render(request, 'ksu_events/home_page.html')
     #return HttpResponse("Hello world, this msg is from the events pkg")
 
@@ -12,5 +12,5 @@ def home(request):
 def redirect(request):
     user = request.user
     username = user.username
-
+    
     return HttpResponse(username + " has successfully logged in with KSU CAS Auth.")
