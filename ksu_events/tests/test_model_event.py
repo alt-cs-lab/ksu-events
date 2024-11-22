@@ -2,7 +2,7 @@
 from django.test import TestCase
 from django.core.exceptions import ValidationError
 from django.utils import timezone
-from ksu_events.base.models import Event
+from ksu_events.models import Event
 
 class HackathonModelTest(TestCase):
 	def setUp(self):
