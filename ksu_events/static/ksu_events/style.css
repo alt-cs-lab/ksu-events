@@ -50,7 +50,7 @@ nav .logo {
 .hero {
     position: relative;
     padding: 5rem 2rem;
-    background: center/cover no-repeat;
+    background: url("images/hackk-state.png") center/cover no-repeat;
     color: #ffffff;
 }
 
