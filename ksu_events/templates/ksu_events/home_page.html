@@ -41,7 +41,7 @@
             <p id="demo"></p>
 
             <script>
-                if (event_start_date) {
+                if ("{{ event_start_date }}") {
                     // Set the date we're counting down to
                     var countDownDate = new Date("{{event_start_date|date:'Y-m-d H:i:s'}}").getTime();
                     // Update the count down every 1 second
