@@ -1,0 +1,39 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Model View Page</title>
+    <link rel="stylesheet" href="{% static 'ksu_events/style.css' %}">
+    <link rel="stylesheet" href="{% static 'ksu_events/modelview_style.css' %}">
+</head>
+<body>
+    <header>
+
+    </header>
+    <main>
+
+        <div class="container">
+
+            {% block content %}
+            {% for x in event_models %}
+
+            <div class="tile">
+                <h3>Event: {{ x.name }}</h3>
+                <ul>
+                    <li>Start Date: {{ x.event_start_date }}</li>
+                    <li>End Date: {{ x.event_end_date }}</li>
+                    <li>Reg Start: {{ x.registration_start_date }}</li>
+                    <li>Reg End: {{ x.registration_end_date }}</li>
+                    <li>Location: {{ x.location }}</li>
+                </ul>
+                
+            </div>
+
+            {% endfor %}
+            {% endblock content %}
+        </div>
+    </main>
+</body>
+</html>
