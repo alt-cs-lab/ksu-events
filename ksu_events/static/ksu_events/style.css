@@ -47,26 +47,26 @@ nav .logo {
     cursor: pointer;
 }
 
-.hero {
+.proj-box {
     position: relative;
     padding: 5rem 2rem;
     background: url("images/hackk-state.png") center/cover no-repeat;
     color: #ffffff;
 }
 
-.hero h1 {
+.proj-box h1 {
     font-size: 2rem;
     margin-bottom: 1rem;
 }
 
-.hero p {
+.proj-box p {
     font-size: 1rem;
     margin-bottom: 1.5rem;
     max-width: 600px;
     margin: 0 auto;
 }
 
-.hero button {
+.proj-box button {
     background-color: #000000;
     color: #ffffff;
     padding: 0.75rem 1.5rem;
