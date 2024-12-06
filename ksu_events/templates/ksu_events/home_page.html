@@ -20,7 +20,15 @@
                 <li><a href="#">Rules</a></li>
                 <li><a href="#">Last Year's Projects</a></li>
             </ul>
-            <a href="/accounts/login" class="sign-in">Sign in</a>
+            {% if user.is_authenticated %}
+            <div class="sign-in" onclick="location.href='/accounts/logout';" style="cursor: pointer;">
+                Sign out
+            </div>
+            {% else %}
+            <div class="sign-in" onclick="location.href='/accounts/login';" style="cursor: pointer;">
+                Sign in
+            </div>
+            {% endif %}
         </nav>
         <div class="hero">
             <h1>Check out last year's projects!</h1>
