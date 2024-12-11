@@ -1,3 +1,8 @@
+@font-face {
+    font-family: 'Technology';
+    src: url('fonts/technology.regular.ttf') format('truetype');
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -99,4 +104,12 @@ main {
 .info-box p {
     font-size: 1rem;
     color: #D1D5DB;
+}
+
+.clock {
+    background-color: #000000;
+    font-family: 'Technology';
+    color: #4CAF50;
+    font-size: 2rem;
+    padding: 5rem 2rem;
 }

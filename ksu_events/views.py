@@ -5,7 +5,11 @@ from .models import Event
 
 
 def home(request): 
-    return render(request, 'ksu_events/home_page.html')
+    event = Event.objects.order_by('event_start_date').first()
+    if event:
+        return render(request, 'ksu_events/home_page.html', {'event_start_date': event.event_start_date})
+    else:
+        return render(request, 'ksu_events/home_page.html')
     #return HttpResponse("Hello world, this msg is from the events pkg")
 
 def view_models(request):
