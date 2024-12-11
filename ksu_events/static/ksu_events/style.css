@@ -1,9 +1,6 @@
 @font-face {
-    font-family: 'Digital7';
-    src: url('fonts/digital-7 (italic).ttf') format('truetype'),
-        url('fonts/digital-7 (mono italic).ttf') format('truetype'),
-        url('fonts/digital-7 (mono).ttf') format('truetype'),
-        url('fonts/digital-7.ttf') format('truetype');
+    font-family: 'Technology';
+    src: url('fonts/technology.regular.ttf') format('truetype');
 }
 
 * {
@@ -111,7 +108,7 @@ main {
 
 .clock {
     background-color: #000000;
-    font-family: 'Digital7';
+    font-family: 'Technology';
     color: #4CAF50;
     font-size: 2rem;
     padding: 5rem 2rem;
