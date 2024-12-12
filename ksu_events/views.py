@@ -10,7 +10,7 @@ def home(request):
     i = 1
     event = Event.objects.order_by('event_start_date').first()
     today = datetime.now().replace(tzinfo=None)
-    while event.event_end_date < today:
+    while event.event_end_date.replace(tzinfo=None) < today:
         event = Event.objects.order_by('event_start_date').all()[i]
         i+=1
 
