@@ -19,7 +19,7 @@ def home(request):
                 event = Event.objects.order_by('event_start_date').all()[i]
                 i+=1
             except IndexError:
-                break
+                return render(request, 'ksu_events/home_page.html')
         return render(request, 'ksu_events/home_page.html', {'event_start_date': event.event_start_date})
     else:
         return render(request, 'ksu_events/home_page.html')
