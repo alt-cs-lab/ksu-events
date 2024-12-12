@@ -15,10 +15,10 @@ def home(request):
     if event:
         '''if end date has passed check the next up coming event'''
         while event.event_end_date.replace(tzinfo=None) < today:
-            if event:
+            try:
                 event = Event.objects.order_by('event_start_date').all()[i]
                 i+=1
-            else:
+            except IndexError:
                 break
         return render(request, 'ksu_events/home_page.html', {'event_start_date': event.event_start_date})
     else:
