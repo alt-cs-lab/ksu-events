@@ -10,11 +10,11 @@ def home(request):
     i = 1
     event = Event.objects.order_by('event_start_date').first()
     today = datetime.now().replace(tzinfo=None)
-    while i < len(Event.objects) and event.event_end_date.replace(tzinfo=None) < today:
-        event = Event.objects.order_by('event_start_date').all()[i]
-        i+=1
 
     if event:
+        while event.event_end_date.replace(tzinfo=None) < today:
+            event = Event.objects.order_by('event_start_date').all()[i]
+            i+=1
         return render(request, 'ksu_events/home_page.html', {'event_start_date': event.event_start_date})
     else:
         return render(request, 'ksu_events/home_page.html')
