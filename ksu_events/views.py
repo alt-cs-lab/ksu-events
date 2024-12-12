@@ -13,7 +13,7 @@ def home(request):
 
     '''Checks if event exists'''
     if event:
-        '''if end date has passed check the next up coming event'''
+        '''if end date has passed check the next up coming event if not next event then we render without input'''
         while event.event_end_date.replace(tzinfo=None) < today:
             try:
                 event = Event.objects.order_by('event_start_date').all()[i]
