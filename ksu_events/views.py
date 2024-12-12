@@ -5,16 +5,21 @@ from .models import Event
 from datetime import datetime
 
 
-'''This home method tells the urls.py what to display.  The html page but also the closest start date for the next event'''
+'''This home method tells the urls.py what to display.  The html page but also the closest start date for the next event.'''
 def home(request): 
     i = 1
     event = Event.objects.order_by('event_start_date').first()
     today = datetime.now().replace(tzinfo=None)
 
+    '''Checks if event exists'''
     if event:
+        '''if end date has passed check the next up coming event'''
         while event.event_end_date.replace(tzinfo=None) < today:
-            event = Event.objects.order_by('event_start_date').all()[i]
-            i+=1
+            if event:
+                event = Event.objects.order_by('event_start_date').all()[i]
+                i+=1
+            else:
+                break
         return render(request, 'ksu_events/home_page.html', {'event_start_date': event.event_start_date})
     else:
         return render(request, 'ksu_events/home_page.html')
