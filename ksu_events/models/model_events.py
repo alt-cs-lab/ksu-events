@@ -6,6 +6,7 @@ class EventManager(models.Manager):
     """
     """
 
+'''This is the event model it has 5 fields'''
 class Event(TimeStampMixin, models.Model):
     name = models.CharField(max_length=255, unique=True)
 
