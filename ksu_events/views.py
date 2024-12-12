@@ -2,10 +2,17 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from .models import Event
+from datetime import datetime
 
 '''This home method tells the urls.py what to display.  The html page but also the closest start date for the next event'''
 def home(request): 
+    i = 1
     event = Event.objects.order_by('event_start_date').first()
+    today = datetime.now()
+    while event.event_end_date < today:
+        event = Event.objects.order_by('event_start_date').all()[i]
+        i+=1
+
     if event:
         return render(request, 'ksu_events/home_page.html', {'event_start_date': event.event_start_date})
     else:
