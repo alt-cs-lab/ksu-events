@@ -1,6 +1,6 @@
 from django.contrib import admin
 from .models import Event, SubEvent
 
-# Register your models here.
+# Registered models.
 admin.site.register(Event)
 admin.site.register(SubEvent)
