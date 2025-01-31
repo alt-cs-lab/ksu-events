@@ -35,6 +35,10 @@ def view_models(request):
 
     return render(request, 'ksu_events/view_models.html', context)
 
+def org_models(request):
+
+    return render(request, 'ksu_events/organizer_dash.html')
+
 '''This method shows that a user has logged in'''
 @login_required
 def redirect(request):
