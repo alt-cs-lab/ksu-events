@@ -1,8 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<head>
+    <title>Hack K-State</title>
+</head>
+
 <body>
-    <h1>Organizer Dashboard</h1>
+    {% block content %}
+    {% for event in event_models %}
+
+    <div class="tile">
+        <h3>Event: {{ event.name }}</h3>
+        <ul>
+            <li>Start Date: {{ event.event_start_date }}</li>
+            <li>End Date: {{ event.event_end_date }}</li>
+            <li>Reg Start: {{ event.registration_start_date }}</li>
+            <li>Reg End: {{ event.registration_end_date }}</li>
+            <li>Location: {{ event.location }}</li>
+        </ul>
+        <button type="submit">edit</button>
+    </div>
+
+    {% endfor %}
+    {% endblock content %}
 </body>
 
 </html>

@@ -36,8 +36,13 @@ def view_models(request):
     return render(request, 'ksu_events/view_models.html', context)
 
 def org_models(request):
+    event_models = Event.objects.all()
 
-    return render(request, 'ksu_events/organizer_dash.html')
+    context = {
+        'event_models': event_models
+    }
+
+    return render(request, 'ksu_events/organizer_dash.html', context)
 
 '''This method shows that a user has logged in'''
 @login_required
