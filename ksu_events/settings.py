@@ -38,7 +38,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'ksu_events',
-    'ksu_cas_auth',
 ]
 
 MIDDLEWARE = [
