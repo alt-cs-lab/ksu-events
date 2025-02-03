@@ -26,3 +26,6 @@ class User(AbstractUser, TimeStampMixin):
 
     def __str__(self):
         return f"{self.email}"
+
+    class Meta:
+        swappable = "AUTH_USER_MODEL"
