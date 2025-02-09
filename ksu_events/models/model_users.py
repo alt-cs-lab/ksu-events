@@ -2,6 +2,7 @@ from django.core.exceptions import ValidationError
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 from datetime import datetime
+from django.utils.translation import gettext_lazy as _
 
 from ksu_events.models.mixins import TimeStampMixin
 from ksu_events.models.model_events import Event
@@ -21,18 +22,13 @@ class User(AbstractUser, TimeStampMixin):
     event = models.ForeignKey(Event, on_delete=models.CASCADE)
     institution = models.CharField(max_length=255, blank=True)
     team = models.CharField(max_length=255, blank=True)
-
-    PARTICIPANT = "PAR"
-    ORGAINIZER = "ORG"
-    VOLUNTEER = "VOL"
     
-    AUTH_LEVELS = {
-        PARTICIPANT: "Participant",
-        ORGAINIZER: "Orgainizer",
-        VOLUNTEER: "Volunteer"
-    }
+    class AuthLevel(models.TextChoices):
+        ORGANIZER = 'ORG', _('Organizer')
+        VOLUNTEER = 'VOL', _('Volunteer')
+        PARTICIPANT = 'PAR', _('Participant') 
 
-    auth_role = models.CharField(max_length=3, choices=AUTH_LEVELS, default="ORG", blank=False)
+    auth_role = models.CharField(max_length=3, choices=AuthLevel.choices, default=AuthLevel.ORGANIZER, blank=False)
     # is_organizer = models.BooleanField(default=False)
 
     """This class extends the base Django Auth User model to allow for additional fields"""
