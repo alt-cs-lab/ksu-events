@@ -6,23 +6,17 @@
 </head>
 
 <body>
-    {% block content %}
-    {% for event in event_models %}
+    <h2>{% if form.instance.pk %}Edit Event{% else %}Create Event{% endif %}</h2>
 
-    <div class="tile">
-        <h3>Event: {{ event.name }}</h3>
-        <ul>
-            <li>Start Date: {{ event.event_start_date }}</li>
-            <li>End Date: {{ event.event_end_date }}</li>
-            <li>Reg Start: {{ event.registration_start_date }}</li>
-            <li>Reg End: {{ event.registration_end_date }}</li>
-            <li>Location: {{ event.location }}</li>
-        </ul>
-        <button type="submit">edit</button>
-    </div>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">{% if form.instance.pk %}Save Changes{% else %}Create Event{% endif %}</button>
+    </form>
 
-    {% endfor %}
-    {% endblock content %}
+    {% if form.instance.pk %}
+    <a href="{% url 'edit_event' form.instance.id %}">Edit this event</a>
+    {% endif %}
 </body>
 
 </html>

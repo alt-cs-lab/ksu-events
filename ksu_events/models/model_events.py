@@ -1,5 +1,4 @@
 from django.db import models
-from django.forms import ModelForm
 
 from ksu_events.models.mixins import TimeStampMixin
 
@@ -29,8 +28,3 @@ class Event(TimeStampMixin, models.Model):
     def save(self, *args, **kwargs):
 
         super().save(*args, **kwargs)
-
-class EventForm(ModelForm):
-    class Meta:
-        model = Event
-        fields = ["name", "event_start_date", "event_end_date", "registration_start_date", "registration_end_date", "location"]

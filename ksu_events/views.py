@@ -1,7 +1,8 @@
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from .models import Event
+from .forms import EventForm
 from datetime import datetime
 
 
@@ -35,14 +36,28 @@ def view_models(request):
 
     return render(request, 'ksu_events/view_models.html', context)
 
-def org_models(request):
-    event_models = Event.objects.all()
+def create_models(request):
+    if request.method == 'POST':
+        form = EventForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('organizer_dash')
+    else:
+        form = EventForm()
+    return render(request, 'ksu_events/organizer_dash.html', {'form': form})
 
-    context = {
-        'event_models': event_models
-    }
+def edit_event(request, event_id):
+    event = get_object_or_404(Event, id=event_id)
 
-    return render(request, 'ksu_events/organizer_dash.html', context)
+    if request.method == 'POST':
+        form = EventForm(request.POST, instance=event)
+        if form.is_valid():
+            form.save()
+            return redirect('organizer_dash')  # Redirect to the organizer dashboard after saving
+    else:
+        form = EventForm(instance=event)
+
+    return render(request, 'ksu_events/organizer_dash.html', {'form': form})
 
 '''This method shows that a user has logged in'''
 @login_required
