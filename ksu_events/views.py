@@ -38,14 +38,24 @@ def view_models(request):
 
 @login_required
 def create_models(request):
-    if request.method == 'POST':
-        form = EventForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('organizer_dash')
-    else:
-        form = EventForm()
-    return render(request, 'ksu_events/organizer_dash.html', {'form': form})
+    try:
+        if request.method == 'POST':
+            form = EventForm(request.POST)
+            if form.is_valid():
+                form.save()
+                return redirect('organizer_dash')
+        else:
+            form = EventForm()
+        return render(request, 'ksu_events/organizer_dash.html', {'form': form})
+    except Exception as e:  #Horrible fix please fix asap
+        event_models = Event.objects.all()
+
+        context = {
+            'event_models': event_models
+        }
+
+        return render(request, 'ksu_events/view_models.html', context)
+    
 
 @login_required
 def edit_event(request, event_id=None):
@@ -61,7 +71,7 @@ def edit_event(request, event_id=None):
             return redirect('view_models')
 
         return render(request, 'ksu_events/edit_event.html', {'form': form})
-    except Exception as e:
+    except Exception as e: #Horrible fix please change asap
         event_models = Event.objects.all()
 
         context = {
