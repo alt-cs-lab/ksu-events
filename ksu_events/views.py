@@ -36,6 +36,7 @@ def view_models(request):
 
     return render(request, 'ksu_events/view_models.html', context)
 
+@login_required
 def create_models(request):
     if request.method == 'POST':
         form = EventForm(request.POST)
@@ -46,6 +47,7 @@ def create_models(request):
         form = EventForm()
     return render(request, 'ksu_events/organizer_dash.html', {'form': form})
 
+@login_required
 def edit_event(request, event_id=None):
     if event_id:  
         event = get_object_or_404(Event, id=event_id)
