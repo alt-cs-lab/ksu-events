@@ -15,10 +15,10 @@
     </form>
 
     {% if form.instance.pk %}
-    <a href="{% url 'edit_event' form.instance.id %}">Edit this event</a>
+    <a href="{% url 'orgdash' form.instance.id %}">Edit this event</a>
     {% endif %}
 
-    <a href="{% url 'event_list' %}">Back to Events</a>
+    <a href="{% url 'models' %}">Back to Events</a>
 </body>
 
 </html>
