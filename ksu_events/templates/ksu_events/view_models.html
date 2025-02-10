@@ -33,12 +33,7 @@
                     <li>Location: {{ x.location }}</li>
                 </ul>
                 <a href="{% url 'edit_event' x.id %}">Edit</a>
-                <!--<form action="{% url 'delete_event' event.id %}" method="POST">
-                    {% csrf_token %}
-                    <button type="submit">Delete</button>
-                </form> -->
             </div>
-
             {% endfor %}
             {% endblock content %}
         </div>

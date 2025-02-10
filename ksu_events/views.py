@@ -61,16 +61,6 @@ def edit_event(request, event_id=None):
 
     return render(request, 'ksu_events/edit_event.html', {'form': form})
 
-@login_required
-def delete_event(request, event_id):
-    event = get_object_or_404(Event, id=event_id)
-
-    if request.method == 'POST':
-        event.delete()  
-        return redirect('view_models')  
-
-    return render(request, 'ksu_events/view_models.html', {'event': event})
-
 '''This method shows that a user has logged in'''
 @login_required
 def redirect(request):

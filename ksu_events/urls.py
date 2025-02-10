@@ -7,5 +7,4 @@ urlpatterns = [
     path('models/', view_models, name="models_view"),
     path('orgdash/', create_models, name="org_view"),
     path('edit/<int:event_id>/', edit_event, name='edit_event'),
-    path('delete/<int:event_id>/', delete_event, name='delete_event'),
 ]
