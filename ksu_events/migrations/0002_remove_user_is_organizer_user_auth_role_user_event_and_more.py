@@ -17,7 +17,8 @@ class Migration(migrations.Migration):
         ),
         migrations.AddField(
             model_name='user',
-            name='auth_role'
+            name='auth_role',
+            field=models.CharField(choices=[('PAR', 'Participant'), ('ORG', 'Orgainizer'), ('VOL', 'Volunteer')], max_length=3),
         ),
         migrations.AddField(
             model_name='user',
