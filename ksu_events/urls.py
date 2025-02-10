@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import home, view_models, create_models, edit_event, delete_event
+from .views import home, view_models, create_models, edit_event
 
 '''Sets the home and models urls'''
 urlpatterns = [
