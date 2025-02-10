@@ -57,7 +57,7 @@ def edit_event(request, event_id=None):
         form.save()
         return redirect('view_models')
 
-    return render(request, 'ksu_events/organizer_dash.html', {'form': form})
+    return render(request, 'ksu_events/edit_event.html', {'form': form})
 
 '''This method shows that a user has logged in'''
 @login_required

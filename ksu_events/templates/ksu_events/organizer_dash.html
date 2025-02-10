@@ -6,17 +6,13 @@
 </head>
 
 <body>
-    <h2>{% if form.instance.pk %}Edit Event{% else %}Create Event{% endif %}</h2>
+    <h2>Create Event</h2>
 
     <form method="POST">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">{% if form.instance.pk %}Save Changes{% else %}Create Event{% endif %}</button>
+        <button type="submit">Create Event</button>
     </form>
-
-    {% if form.instance.pk %}
-    <!-- <a href="{% url 'orgdash' form.instance.id %}">Edit this event</a> -->
-    {% endif %}
 
     <a href="{% url 'models_view' %}">Back to Events</a>
 </body>

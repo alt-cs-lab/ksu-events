@@ -6,5 +6,5 @@ urlpatterns = [
     path('', home, name='home_view'),
     path('models/', view_models, name="models_view"),
     path('orgdash/', create_models, name="org_view"),
-    path('orgdash/<int:event_id>/', edit_event, name='orgdash'),
+    path('edit/<int:event_id>/', edit_event, name='edit_event'),
 ]
