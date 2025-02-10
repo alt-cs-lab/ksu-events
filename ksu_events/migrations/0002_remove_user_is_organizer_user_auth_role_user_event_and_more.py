@@ -18,12 +18,12 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='user',
             name='auth_role',
-            field=models.CharField(choices=[('PAR', 'Participant'), ('ORG', 'Orgainizer'), ('VOL', 'Volunteer')], default='ORG', max_length=3),
+            field=models.CharField(choices=[('PAR', 'Participant'), ('ORG', 'Orgainizer'), ('VOL', 'Volunteer')], max_length=3),
         ),
         migrations.AddField(
             model_name='user',
             name='event',
-            field=models.ForeignKey(default='ORG', on_delete=django.db.models.deletion.CASCADE, to='ksu_events.event'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='ksu_events.event'),
             preserve_default=False,
         ),
         migrations.AddField(
