@@ -46,16 +46,16 @@ def create_models(request):
         form = EventForm()
     return render(request, 'ksu_events/organizer_dash.html', {'form': form})
 
-def edit_event(request, event_id):
-    event = get_object_or_404(Event, id=event_id)
+def edit_event(request, event_id=None):
+    if event_id:  
+        event = get_object_or_404(Event, id=event_id)
+    else:  
+        event = None
 
-    if request.method == 'POST':
-        form = EventForm(request.POST, instance=event)
-        if form.is_valid():
-            form.save()
-            return redirect('organizer_dash')  # Redirect to the organizer dashboard after saving
-    else:
-        form = EventForm(instance=event)
+    form = EventForm(request.POST or None, instance=event)
+    if request.method == "POST" and form.is_valid():
+        form.save()
+        return redirect('view_models')
 
     return render(request, 'ksu_events/organizer_dash.html', {'form': form})
 
