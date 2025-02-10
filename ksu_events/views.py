@@ -26,7 +26,8 @@ def home(request):
         return render(request, 'ksu_events/home_page.html')
     #return HttpResponse("Hello world, this msg is from the events pkg")
 
-'''This view_models method tells the urls.py what to display specifically the model page html file'''
+
+@login_required
 def view_models(request):
     event_models = Event.objects.all()
 
@@ -59,7 +60,7 @@ def create_models(request):
 
 @login_required
 def edit_event(request, event_id=None):
-    #try:
+    try:
         if event_id:  
             event = get_object_or_404(Event, id=event_id)
         else:  
@@ -71,14 +72,14 @@ def edit_event(request, event_id=None):
             return redirect('view_models')
 
         return render(request, 'ksu_events/edit_event.html', {'form': form})
-    #except Exception as e: #Horrible fix please change asap
-        #event_models = Event.objects.all()
+    except Exception as e: #Horrible fix please change asap
+        event_models = Event.objects.all()
 
-        #context = {
-            #'event_models': event_models
-        #}
+        context = {
+            'event_models': event_models
+        }
 
-        #return render(request, 'ksu_events/view_models.html', context)
+        return render(request, 'ksu_events/view_models.html', context)
 
 '''This method shows that a user has logged in'''
 @login_required
