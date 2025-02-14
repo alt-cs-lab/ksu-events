@@ -17,7 +17,7 @@
         <h2>User Profile</h2>
         <ul>
             {% for field, value in user_fields.items %}
-            {% if field != '_state' %} {# exclude internal Django fields #}
+            {% if field != "password" and field != "id" %} {# Hide sensitive fields #}
             <li><strong>{{ field|title }}:</strong> {{ value }}</li>
             {% endif %}
             {% endfor %}

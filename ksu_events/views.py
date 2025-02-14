@@ -3,22 +3,22 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from .models import Event
 from datetime import datetime
-
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import DetailView
+from django.views.generic import TemplateView
 from django.contrib.auth import get_user_model
 
 User = get_user_model()
 
-class UserProfileView(LoginRequiredMixin, DetailView):
-    model = User
+class UserProfileView(LoginRequiredMixin, TemplateView):
     template_name = "user_profile.html"
-    context_object_name = "user_profile"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        user = self.get_object()
-        context["user_fields"] = vars(user)
+        user = self.request.user
+        context["user_profile"] = user
+        context["user_fields"] = {
+            field.name: getattr(user, field.name) for field in User._meta.get_fields()
+        }
         return context
 
 
