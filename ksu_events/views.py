@@ -4,6 +4,24 @@ from django.contrib.auth.decorators import login_required
 from .models import Event
 from datetime import datetime
 
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic import DetailView
+from django.contrib.auth import get_user_model
+
+User = get_user_model()
+
+class UserProfileView(LoginRequiredMixin, DetailView):
+    model = User
+    template_name = "user_profile.html"
+    context_object_name = "user_profile"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        user = self.get_object()
+        context["user_fields"] = vars(user)
+        return context
+
+
 
 '''This home method tells the urls.py what to display.  The html page but also the closest start date for the next event.'''
 def home(request): 
