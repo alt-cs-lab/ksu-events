@@ -14,13 +14,13 @@ def home(request):
     '''Checks if event exists'''
     if event:
         '''if end date has passed check the next up coming event if not next event then we render without input'''
-        while event.event_end_date.replace(tzinfo=None) < today:
+        while event.end_date.replace(tzinfo=None) < today:
             try:
                 event = Event.objects.order_by('event_start_date').all()[i]
                 i+=1
             except IndexError:
                 return render(request, 'ksu_events/home_page.html')
-        return render(request, 'ksu_events/home_page.html', {'event_start_date': event.event_start_date})
+        return render(request, 'ksu_events/home_page.html', {'event_start_date': event.start_date})
     else:
         return render(request, 'ksu_events/home_page.html')
     #return HttpResponse("Hello world, this msg is from the events pkg")

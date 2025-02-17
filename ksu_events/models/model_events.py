@@ -10,10 +10,10 @@ class EventManager(models.Manager):
 class Event(TimeStampMixin, models.Model):
     name = models.CharField(max_length=255, unique=True)
 
-    event_start_date = models.DateTimeField()
-    event_end_date = models.DateTimeField()
-    registration_start_date = models.DateTimeField()
-    registration_end_date = models.DateTimeField()
+    start_date = models.DateTimeField()
+    end_date = models.DateTimeField()
+    registration_start = models.DateTimeField()
+    registration_end = models.DateTimeField()
     location = models.CharField(max_length=500, default='')
 
     # custom object manager
