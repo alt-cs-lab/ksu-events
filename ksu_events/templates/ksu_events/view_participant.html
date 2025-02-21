@@ -18,6 +18,7 @@
 
             {% block content %}
             {% for x in users %}
+            {% if x.auth_role == User.AuthLevel.PARTICIPANT%}
             <div class="tile">
                 <h3>User: {{ x.full_name }}</h3>
                 <ul>
@@ -26,6 +27,7 @@
                     <li>Birthday: {{ x.date_of_birth }}</li>
                 </ul>
             </div>
+            {% endif %}
             {% empty %}
             <li>No participants found.</li>
             {% endfor %}
