@@ -1,7 +1,7 @@
 """
 This class adds a profile linked to a user who is registered. Currently, the
 userprofile is linked to the user model through a one-to-one relationship and is used
-for registration for the hackathon for the current season.
+for registration for the Event for the current season.
 """
 import os
 from datetime import datetime
@@ -10,10 +10,10 @@ from allauth.socialaccount.models import SocialAccount
 from django.core.exceptions import ValidationError
 from django.db import models
 
-from hackkstate.models.model_hackathon import Hackathon
-from hackkstate.models.mixins import TimeStampMixin
-from registration.models.model_users import User
-from registration.models.model_ethnicity_options import EthnicityOption
+from ksu_events.models.model_events import Event
+from ksu_events.models.mixins import TimeStampMixin
+from ksu_events.registration.models.model_users import User
+from ksu_events.registration.models.model_ethnicity_options import EthnicityOption
 
 from django.dispatch import receiver
 from simple_history.models import HistoricalRecords
@@ -29,16 +29,16 @@ def get_next_card_id():
     """
     Returns the next card id for the current season. If there are no profiles, then the next card id is 1.
     """
-    last = Registrations.objects.filter(season=Hackathon.objects.get_active_season()).order_by('-cardID')[0:1]
+    last = Registrations.objects.filter(season=Event.objects.get_active_season()).order_by('-cardID')[0:1]
     if last:
         return last.get().cardID + 1
     else:
         return 1
 
 class RegistrationProfileManager(models.Manager):
-    def get_registration_hackation(self, user, hackathon_id):
+    def get_registration_hackation(self, user, Event_id):
         try:
-            return Registrations.objects.get(user=user, hackathon_id=hackathon_id)
+            return Registrations.objects.get(user=user, event_id=Event_id)
         except Registrations.DoesNotExist:
             return None
 
@@ -49,7 +49,7 @@ class RegistrationProfileManager(models.Manager):
             return None
 
     def is_active(self, profile, active_season):
-        if profile and active_season and str(profile.hackathon) == str(active_season):
+        if profile and active_season and str(profile.Even) == str(active_season):
             return True
         else:
             return False
@@ -59,7 +59,7 @@ class Registrations(TimeStampMixin, models.Model):
     """This class adds a profile linked to a user who is registered"""
 
     user = models.ForeignKey(User, on_delete=models.DO_NOTHING)
-    hackathon = models.ForeignKey(Hackathon, models.DO_NOTHING)
+    Even = models.ForeignKey(Event, models.DO_NOTHING)
     cardID = models.PositiveIntegerField(default=get_next_card_id)
 
     country = CountryField(blank=False, blank_label='(select country)')
@@ -131,7 +131,7 @@ class Registrations(TimeStampMixin, models.Model):
         return ', '.join(self.major.values_list('value', flat=True))
     def season_name(self):
         # return ",".join([e.value for e in obj.ethnicity.all()])
-        return self.hackathon.season
+        return self.Even.season
 
     def get_qr_code(self):
         return helpers.make_vcard(name=self.user.full_name(),
@@ -155,7 +155,7 @@ class Registrations(TimeStampMixin, models.Model):
         """
         Returns the age of the user at the time of the competition
         """
-        return age_by_date(date_of_birth=str(self.user.date_of_birth), compare_date=self.hackathon.hackathon_start_date)
+        return age_by_date(date_of_birth=str(self.user.date_of_birth), compare_date=self.Even.Even_start_date)
 
     # def clean(self):
     #     """
@@ -166,8 +166,8 @@ class Registrations(TimeStampMixin, models.Model):
     #     return super().clean()
     class Meta:
         constraints = [
-            models.UniqueConstraint(fields=['user', 'hackathon'], name='cnst_unique_userHackathon'),
-            models.UniqueConstraint(fields=['hackathon', 'cardID'], name='cnst_unique_hackathonCard'),
+            models.UniqueConstraint(fields=['user', 'Even'], name='cnst_unique_userEven'),
+            models.UniqueConstraint(fields=['Even', 'cardID'], name='cnst_unique_EvenCard'),
         ]
 
 

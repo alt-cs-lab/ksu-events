@@ -1,8 +1,8 @@
 from rest_framework import viewsets
 
-from hackkstate.api.mixins import MultipleFieldLookupMixin
-from registration.api.serializers.serializer_registration import UserProfileSerializer, UserProfileExpandedSerializer
-from registration.models.model_registrations import Registrations
+# from hackkstate.api.mixins import MultipleFieldLookupMixin
+from ksu_events.registration.api.serializers.serializer_registration import UserProfileSerializer, UserProfileExpandedSerializer
+from ksu_events.registration.models.model_registrations import Registrations
 from rest_framework.decorators import action
 from rest_framework.response import Response
 

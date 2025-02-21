@@ -1,7 +1,7 @@
 from rest_framework import serializers
 
-from registration.api.serializers import UserSerializer
-from registration.models import Registrations
+from ksu_events.registration.api.serializers import UserSerializer
+from ksu_events.registration.models import Registrations
 
 
 # TODO: Rename and update to match the Registrations model

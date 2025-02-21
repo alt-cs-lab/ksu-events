@@ -1,6 +1,6 @@
 from rest_framework import viewsets
 
-from registration.api.serializers.serializer_socialAccount import SocialAccountSerializer
+from ksu_events.registration.api.serializers.serializer_socialAccount import SocialAccountSerializer
 from allauth.socialaccount.models import SocialAccount
 
 

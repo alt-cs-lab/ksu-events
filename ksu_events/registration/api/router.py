@@ -1,5 +1,5 @@
 from rest_framework import routers
-from registration.api.views import UserProfileViewSet, UserProfileViewSetExpanded, UserViewSet, SocialAccountViewSet
+from ksu_events.registration.api.views import UserProfileViewSet, UserProfileViewSetExpanded, UserViewSet, SocialAccountViewSet
 
 router = routers.DefaultRouter()
 router.register(r'users', UserViewSet)

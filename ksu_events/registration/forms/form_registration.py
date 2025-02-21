@@ -7,8 +7,8 @@ from django.utils.safestring import mark_safe
 from django_countries.widgets import CountrySelectWidget
 from django.core.validators import EMPTY_VALUES
 
-from hackkstate.models import Hackathon
-from registration.models.model_registrations import Registrations, age_by_date
+from ksu_events.models.model_events import Event
+from ksu_events.registration.models.model_registrations import Registrations, age_by_date
 
 # TODO: Update to match the Registrations model
 
@@ -49,10 +49,10 @@ class RegistrationForm(forms.ModelForm):
         mlh = SocialAccount.objects.filter(user=self.request.user.id).first()
         if mlh is None:
             raise ValidationError("MLH data is missing, user must be authenticated through MLH.")
-        season = Hackathon.objects.get_active_season_query()
+        season = Event.objects.get_active_season_query()
         if season is None:
             raise ValidationError("No active season. Please contact an administrator.")
-        age = age_by_date(mlh.extra_data['date_of_birth'], season.hackathon_start_date)
+        age = age_by_date(mlh.extra_data['date_of_birth'], season.Event_start_date)
         return age
 
     def clean(self):
@@ -63,10 +63,10 @@ class RegistrationForm(forms.ModelForm):
         mlh = SocialAccount.objects.filter(user=self.request.user.id).first()
         if mlh is None:
             raise ValidationError("MLH data is missing, user must be authenticated through MLH.")
-        season = Hackathon.objects.get_active_season_query()
+        season = Event.objects.get_active_season_query()
         if season is None:
             raise ValidationError("No active season. Please contact an administrator.")
-        age = age_by_date(mlh.extra_data['date_of_birth'], season.hackathon_start_date)
+        age = age_by_date(mlh.extra_data['date_of_birth'], season.Event_start_date)
 
         if age < 14:
             raise ValidationError('Users must be at least 14 years old to participate in Hack K-State')
@@ -105,10 +105,10 @@ class RegistrationForm(forms.ModelForm):
         if user:
             # link the user to the profile
             user_profile.registration = user
-        season = Hackathon.objects.get_active_season_query()
+        season = Event.objects.get_active_season_query()
         if season is None:
             raise Exception("No active season. Please contact an administrator.")
-        user_profile.hackathon = season
+        user_profile.Event = season
         user_profile.created_at = timezone.now()
         user_profile.save()
         # save many to many relationship fields

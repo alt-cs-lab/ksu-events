@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from registration.models import User
+from ksu_events.registration.models import User
 
 
 class UserSerializer(serializers.ModelSerializer):

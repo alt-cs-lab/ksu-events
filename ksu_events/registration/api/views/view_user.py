@@ -1,6 +1,6 @@
 from rest_framework import viewsets
 
-from registration.api.serializers.serial_user import UserSerializer
+from ksu_events.registration.api.serializers.serial_user import UserSerializer
 from django.contrib.auth import get_user_model
 
 

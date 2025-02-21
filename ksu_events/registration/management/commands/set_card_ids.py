@@ -1,5 +1,5 @@
 from django.core.management.base import BaseCommand, CommandError
-from registration.models import Registrations
+from ksu_events.registration.models import Registrations
 
 
 class Command(BaseCommand):

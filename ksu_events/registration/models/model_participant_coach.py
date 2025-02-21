@@ -2,7 +2,7 @@ from django.contrib.auth import get_user_model
 from django.db import models
 from django.apps import apps
 
-from hackkstate.models.mixins import TimeStampMixin
+from ksu_events.models.mixins import TimeStampMixin
 
 class ParticipantCoach(TimeStampMixin, models.Model):
     participant = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, related_name='participant_coach', verbose_name='Participant')

@@ -1,7 +1,7 @@
 from django.db import models
 
-from hackkstate.models.mixins import TimeStampMixin
-from registration.models import Registrations
+from ksu_events.models.mixins import TimeStampMixin
+from ksu_events.registration.models import Registrations
 
 
 class Coach(TimeStampMixin, models.Model):

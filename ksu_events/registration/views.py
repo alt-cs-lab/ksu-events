@@ -3,10 +3,10 @@ from django.utils import timezone
 from django.urls import reverse
 from django.shortcuts import redirect
 
-from hackkstate.models import Hackathon
-from hackkstate.util.common import get_hackathon_date_range, date_range_with_suffix
-from hackkstate.util.mixins import CommonContextMixin
-from hackkstate.views import HomePageView
+from ksu_events.models import Event
+from ksu_events.util.common import get_hackathon_date_range, date_range_with_suffix
+from ksu_events.util.mixins import CommonContextMixin
+from ksu_events.views import HomePageView
 from registration.forms.form_registration import RegistrationForm
 from registration.models import Registrations
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -50,7 +50,7 @@ class RegistrationView(LoginRequiredMixin, CommonContextMixin, FormView):
 
     def dispatch(self, request, *args, **kwargs):
         current_time = timezone.now()
-        active_season = Hackathon.objects.get_active_season_query()
+        active_season = Event.objects.get_active_season_query()
         registration_open = active_season.registration_start_date <= current_time <= active_season.registration_end_date
         if request.user.is_authenticated and registration_open:
             return super().dispatch(request, *args, **kwargs)
@@ -100,7 +100,7 @@ class CompletionPageView(LoginRequiredMixin, CommonContextMixin, TemplateView):
     def get_context_data(self, **kwargs):
         context = super(CompletionPageView, self).get_context_data(**kwargs)
 
-        active_season = Hackathon.objects.get_active_season()
+        active_season = Event.objects.get_active_season()
         profile = Registrations.objects.get_registration_hackation(user=self.request.user, hackathon_id=active_season)
         active_season = Registrations.objects.is_active(profile=profile, active_season=active_season)
 

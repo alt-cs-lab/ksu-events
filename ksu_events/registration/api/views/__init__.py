@@ -1,3 +1,3 @@
-from registration.api.views.view_user import UserViewSet
-from registration.api.views.view_userProfile import UserProfileViewSet, UserProfileViewSetExpanded
-from registration.api.views.view_socialAccount import SocialAccountViewSet
+from ksu_events.registration.api.views.view_user import UserViewSet
+from ksu_events.registration.api.views.view_userProfile import UserProfileViewSet, UserProfileViewSetExpanded
+from ksu_events.registration.api.views.view_socialAccount import SocialAccountViewSet

@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
-from registration.models.model_users import User
+from ksu_events.registration.models.model_users import User
 
 
 # not used?

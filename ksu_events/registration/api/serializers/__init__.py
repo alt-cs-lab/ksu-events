@@ -1,3 +1,3 @@
-from registration.api.serializers.serial_user import UserSerializer, UserSerializerLimited
-from registration.api.serializers.serializer_registration import UserProfileSerializer, UserProfileExpandedSerializer, \
+from ksu_events.registration.api.serializers.serial_user import UserSerializer, UserSerializerLimited
+from ksu_events.registration.api.serializers.serializer_registration import UserProfileSerializer, UserProfileExpandedSerializer, \
     UserProfileShortSerializer

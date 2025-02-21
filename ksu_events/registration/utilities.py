@@ -1,13 +1,13 @@
-from hackkstate.models import Hackathon
-from registration.apps import RegistrationConfig
-from registration.models import Registrations
-from registration.models.model_users import User  # TODO: replace with the get_user django call
+from ksu_events.models import Event
+from ksu_events.registration.apps import RegistrationConfig
+from ksu_events.registration.models import Registrations
+from ksu_events.registration.models.model_users import User  # TODO: replace with the get_user django call
 
 
 def get_auth_user_info(user: User):
     if user.is_authenticated:
-        active_season = Hackathon.objects.get_active_season()
-        profile = Registrations.objects.get_registration_hackation(user=user, hackathon_id=active_season)
+        active_season = Event.objects.get_active_season()
+        profile = Registrations.objects.get_registration_event(user=user, event_id=active_season)
         active_season = Registrations.objects.is_active(profile=profile, active_season=active_season)
 
         return {

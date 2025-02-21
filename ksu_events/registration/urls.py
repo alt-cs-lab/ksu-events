@@ -1,5 +1,5 @@
 from django.urls import path, include
-from registration import views
+from ksu_events.registration import views
 from .api.router import router
 
 urlpatterns = [

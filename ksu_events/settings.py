@@ -40,7 +40,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_extensions',  # extends with more
+    # 'djangobower',  # needed for the schedule app
 
+    "anymail",
     'simple_history',
     'django_countries',
 
@@ -49,12 +52,19 @@ INSTALLED_APPS = [
     'django.contrib.auth',
     'django.contrib.messages',
 
+    'crispy_forms',  # enables applying bootstrap to django generated forms
+    "crispy_bootstrap5",
+    'django_filters',
+    'rest_framework',  # API
+    'rest_framework.authtoken',
+
     # my apps
     'ksu_events.apps.KsuEventsConfig',
-    'registration.apps.RegistrationConfig',
+    'ksu_events.registration.apps.RegistrationConfig',
 ]
 
 MIDDLEWARE = [
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -62,7 +72,25 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'simple_history.middleware.HistoryRequestMiddleware',
+    'allauth.account.middleware.AccountMiddleware'
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        # 'oauth2_provider.contrib.rest_framework.OAuth2Authentication',
+        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',  # To keep the Browsable API
+        # 'authentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+        'hackkstate.util.IsOrganizerPermission'
+    ),
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend',
+                                'rest_framework.filters.SearchFilter'],
+    'DATETIME_FORMAT': '%a, %b %d %Y %I:%M:%S %p'
+}
 
 ROOT_URLCONF = 'ksu_events.urls'
 
