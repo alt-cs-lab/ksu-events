@@ -1,3 +1,4 @@
+from django.views.generic import TemplateView
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
@@ -6,25 +7,20 @@ from .forms import EventForm
 from datetime import datetime
 
 
-'''This home method tells the urls.py what to display.  The html page but also the closest start date for the next event.'''
-def home(request): 
-    i = 1
-    event = Event.objects.order_by('event_start_date').first()
-    today = datetime.now().replace(tzinfo=None)
+class HomeView(TemplateView):
+    template_name = 'ksu_events/home_page.html'
 
-    '''Checks if event exists'''
-    if event:
-        '''if end date has passed check the next up coming event if not next event then we render without input'''
-        while event.event_end_date.replace(tzinfo=None) < today:
-            try:
-                event = Event.objects.order_by('event_start_date').all()[i]
-                i+=1
-            except IndexError:
-                return render(request, 'ksu_events/home_page.html')
-        return render(request, 'ksu_events/home_page.html', {'event_start_date': event.event_start_date})
-    else:
-        return render(request, 'ksu_events/home_page.html')
-    #return HttpResponse("Hello world, this msg is from the events pkg")
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        today = datetime.now().replace(tzinfo=None)
+        events = Event.objects.order_by('event_start_date')
+        
+        for event in events:
+            if event.event_end_date.replace(tzinfo=None) >= today:
+                context['event_start_date'] = event.event_start_date
+                break
+        
+        return context
 
 
 @login_required
