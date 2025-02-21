@@ -1,4 +1,6 @@
 from django.views.generic import TemplateView
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic import ListView
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
@@ -23,15 +25,10 @@ class HomeView(TemplateView):
         return context
 
 
-@login_required
-def view_models(request):
-    event_models = Event.objects.all()
-
-    context = {
-        'event_models': event_models
-    }
-
-    return render(request, 'ksu_events/view_models.html', context)
+class ViewModelsView(LoginRequiredMixin, ListView):
+    model = Event
+    template_name = 'ksu_events/view_models.html'
+    context_object_name = 'event_models'
 
 @login_required
 def create_models(request):
