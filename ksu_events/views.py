@@ -7,6 +7,26 @@ from django.shortcuts import render, get_object_or_404, redirect
 from .models import Event
 from .forms import EventForm
 from datetime import datetime
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic import TemplateView
+from django.contrib.auth import get_user_model
+
+User = get_user_model()
+
+class UserProfileView(LoginRequiredMixin, TemplateView):
+    template_name = "ksu_events/user_profile.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        user = self.request.user
+        context["user_profile"] = user
+
+        context["user_fields"] = {
+            field.name: getattr(user, field.name) for field in User._meta.get_fields() if not field.is_relation
+        }
+
+        return context
+
 
 
 class HomeView(TemplateView):
