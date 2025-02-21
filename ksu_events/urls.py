@@ -1,9 +1,11 @@
 from django.urls import path
-from .views import home, view_models, UserProfileView
+from .views import HomeView, ViewModelsView, CreateModelsView, EditEventView, UserProfileView
 
-'''Sets the home and models urls'''
+# Sets the home and models urls
 urlpatterns = [
-    path('', home, name='home_view'),
-    path('models/', view_models, name="models_view"),
+    path('', HomeView.as_view(), name='home_view'),
+    path('models/', ViewModelsView.as_view(), name="view_models"),
+    path('orgdash/', CreateModelsView.as_view(), name="organizer_dash"),
+    path('edit/<int:event_id>/', EditEventView.as_view(), name='edit_event'),
     path("profile/", UserProfileView.as_view(), name="user-profile")
 ]

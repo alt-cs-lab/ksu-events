@@ -1,7 +1,11 @@
+from django.views.generic import TemplateView
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic import ListView, CreateView, UpdateView, View
+from django.urls import reverse_lazy
 from django.http import HttpResponse
-from django.shortcuts import render
-from django.contrib.auth.decorators import login_required
+from django.shortcuts import render, get_object_or_404, redirect
 from .models import Event
+from .forms import EventForm
 from datetime import datetime
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import TemplateView
@@ -25,41 +29,59 @@ class UserProfileView(LoginRequiredMixin, TemplateView):
 
 
 
-'''This home method tells the urls.py what to display.  The html page but also the closest start date for the next event.'''
-def home(request): 
-    i = 1
-    event = Event.objects.order_by('event_start_date').first()
-    today = datetime.now().replace(tzinfo=None)
+class HomeView(TemplateView):
+    template_name = 'ksu_events/home_page.html'
 
-    '''Checks if event exists'''
-    if event:
-        '''if end date has passed check the next up coming event if not next event then we render without input'''
-        while event.event_end_date.replace(tzinfo=None) < today:
-            try:
-                event = Event.objects.order_by('event_start_date').all()[i]
-                i+=1
-            except IndexError:
-                return render(request, 'ksu_events/home_page.html')
-        return render(request, 'ksu_events/home_page.html', {'event_start_date': event.event_start_date})
-    else:
-        return render(request, 'ksu_events/home_page.html')
-    #return HttpResponse("Hello world, this msg is from the events pkg")
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        today = datetime.now().replace(tzinfo=None)
+        events = Event.objects.order_by('event_start_date')
+        
+        for event in events:
+            if event.event_end_date.replace(tzinfo=None) >= today:
+                context['event_start_date'] = event.event_start_date
+                break
+        
+        return context
 
-'''This view_models method tells the urls.py what to display specifically the model page html file'''
-def view_models(request):
-    event_models = Event.objects.all()
 
-    context = {
-        'event_models': event_models
-    }
+class ViewModelsView(LoginRequiredMixin, ListView):
+    model = Event
+    template_name = 'ksu_events/view_models.html'
+    context_object_name = 'event_models'
 
-    return render(request, 'ksu_events/view_models.html', context)
-
-'''This method shows that a user has logged in'''
-@login_required
-def redirect(request):
-    user = request.user
-    username = user.username
+class CreateModelsView(LoginRequiredMixin, CreateView):
+    model = Event
+    form_class = EventForm
+    template_name = 'ksu_events/organizer_dash.html'
+    success_url = reverse_lazy('organizer_dash')
     
-    return HttpResponse(username + " has successfully logged in with KSU CAS Auth.")
+    def form_invalid(self, form):
+        context = {
+            'event_models': Event.objects.all()
+        }
+        return render(self.request, 'ksu_events/view_models.html', context)
+    
+
+class EditEventView(LoginRequiredMixin, UpdateView):
+    model = Event
+    form_class = EventForm
+    template_name = 'ksu_events/edit_event.html'
+    success_url = reverse_lazy('view_models')
+    
+    def get_object(self, queryset=None):
+        event_id = self.kwargs.get('event_id')
+        return get_object_or_404(Event, id=event_id)
+    
+    def form_invalid(self, form):
+        context = {
+            'event_models': Event.objects.all()
+        }
+        return render(self.request, 'ksu_events/view_models.html', context)
+
+class RedirectView(LoginRequiredMixin, View):
+    def get(self, request, *args, **kwargs):
+        username = request.user.username
+        return HttpResponse(f"{username} has successfully logged in with KSU CAS Auth.")
+
     

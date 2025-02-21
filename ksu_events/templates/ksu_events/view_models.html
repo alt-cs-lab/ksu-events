@@ -1,6 +1,7 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +9,7 @@
     <link rel="stylesheet" href="{% static 'ksu_events/style.css' %}">
     <link rel="stylesheet" href="{% static 'ksu_events/modelview_style.css' %}">
 </head>
+
 <body>
     <header>
 
@@ -30,12 +32,12 @@
                     <li>Reg End: {{ x.registration_end_date }}</li>
                     <li>Location: {{ x.location }}</li>
                 </ul>
-                
+                <a href="{% url 'edit_event' x.id %}">Edit</a>
             </div>
-
             {% endfor %}
             {% endblock content %}
         </div>
     </main>
 </body>
+
 </html>
