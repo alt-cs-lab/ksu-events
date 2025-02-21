@@ -1,5 +1,9 @@
 from django.urls import path
+<<<<<<< Updated upstream
 from .views import home, view_models, UserProfileView
+=======
+from ksu_events.views.other_views import HomeView, ViewModelsView, CreateModelsView, EditEventView, UserProfileView
+>>>>>>> Stashed changes
 
 '''Sets the home and models urls'''
 urlpatterns = [
