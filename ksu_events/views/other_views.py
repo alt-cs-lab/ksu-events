@@ -4,8 +4,9 @@ from django.views.generic import ListView, CreateView, UpdateView, View
 from django.urls import reverse_lazy
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Event
-from .forms import EventForm
+from ksu_events.models import Event
+from ksu_events.forms import EventForm
+from ksu_events.views.mixins import OrganizerRequiredMixin
 from datetime import datetime
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import TemplateView
@@ -50,7 +51,7 @@ class ViewModelsView(LoginRequiredMixin, ListView):
     template_name = 'ksu_events/view_models.html'
     context_object_name = 'event_models'
 
-class CreateModelsView(LoginRequiredMixin, CreateView):
+class CreateModelsView(OrganizerRequiredMixin, CreateView):
     model = Event
     form_class = EventForm
     template_name = 'ksu_events/organizer_dash.html'
