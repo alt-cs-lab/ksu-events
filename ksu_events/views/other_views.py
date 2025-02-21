@@ -79,6 +79,15 @@ class EditEventView(LoginRequiredMixin, UpdateView):
             'event_models': Event.objects.all()
         }
         return render(self.request, 'ksu_events/view_models.html', context)
+    
+
+class ViewParticipantsView(LoginRequiredMixin, ListView):
+    model = User
+    template_name = 'ksu_events/view_participant.html'
+    context_object_name = 'users'
+
+    #def get_queryset(self):
+        #return User.objects.filter(auth_role='PAR')
 
 class RedirectView(LoginRequiredMixin, View):
     def get(self, request, *args, **kwargs):
