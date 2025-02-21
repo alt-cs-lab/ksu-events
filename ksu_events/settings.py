@@ -31,13 +31,27 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'ksu_events',
+
+    'simple_history',
+    'django_countries',
+
+    # required by allauth
+    'django.contrib.sites',
+    'django.contrib.auth',
+    'django.contrib.messages',
+
+    # my apps
+    'ksu_events.apps.KsuEventsConfig',
+    'registration.apps.RegistrationConfig',
 ]
 
 MIDDLEWARE = [
