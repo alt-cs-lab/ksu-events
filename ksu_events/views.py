@@ -86,7 +86,7 @@ class ViewParticipantsView(LoginRequiredMixin, ListView):
     context_object_name = 'users'
 
     def get_queryset(self):
-        return User.objects.filter(auth_role=User.AuthLevel.PARTICIPANT)
+        return User.objects.filter(auth_role='PAR')
 
 class RedirectView(LoginRequiredMixin, View):
     def get(self, request, *args, **kwargs):
