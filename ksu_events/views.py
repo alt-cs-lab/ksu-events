@@ -1,9 +1,9 @@
 from django.views.generic import TemplateView
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import ListView
+from django.views.generic import ListView, CreateView, UpdateView, View
+from django.urls import reverse_lazy
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
-from django.contrib.auth.decorators import login_required
 from .models import Event
 from .forms import EventForm
 from datetime import datetime
@@ -30,55 +30,38 @@ class ViewModelsView(LoginRequiredMixin, ListView):
     template_name = 'ksu_events/view_models.html'
     context_object_name = 'event_models'
 
-@login_required
-def create_models(request):
-    try:
-        if request.method == 'POST':
-            form = EventForm(request.POST)
-            if form.is_valid():
-                form.save()
-                return redirect('organizer_dash')
-        else:
-            form = EventForm()
-        return render(request, 'ksu_events/organizer_dash.html', {'form': form})
-    except Exception as e:  #Horrible fix please fix asap
-        event_models = Event.objects.all()
-
+class CreateModelsView(LoginRequiredMixin, CreateView):
+    model = Event
+    form_class = EventForm
+    template_name = 'ksu_events/organizer_dash.html'
+    success_url = reverse_lazy('organizer_dash')
+    
+    def form_invalid(self, form):
         context = {
-            'event_models': event_models
+            'event_models': Event.objects.all()
         }
-
-        return render(request, 'ksu_events/view_models.html', context)
+        return render(self.request, 'ksu_events/view_models.html', context)
     
 
-@login_required
-def edit_event(request, event_id=None):
-    try:
-        if event_id:  
-            event = get_object_or_404(Event, id=event_id)
-        else:  
-            event = None
-
-        form = EventForm(request.POST or None, instance=event)
-        if request.method == "POST" and form.is_valid():
-            form.save()
-            return redirect('view_models')
-
-        return render(request, 'ksu_events/edit_event.html', {'form': form})
-    except Exception as e: #Horrible fix please change asap
-        event_models = Event.objects.all()
-
-        context = {
-            'event_models': event_models
-        }
-
-        return render(request, 'ksu_events/view_models.html', context)
-
-'''This method shows that a user has logged in'''
-@login_required
-def redirect(request):
-    user = request.user
-    username = user.username
+class EditEventView(LoginRequiredMixin, UpdateView):
+    model = Event
+    form_class = EventForm
+    template_name = 'ksu_events/edit_event.html'
+    success_url = reverse_lazy('view_models')
     
-    return HttpResponse(username + " has successfully logged in with KSU CAS Auth.")
+    def get_object(self, queryset=None):
+        event_id = self.kwargs.get('event_id')
+        return get_object_or_404(Event, id=event_id)
+    
+    def form_invalid(self, form):
+        context = {
+            'event_models': Event.objects.all()
+        }
+        return render(self.request, 'ksu_events/view_models.html', context)
+
+class RedirectView(LoginRequiredMixin, View):
+    def get(self, request, *args, **kwargs):
+        username = request.user.username
+        return HttpResponse(f"{username} has successfully logged in with KSU CAS Auth.")
+
     
