@@ -1,0 +1,67 @@
+[
+  {
+    "model": "registration.EthnicityOption",
+    "pk": 1,
+    "fields": {
+      "key": "A",
+      "value": "Asian"
+    }
+  },
+  {
+    "model": "registration.EthnicityOption",
+    "pk": 2,
+    "fields": {
+      "key": "BA",
+      "value": "Black/African"
+    }
+  },
+  {
+    "model": "registration.EthnicityOption",
+    "pk": 3,
+    "fields": {
+      "key": "CW",
+      "value": "Caucasian/White"
+    }
+  },
+  {
+    "model": "registration.EthnicityOption",
+    "pk": 4,
+    "fields": {
+      "key": "HL",
+      "value": "Hispanic/Latinx"
+    }
+  },
+  {
+    "model": "registration.EthnicityOption",
+    "pk": 5,
+    "fields": {
+      "key": "NA",
+      "value": "Native American"
+    }
+  },
+  {
+    "model": "registration.EthnicityOption",
+    "pk": 6,
+    "fields": {
+      "key": "PI",
+      "value": "Pacific Islander"
+    }
+  },
+  {
+    "model": "registration.EthnicityOption",
+    "pk": 7,
+    "fields": {
+      "key": "O",
+      "value": "Other"
+    }
+  },
+  {
+    "model": "registration.EthnicityOption",
+    "pk": 8,
+    "fields": {
+      "key": "NO",
+      "value": "Prefer not to answer"
+    }
+  }
+]
+

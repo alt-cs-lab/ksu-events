@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+
+    {% if season %}
+        <h4 class="text-left avoidflag">
+        Thank you for registering for Hack K-State 2023, {{ name }}!
+        <br>
+        <br>
+        Keep an eye on your email for information regarding the event on November 3rd-5th!
+        </h4>
+        <h6 class="text-left avoidflag">
+        Please be sure to check your clutter/spam/junk mail folders!
+        </h6>
+    {% else %}
+        <h4 class="text-left avoidflag">
+            We are sorry, {{ name }} It doesn't seem like the registration worked.  Please email us at hackkstate@ksu.edu for assistance.
+        </h4>
+    {% endif %}
+
+
+
+    {% comment %}{% if messages %}
+        <ul class="messages ">
+            {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}{% endcomment %}
+{% endblock %}

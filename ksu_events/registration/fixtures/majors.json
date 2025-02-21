@@ -1,0 +1,123 @@
+[
+  {
+    "model": "registration.MajorOption",
+    "pk": 1,
+    "fields": {
+      "key": "CS",
+      "value": "Computer science, computer engineering, or software engineering"
+    }
+  },
+  {
+    "model": "registration.MajorOption",
+    "pk": 2,
+    "fields": {
+      "key": "EN",
+      "value": "Another engineering discipline (such as civil, electrical, mechanical, etc.)"
+    }
+  },
+  {
+    "model": "registration.MajorOption",
+    "pk": 3,
+    "fields": {
+      "key": "IT",
+      "value": "Information systems, information technology, or system administration"
+    }
+  },
+  {
+    "model": "registration.MajorOption",
+    "pk": 4,
+    "fields": {
+      "key": "NS",
+      "value": "A natural science (such as biology, chemistry, physics, etc.)"
+    }
+  },
+  {
+    "model": "registration.MajorOption",
+    "pk": 5,
+    "fields": {
+      "key": "MA",
+      "value": "Mathematics or statistics"
+    }
+  },
+  {
+    "model": "registration.MajorOption",
+    "pk": 6,
+    "fields": {
+      "key": "WB",
+      "value": "Web development or web design"
+    }
+  },
+  {
+    "model": "registration.MajorOption",
+    "pk": 7,
+    "fields": {
+      "key": "BA",
+      "value": "Business discipline (such as accounting, finance, marketing, etc.)"
+    }
+  },
+  {
+    "model": "registration.MajorOption",
+    "pk": 8,
+    "fields": {
+      "key": "HU",
+      "value": "Humanities discipline (such as literature, history, philosophy, etc.)"
+    }
+  },
+  {
+    "model": "registration.MajorOption",
+    "pk": 9,
+    "fields": {
+      "key": "SS",
+      "value": "Social science (such as anthropology, psychology, political science, etc.)"
+    }
+  },
+  {
+    "model": "registration.MajorOption",
+    "pk": 10,
+    "fields": {
+      "key": "FA",
+      "value": "Fine arts or performing arts (such as graphic design, music, studio art, etc.)"
+    }
+  },
+  {
+    "model": "registration.MajorOption",
+    "pk": 11,
+    "fields": {
+      "key": "HS",
+      "value": "Health science (such as nursing, pharmacy, radiology, etc.)"
+    }
+  },
+  {
+    "model": "registration.MajorOption",
+    "pk": 12,
+    "fields": {
+      "key": "O",
+      "value": "Other (please specify)"
+    }
+  },
+  {
+    "model": "registration.MajorOption",
+    "pk": 13,
+    "fields": {
+      "key": "UN",
+      "value": "Undecided / No Declared Major"
+    }
+  },
+  {
+    "model": "registration.MajorOption",
+    "pk": 14,
+    "fields": {
+      "key": "NM",
+      "value": "My school does not offer majors / primary areas of study"
+    }
+  },
+  {
+    "model": "registration.MajorOption",
+    "pk": 0,
+    "fields": {
+      "key": "NO",
+      "value": "Prefer not to answer"
+    }
+  }
+]
+

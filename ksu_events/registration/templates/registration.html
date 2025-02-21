@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block header_block %}
+    {% include 'registration_header.html' %}
+{% endblock %}
+
+{% block content %}
+
+    <h5 class="text-left avoidflag page-header">
+        Just a few more steps... Keep an eye on your email for information regarding the event!
+    </h5>
+    <div id="formDiv" style="width:85%; margin: 0 auto">
+        <form class="md-form" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form|crispy }}
+
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="shareInfo" name="shareInfo" required>
+                <label class="form-check-label" for="shareInfo"> I authorize you to share my application/registration
+                    information with Major League Hacking for event administration, ranking, and MLH administration
+                    in-line with the <a href="https://mlh.io/privacy">MLH Privacy Policy</a>. I further agree to the
+                    terms of both the
+                    <a href="https://github.com/MLH/mlh-policies/blob/main/contest-terms.md">
+                        MLH Contest Terms and Conditions</a> and the
+                    <a href="https://mlh.io/privacy">MLH Privacy Policy</a>.</label>
+                <p class="secondCheck">
+                    <input type="checkbox" class="form-check-input" id="codeOfConduct" name="shareInfo" required>
+                    <label class="form-check-label" for="shareInfo"> I have read and agree to the <a
+                            href="http://mlh.io/code-of-conduct">MLH Code of Conduct</a>.</label>
+                </p>
+            </div>
+            <i>
+                <ol>
+                    <li>At this time, we are unsure if we will be able to provide t-shirts to all hackers, so they will
+                        be provided on a first-come, first-serve basis if they arrive. We will keep you up-to-date
+                        if this changes.
+                    </li>
+                    <li>
+                        You must be at least 14 years of age or older to participate in Hack K-State. Due to new
+                        University policies, we are limited to the number of minors we can have at the event. All minors
+                        must be accompanied by a coach/chaperone. Any minors who register will be waitlisted until we
+                        can confirm their coach/chaperone and that we have space for them. For more information, please
+                        see our <a href="{% url 'rules' %}">rules</a> and
+                        <a href="{% url 'faq' %}">FAQ</a> pages.
+                    </li>
+                    <li>
+                        To be a coach/chaperone, you must meet all requirements outlined in our
+                        <a href="{% url 'rules' %}">rules</a> page for coachs/chaperones.
+                    </li>
+                </ol>
+            </i>
+            <button type="submit" class="save btn btn-success">Submit</button>
+
+        </form>
+    </div>
+{% endblock %}
+
+{% block scripts_block %}
+    {% include 'registration_scripts.html' %}
+{% endblock %}
