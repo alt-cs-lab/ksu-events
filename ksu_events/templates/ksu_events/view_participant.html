@@ -1,0 +1,37 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List of Participants</title>
+    <link rel="stylesheet" href="{% static 'ksu_events/style.css' %}">
+</head>
+
+<body>
+    <header>
+        <h2>List of Participants</h2>
+    </header>
+    <main>
+        <div class="container">
+
+            {% block content %}
+            {% for x in users %}
+            <div class="tile">
+                <h3>User: {{ x.full_name }}</h3>
+                <ul>
+                    <li>Email: {{ x.email }}</li>
+                    <li>Team: {{ x.team }}</li>
+                    <li>Birthday: {{ x.date_of_birth }}</li>
+                </ul>
+            </div>
+            {% empty %}
+            <li>No participants found.</li>
+            {% endfor %}
+            {% endblock content %}
+        </div>
+    </main>
+</body>
+
+</html>
