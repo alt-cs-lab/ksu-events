@@ -4,3 +4,4 @@ from ksu_events.registration.models.model_major_options import MajorOption
 from ksu_events.registration.models.model_chaperone import Chaperone
 from ksu_events.registration.models.model_participant_chaperone import ParticipantChaperone
 from ksu_events.registration.models.model_participant import Participant
+from ksu_events.registration.models.model_registration import Registrations

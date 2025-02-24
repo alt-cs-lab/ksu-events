@@ -3,15 +3,16 @@ import json
 
 from ksu_events.models import Event
 from ksu_events.models.mixins import TimeStampMixin
+from ksu_events.registration.models.model_registration import Registrations
 
 class EventAttendance(TimeStampMixin, models.Model):
-    registration = # models.ForeignKey(Registrations, blank=False, null=False, on_delete=models.CASCADE)
+    registration = models.ForeignKey(Registrations, blank=False, null=False, on_delete=models.CASCADE)
 
     class Meta:
-        unique_together = (("regisration", "created_at"),)
+        unique_together = (("registration", "created_at"),)
 
     def toObj(self):
-        return {'id': self.pk, 'eventID': self.eventID.pk, 'user': self.registration.user.pk, 'created_at': str(self.created_at),
+        return {'id': self.pk, 'eventID': self.registration.event.pk, 'user': self.registration.user.pk, 'created_at': str(self.created_at),
             'updated_at': str(self.updated_at)}
     
     @staticmethod

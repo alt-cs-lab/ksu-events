@@ -1,7 +1,7 @@
 from django.db import models
 
 from ksu_events.models.mixins import TimeStampMixin
-from ksu_events.registration.models import Registrations
+from ksu_events.registration.models.model_registration import Registrations
 
 
 class Chaperone(TimeStampMixin, models.Model):
