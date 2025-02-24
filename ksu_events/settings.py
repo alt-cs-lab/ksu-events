@@ -31,13 +31,34 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'ksu_events',
+    'django_extensions',
+
+    'simple_history',
+    'django_countries',
+
+    # required by allauth
+    'django.contrib.sites',
+    # 'django.contrib.auth',
+    # 'django.contrib.messages',
+
+    'crispy_forms',  # enables applying bootstrap to django generated forms
+    "crispy_bootstrap5",
+    'django_filters',
+    'rest_framework',  # API
+    'rest_framework.authtoken',
+
+    # my apps
+    'ksu_events.apps.KsuEventsConfig',
+    'ksu_events.registration',
 ]
 
 MIDDLEWARE = [
@@ -48,6 +69,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'simple_history.middleware.HistoryRequestMiddleware',
+    'allauth.account.middleware.AccountMiddleware'
 ]
 
 ROOT_URLCONF = 'ksu_events.urls'
@@ -81,6 +104,7 @@ DATABASES = {
     }
 }
 
+AUTH_USER_MODEL = "ksu_events.User"
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
