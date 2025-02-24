@@ -6,7 +6,7 @@ for registration for the hackathon for the current season.
 import os
 from datetime import datetime
 
-from allauth.socialaccount.models import SocialAccount
+#from allauth.socialaccount.models import SocialAccount
 from django.core.exceptions import ValidationError
 from django.db import models
 
@@ -138,8 +138,8 @@ class Registrations(TimeStampMixin, models.Model):
                                   email=self.user.email,
                                   displayname=self.user.full_name()).svg_inline(scale=5, omitsize=True)
 
-    def mlh_data(self):
-        return SocialAccount.objects.filter(user=self.user.id).first()
+    #def mlh_data(self):
+    #    return SocialAccount.objects.filter(user=self.user.id).first()
 
     #TODO: Added this to the form, but should copy it from the MLH data if it exists before presenting the form
     # def phone(self):
