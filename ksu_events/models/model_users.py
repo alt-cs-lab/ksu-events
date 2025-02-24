@@ -23,12 +23,12 @@ class User(AbstractUser, TimeStampMixin):
     # institution = models.CharField(max_length=255, blank=True)
     # team = models.CharField(max_length=255, blank=True)
     
-    #class AuthLevel(models.TextChoices):
-    #    ORGANIZER = 'ORG', _('Organizer')
-    #    VOLUNTEER = 'VOL', _('Volunteer')
-    #    PARTICIPANT = 'PAR', _('Participant') 
+    class AuthLevel(models.TextChoices):
+        ORGANIZER = 'ORG', _('Organizer')
+        VOLUNTEER = 'VOL', _('Volunteer')
+        PARTICIPANT = 'PAR', _('Participant') 
 
-    # auth_role = models.CharField(max_length=3, choices=AuthLevel.choices, default=AuthLevel.ORGANIZER, blank=False)
+    auth_role = models.CharField(max_length=3, choices=AuthLevel.choices, default=AuthLevel.ORGANIZER, blank=False)
     # is_organizer = models.BooleanField(default=False)
 
     """This class extends the base Django Auth User model to allow for additional fields"""
