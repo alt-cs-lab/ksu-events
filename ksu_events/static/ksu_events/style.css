@@ -118,7 +118,7 @@ main {
     text-align: center;
 }
 
-.centered-list ul {
+.centered-list li {
     display: inline-block;
     text-align: left;
 }
