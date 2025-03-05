@@ -39,7 +39,8 @@
         <div class="centered-list">
             <ul>
                 {% for field, value in user_fields.items %}
-                {% if field != "password" and field != "id" %} {# Hide sensitive fields #}
+                {% if field not in ["password", "id", "password", "is_superuser","is_staff", "is_active", "created_at",
+                "updated_at", "date_of_birth"] %} {# hide some fields #}
                 <li><strong>{{ field|title }}:</strong> {{ value }}</li>
                 {% endif %}
                 {% endfor %}
