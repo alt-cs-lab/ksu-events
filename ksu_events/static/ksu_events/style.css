@@ -118,7 +118,8 @@ main {
     text-align: center;
 }
 
-.centered-list li {
+.centered-list ul {
     display: inline-block;
     text-align: left;
+    margin: 0;
 }

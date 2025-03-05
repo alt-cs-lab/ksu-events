@@ -36,8 +36,8 @@
         </div>
     </header>
     <main>
-        <div class="info">
-            <ul class="centered-list">
+        <div class="centered-list">
+            <ul>
                 {% for field, value in user_fields.items %}
                 {% if field != "password" and field != "id" %} {# Hide sensitive fields #}
                 <li><strong>{{ field|title }}:</strong> {{ value }}</li>
