@@ -39,10 +39,13 @@
         <div class="centered-list">
             <ul>
                 {% for field, value in user_fields.items %}
-                {% if field not in ["password", "id", "password", "is_superuser","is_staff", "is_active", "created_at",
-                "updated_at", "date_of_birth"] %} {# hide some fields #}
+                {% with
+                hidden_fields="password,id,is_superuser,is_staff,is_active,created_at,updated_at,date_of_birth"|split:","
+                %}
+                {% if field not in hidden_fields %} {# hide some fields #}
                 <li><strong>{{ field|title }}:</strong> {{ value }}</li>
                 {% endif %}
+                {% endwith %}
                 {% endfor %}
             </ul>
         </div>
