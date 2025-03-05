@@ -113,3 +113,12 @@ main {
     font-size: 2rem;
     padding: 5rem 2rem;
 }
+
+.centered-list {
+    text-align: center;
+}
+
+.centered-list ul {
+    display: inline-block;
+    text-align: left;
+}

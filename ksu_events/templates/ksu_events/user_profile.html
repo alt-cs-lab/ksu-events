@@ -33,11 +33,11 @@
         </nav>
     </header>
     <main>
-        <section class="proj-box">
+        <div class="proj-box">
             <h1>User Profile</h1>
-        </section>
+        </div>
         <div class="info">
-            <ul>
+            <ul class="centered-list">
                 {% for field, value in user_fields.items %}
                 {% if field != "password" and field != "id" %} {# Hide sensitive fields #}
                 <li><strong>{{ field|title }}:</strong> {{ value }}</li>
