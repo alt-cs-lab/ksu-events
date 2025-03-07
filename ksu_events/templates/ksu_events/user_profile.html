@@ -11,17 +11,40 @@
 
 <body>
     <header>
-
+        <nav>
+            <div class="logo">Club Name</div>
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <!--This is a temp fix to allow models page to display for live demo-->
+                <li><a href="/models">Schedule</a></li>
+                <li><a href="#">FAQ</a></li>
+                <li><a href="#">Rules</a></li>
+                <li><a href="#">Last Year's Projects</a></li>
+            </ul>
+            {% if user.is_authenticated %}
+            <div class="sign-in" onclick="location.href='/accounts/logout';" style="cursor: pointer;">
+                Sign out
+            </div>
+            {% else %}
+            <div class="sign-in" onclick="location.href='/accounts/login';" style="cursor: pointer;">
+                Sign in
+            </div>
+            {% endif %}
+        </nav>
+        <div class="proj-box">
+            <h1>User Profile</h1>
+        </div>
     </header>
     <main>
-        <h2>User Profile</h2>
-        <ul>
-            {% for field, value in user_fields.items %}
-            {% if field != "password" and field != "id" %} {# Hide sensitive fields #}
-            <li><strong>{{ field|title }}:</strong> {{ value }}</li>
-            {% endif %}
-            {% endfor %}
-        </ul>
+        <div class="centered-list">
+            <ul>
+                {% for field, value in user_fields.items %}
+                {% if field not in hidden_fields %} {# hide some fields #}
+                <li><strong>{{ field|title }}:</strong> {{ value }}</li>
+                {% endif %}
+                {% endfor %}
+            </ul>
+        </div>
     </main>
 </body>
 

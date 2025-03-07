@@ -3,26 +3,26 @@
 	"build": {
 		"dockerfile": "Dockerfile"
 	},
-
 	// 👇 Features to add to the Dev Container. More info: https://containers.dev/implementors/features.
 	// "features": {},
-
 	// 👇 Use 'forwardPorts' to make a list of ports inside the container available locally.
 	// "forwardPorts": [],
-
 	// 👇 Use 'postCreateCommand' to run commands after the container is created.
 	"postCreateCommand": "poetry install",
-
 	// 👇 Configure tool-specific properties.
 	"customizations": {
-        "vscode": {
-            "extensions":["ms-python.python", "njpwerner.autodocstring", "ms-python.pylint", "ms-python.vscode-pylance"],
+		"vscode": {
+			"extensions": [
+				"ms-python.python",
+				"njpwerner.autodocstring",
+				"ms-python.pylint",
+				"ms-python.vscode-pylance"
+			],
 			"settings": {
-                "editor.formatOnSave": true // auto format on save to maintain consistent formatting
+				"editor.formatOnSave": true // auto format on save to maintain consistent formatting
 			}
-            }
-        }
-
+		}
+	}
 	// 👇 Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
 	// "remoteUser": "root"
 }

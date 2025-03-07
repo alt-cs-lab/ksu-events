@@ -21,7 +21,7 @@ class UserProfileView(LoginRequiredMixin, TemplateView):
         context = super().get_context_data(**kwargs)
         user = self.request.user
         context["user_profile"] = user
-
+        context["hidden_fields"] = ["password", "id", "password", "is_superuser","is_staff", "is_active", "created_at", "updated_at", "date_of_birth"]
         context["user_fields"] = {
             field.name: getattr(user, field.name) for field in User._meta.get_fields() if not field.is_relation
         }
