@@ -1,0 +1,42 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'ksu_events/style.css' %}">
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="logo">{% block title %}{% endblock %}</div>
+            <ul class="nav-links">
+                <li><a href="#">Home</a></li>
+                <!--This is a temp fix to allow models page to display for live demo-->
+                <li><a href="http://127.0.0.1:8000/models">Schedule</a></li>
+                <li><a href="#">FAQ</a></li>
+                <li><a href="#">Rules</a></li>
+                <li><a href="#">Last Year's Projects</a></li>
+            </ul>
+            {% if user.is_authenticated %}
+            <div class="sign-in" onclick="location.href='/accounts/logout';" style="cursor: pointer;">
+                Sign out
+            </div>
+            {% else %}
+            <div class="sign-in" onclick="location.href='/accounts/login';" style="cursor: pointer;">
+                Sign in
+            </div>
+            {% endif %}
+        </nav>
+    </header>
+
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+</body>
+
+</html>

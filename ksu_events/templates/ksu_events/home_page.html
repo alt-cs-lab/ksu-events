@@ -1,103 +1,57 @@
+{% extends "base.html" %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hack K-State</title>
-    <link rel="stylesheet" href="{% static 'ksu_events/style.css' %}">
-</head>
+{% block title %} Demo Website {% endblock %}
 
-<body>
-    <header>
-        <nav>
-            <div class="logo">Club Name</div>
-            <ul class="nav-links">
-                <li><a href="#">Home</a></li>
-                <!--This is a temp fix to allow models page to display for live demo-->
-                <li><a href="http://127.0.0.1:8000/models">Schedule</a></li>
-                <li><a href="#">FAQ</a></li>
-                <li><a href="#">Rules</a></li>
-                <li><a href="#">Last Year's Projects</a></li>
-            </ul>
-            {% if user.is_authenticated %}
-            <div class="sign-in" onclick="location.href='/accounts/logout';" style="cursor: pointer;">
-                Sign out
-            </div>
-            {% else %}
-            <div class="sign-in" onclick="location.href='/accounts/login';" style="cursor: pointer;">
-                Sign in
-            </div>
-            {% endif %}
-        </nav>
-        <div class="proj-box">
-            <h1>Check out last year's projects!</h1>
-            <p>От мобильных приложений до видеоигр, на K-State Club 2024 было подано более 99 проектов, и в мероприятии
-                приняли участие 138 студентов колледжей и школ со всего мира.</p>
-            <button>View Projects</button>
-        </div>
-        <!-- Clock credit goes to https://www.w3schools.com/howto/howto_js_countdown.asp,  Based on input in the script the clock displays different text-->
-        <div class="clock">
-            <p>Countdown to Next Event:</p>
-            <!-- Display the countdown timer in an element -->
-            <p id="demo"></p>
+{% block content %}
+<div class="proj-box">
+    <h1>Check out last year's projects!</h1>
+    <p>От мобильных приложений до видеоигр, на K-State Club 2024 было подано более 99 проектов, и в мероприятии
+        приняли участие 138 студентов колледжей и школ со всего мира.</p>
+    <button>View Projects</button>
+</div>
 
-            <script>
-                if ("{{ event_start_date }}") {
-                    // Set the date we're counting down to
-                    var countDownDate = new Date("{{event_start_date|date:'Y-m-d H:i:s'}}").getTime();
-                    // Update the count down every 1 second
-                    var x = setInterval(function () {
+<!-- Countdown Timer -->
+<div class="clock">
+    <p>Countdown to Next Event:</p>
+    <p id="demo"></p>
 
-                        // Get today's date and time
-                        var now = new Date().getTime();
+    <script>
+        if ("{{ event_start_date }}") {
+            var countDownDate = new Date("{{event_start_date|date:'Y-m-d H:i:s'}}").getTime();
+            var x = setInterval(function () {
+                var now = new Date().getTime();
+                var distance = countDownDate - now;
+                var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                document.getElementById("demo").innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
 
-                        // Find the distance between now and the count down date
-                        var distance = countDownDate - now;
-
-                        // Time calculations for days, hours, minutes and seconds
-                        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-                        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-                        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-                        // Display the result in the element with id="demo"
-                        document.getElementById("demo").innerHTML = days + "d " + hours + "h "
-                            + minutes + "m " + seconds + "s ";
-
-                        // If the count down is finished, write some text
-                        if (distance < 0) {
-                            clearInterval(x);
-                            document.getElementById("demo").innerHTML = "Event in Progress";
-                        }
-                    }, 1000);
+                if (distance < 0) {
+                    clearInterval(x);
+                    document.getElementById("demo").innerHTML = "Event in Progress";
                 }
-                else {
-                    document.getElementById("demo").innerHTML = "No Upcoming Events";
-                }
+            }, 1000);
+        } else {
+            document.getElementById("demo").innerHTML = "No Upcoming Events";
+        }
+    </script>
+</div>
 
-            </script>
-        </div>
-    </header>
-
-    <main>
-        <section class="info">
-            <div class="info-box">
-                <h2>Что такое хакатон?</h2>
-                <p>Хакатон — это соревнование изобретений и инноваций в области технологий...</p>
-            </div>
-            <div class="info-box">
-                <h2>Что такое K-State Club?</h2>
-                <p>K-State Club — это 36-часовой хакатон в Университете штата Канзас...</p>
-            </div>
-            <div class="info-box">
-                <h2>Кто может участвовать?</h2>
-                <p>K-State Club— один из немногих хакатонов в регионе, который собирает вместе студентов старших классов
-                    и колледжей...</p>
-            </div>
-        </section>
-    </main>
-</body>
-
-</html>
+<section class="info">
+    <div class="info-box">
+        <h2>Что такое хакатон?</h2>
+        <p>Хакатон — это соревнование изобретений и инноваций в области технологий...</p>
+    </div>
+    <div class="info-box">
+        <h2>Что такое K-State Club?</h2>
+        <p>K-State Club — это 36-часовой хакатон в Университете штата Канзас...</p>
+    </div>
+    <div class="info-box">
+        <h2>Кто может участвовать?</h2>
+        <p>K-State Club— один из немногих хакатонов в регионе, который собирает вместе студентов старших классов и
+            колледжей...</p>
+    </div>
+</section>
+{% endblock %}
