@@ -1,20 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "ksu_events/base.html" %}
 
-<head>
-    <title>Hack K-State</title>
-</head>
+{% load static %}
 
-<body>
-    <h2>Create Event</h2>
+{% block content %}
+<h2>Create Event</h2>
 
-    <form method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Create Event</button>
-    </form>
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Create Event</button>
+</form>
 
-    <a href="{% url 'view_models' %}">Back to Events</a>
-</body>
-
-</html>
+<a href="{% url 'view_models' %}">Back to Events</a>
+{% endblock %}
