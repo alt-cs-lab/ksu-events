@@ -6,8 +6,6 @@
 <a href="/" id="back-link">Back To Home</a>
 
 <div class="container">
-
-    {% block content %}
     {% for x in event_models %}
 
     <div class="tile">
@@ -21,7 +19,5 @@
         </ul>
         <a href="{% url 'edit_event' x.id %}">Edit</a>
     </div>
-    {% endfor %}
-    {% endblock content %}
 </div>
 {% endblock %}
