@@ -8,6 +8,27 @@ readme = "README.md"
 [tool.poetry.dependencies]
 python = "^3.10"
 django = "^5.1.2"
+django-allauth = "^64.1.0"
+django-extensions = "^3.2.3"
+django-anymail = {extras = ["mailgun"], version = "^11.1"}
+django-simple-history = "^3.7.0"
+django-filter = "^24.3"
+django-crispy-forms = "^2.3"
+crispy-bootstrap5 = "^2024.2"
+django-bootstrap5 = "^24.2"
+django-countries = "^7.6.1"
+django-scheduler = "^0.10.1"
+django-bower = "^5.2.0"
+djangorestframework = "^3.15.2"
+fabric = "^3.2.2"
+gunicorn = "^23.0.0"
+markdown = "^3.7"
+python-dotenv = "^1.0.1"
+pyopenssl = "^24.2.1"
+pillow = "^10.4.0"
+segno = "^1.6.1"
+werkzeug = "^3.0.3"
+whitenoise = "^6.7.0"
 
 
 [build-system]

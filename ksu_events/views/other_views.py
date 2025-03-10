@@ -4,8 +4,9 @@ from django.views.generic import ListView, CreateView, UpdateView, View
 from django.urls import reverse_lazy
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Event
-from .forms import EventForm
+from ksu_events.models import Event
+from ksu_events.forms import EventForm
+from ksu_events.views.mixins import OrganizerRequiredMixin
 from datetime import datetime
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import TemplateView
@@ -20,7 +21,7 @@ class UserProfileView(LoginRequiredMixin, TemplateView):
         context = super().get_context_data(**kwargs)
         user = self.request.user
         context["user_profile"] = user
-
+        context["hidden_fields"] = ["password", "id", "password", "is_superuser","is_staff", "is_active", "created_at", "updated_at", "date_of_birth"]
         context["user_fields"] = {
             field.name: getattr(user, field.name) for field in User._meta.get_fields() if not field.is_relation
         }
@@ -35,11 +36,11 @@ class HomeView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         today = datetime.now().replace(tzinfo=None)
-        events = Event.objects.order_by('event_start_date')
+        events = Event.objects.order_by('start_date')
         
         for event in events:
             if event.event_end_date.replace(tzinfo=None) >= today:
-                context['event_start_date'] = event.event_start_date
+                context['start_date'] = event.start_date
                 break
         
         return context
@@ -50,7 +51,7 @@ class ViewModelsView(LoginRequiredMixin, ListView):
     template_name = 'ksu_events/view_models.html'
     context_object_name = 'event_models'
 
-class CreateModelsView(LoginRequiredMixin, CreateView):
+class CreateModelsView(OrganizerRequiredMixin, CreateView):
     model = Event
     form_class = EventForm
     template_name = 'ksu_events/organizer_dash.html'

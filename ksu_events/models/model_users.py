@@ -19,9 +19,9 @@ class User(AbstractUser, TimeStampMixin):
     date_of_birth = models.DateField(
         null=True, blank=False, verbose_name='Date of Birth', help_text='MM-DD-YYYY')
 
-    event = models.ForeignKey(Event, on_delete=models.CASCADE, null=True, blank=True)
-    institution = models.CharField(max_length=255, blank=True)
-    team = models.CharField(max_length=255, blank=True)
+    # event = models.ForeignKey(Event, on_delete=models.CASCADE, null=True, blank=True)
+    # institution = models.CharField(max_length=255, blank=True)
+    # team = models.CharField(max_length=255, blank=True)
     
     class AuthLevel(models.TextChoices):
         ORGANIZER = 'ORG', _('Organizer')
