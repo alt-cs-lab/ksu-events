@@ -114,13 +114,6 @@ main {
     padding: 5rem 2rem;
 }
 
-a#back-link {
-    color: #ffffff;
-    text-decoration: none;
-    font-size: 1rem;
-    margin: 40px
-}
-
 .container {
     display: flex;
     flex-direction: row;
