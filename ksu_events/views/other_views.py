@@ -39,7 +39,7 @@ class HomeView(TemplateView):
         events = Event.objects.order_by('start_date')
         
         for event in events:
-            if event.event_end_date.replace(tzinfo=None) >= today:
+            if event.end_date.replace(tzinfo=None) >= today:
                 context['start_date'] = event.start_date
                 break
         
