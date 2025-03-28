@@ -37,8 +37,7 @@ class HomeView(TemplateView):
         context = super().get_context_data(**kwargs)
         today = datetime.now().replace(tzinfo=None)
         events = Event.objects.order_by('start_date')
-        event = None
-        if event.exists():
+        if events.exists():
             i = 0
             event = events[i]
             '''if end date has passed check the next up coming event if not next event then we render without input'''
