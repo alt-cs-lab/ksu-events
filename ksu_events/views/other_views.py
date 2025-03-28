@@ -35,24 +35,22 @@ class HomeView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        events = Event.objects.order_by('start_date')
         today = datetime.now().replace(tzinfo=None)
-        event = Event.objects.order_by('start_date')
-        
-        if event.exists():
-            i = 1
-            '''if end date has passed check the next up coming event if not next event then we render without input'''
-            while event.end_date.replace(tzinfo=None) < today:
+
+        event = events.first()
+        i = 1
+
+        if event:
+            while event.event_end_date.replace(tzinfo=None) < today:
                 try:
-                    event = Event.objects.order_by('event_start_date').all()[i]
-                    i+=1
+                    event = events[i]
+                    i += 1
                 except IndexError:
-                    context['event_start_date'] = None
-                    return context
-            context['event_start_date'] = event.start_date
-            return context
-        else:
-            context['event_start_date'] = None  # No events in database
-            return context
+                    return context  # No upcoming events
+            context['start_date'] = event.event_start_date
+
+        return context
 
 
 class ViewModelsView(LoginRequiredMixin, ListView):
