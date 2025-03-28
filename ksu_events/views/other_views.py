@@ -46,11 +46,11 @@ class HomeView(TemplateView):
                 try:
                     event = events[i]
                 except IndexError:
-                    context['event_start_date'] = None
+                    context['clock_end_time'] = None
                     return context
-            context['event_start_date'] = event.start_date
+            context['clock_end_time'] = event.start_date
         else:
-            context['event_start_date'] = None  # No events in database
+            context['clock_end_time'] = None  # No events in database
         return context
 
 
