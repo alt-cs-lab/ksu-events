@@ -37,7 +37,7 @@ class HomeView(TemplateView):
         context = super().get_context_data(**kwargs)
         today = datetime.now().replace(tzinfo=None)
         events = Event.objects.order_by('start_date')
-        
+        event = None
         if event.exists():
             i = 0
             event = events[i]
