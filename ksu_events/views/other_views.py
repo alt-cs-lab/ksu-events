@@ -42,7 +42,7 @@ class HomeView(TemplateView):
         i = 1
 
         if event:
-            while event.event_end_date.replace(tzinfo=None) < today:
+            while event.end_date.replace(tzinfo=None) < today:
                 try:
                     event = events[i]
                     i += 1
