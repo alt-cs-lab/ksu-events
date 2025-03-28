@@ -41,14 +41,14 @@ class HomeView(TemplateView):
         if event.exists():
             i = 1
             '''if end date has passed check the next up coming event if not next event then we render without input'''
-            while event.event_end_date.replace(tzinfo=None) < today:
+            while event.end_date.replace(tzinfo=None) < today:
                 try:
                     event = Event.objects.order_by('event_start_date').all()[i]
                     i+=1
                 except IndexError:
                     context['event_start_date'] = None
                     return context
-            context['event_start_date'] = event.event_start_date
+            context['event_start_date'] = event.start_date
             return context
         else:
             context['event_start_date'] = None  # No events in database
