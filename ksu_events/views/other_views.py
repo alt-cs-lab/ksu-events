@@ -48,7 +48,7 @@ class HomeView(TemplateView):
                     i += 1
                 except IndexError:
                     return context  # No upcoming events
-            context['start_date'] = event.event_start_date
+            context['start_date'] = event.start_date
 
         return context
 
