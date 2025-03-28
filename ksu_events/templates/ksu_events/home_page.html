@@ -18,8 +18,8 @@
     <p id="demo"></p>
 
     <script>
-        if ("{{ event_start_date }}") {
-            var countDownDate = new Date("{{event_start_date|date:'Y-m-d H:i:s'}}").getTime();
+        if ("{{ start_date }}") {
+            var countDownDate = new Date("{{start_date|date:'Y-m-d H:i:s'}}").getTime();
             var x = setInterval(function () {
                 var now = new Date().getTime();
                 var distance = countDownDate - now;
