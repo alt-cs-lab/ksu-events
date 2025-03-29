@@ -11,6 +11,8 @@ from datetime import datetime
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import TemplateView
 from django.contrib.auth import get_user_model
+from ksu_events.models import Event, EventAttendance
+from ksu_events.forms import EventAttendanceForm
 
 User = get_user_model()
 
@@ -59,6 +61,7 @@ class ViewModelsView(LoginRequiredMixin, ListView):
     template_name = 'ksu_events/view_models.html'
     context_object_name = 'event_models'
 
+
 class CreateModelsView(OrganizerRequiredMixin, CreateView):
     model = Event
     form_class = EventForm
@@ -87,6 +90,16 @@ class EditEventView(LoginRequiredMixin, UpdateView):
             'event_models': Event.objects.all()
         }
         return render(self.request, 'ksu_events/view_models.html', context)
+    
+class EventAttendanceView(LoginRequiredMixin, CreateView):
+    model = Event
+    form_class = EventAttendanceForm
+    template_name = 'ksu_events/register_event.html'
+    success_url = reverse_lazy('event_list')  # Redirect after successful registration
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user  # Assign the logged-in user
+        return super().form_valid(form)
     
 
 class ViewParticipantsView(LoginRequiredMixin, ListView):
