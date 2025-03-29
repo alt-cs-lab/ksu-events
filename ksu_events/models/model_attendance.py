@@ -12,7 +12,7 @@ class EventAttendance(TimeStampMixin, models.Model):
     registered_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
-        unique_together = ('event', 'person')  # Prevent duplicate registrations
+        unique_together = ('event', 'user')
 
     def __str__(self):
         return f"{self.user} registered for {self.event.name}"
