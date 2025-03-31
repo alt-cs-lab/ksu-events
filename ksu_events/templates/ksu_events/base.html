@@ -21,6 +21,7 @@
                 {% if request.user.auth_role == User.AuthLevel.ORGANIZER %}
                 <li><a href="/orgdash">OrganizerDash</a></li>
                 {% endif %}
+                <li>Auth Role: {{ request.user.auth_role }}</li>
             </ul>
             {% if user.is_authenticated %}
             <div class="sign-in" onclick="location.href='/accounts/logout';" style="cursor: pointer;">
