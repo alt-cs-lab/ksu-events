@@ -10,10 +10,10 @@
     <div class="tile">
         <h3>Event: {{ x.name }}</h3>
         <ul>
-            <li>Start Date: {{ x.event_start_date }}</li>
-            <li>End Date: {{ x.event_end_date }}</li>
-            <li>Reg Start: {{ x.registration_start_date }}</li>
-            <li>Reg End: {{ x.registration_end_date }}</li>
+            <li>Start Date: {{ x.start_date }}</li>
+            <li>End Date: {{ x.end_date }}</li>
+            <li>Reg Start: {{ x.registration_start }}</li>
+            <li>Reg End: {{ x.registration_end }}</li>
             <li>Location: {{ x.location }}</li>
         </ul>
         <a href="{% url 'edit_event' x.id %}">Edit</a>
