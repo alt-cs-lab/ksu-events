@@ -59,8 +59,7 @@ class EventAttendance(TimeStampMixin, models.Model):
     
     class Meta:
         constraints = [
-            models.UniqueConstraint(fields=['user', 'hackathon'], name='cnst_unique_userHackathon'),
-            models.UniqueConstraint(fields=['hackathon', 'cardID'], name='cnst_unique_hackathonCard'),
+            models.UniqueConstraint(fields=['user', 'event'], name='cnst_unique_userHackathon')
         ]
 
     def __str__(self):
