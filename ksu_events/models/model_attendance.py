@@ -7,7 +7,7 @@ from ksu_events.registration.models.model_registration import Registrations
 
 class EventAttendance(TimeStampMixin, models.Model):
 
-    event = models.ForeignKey(Event, on_delete=models.CASCADE, null=True, blank=True)
+    event = models.ForeignKey(Event, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     registered_at = models.DateTimeField(auto_now_add=True)
 
