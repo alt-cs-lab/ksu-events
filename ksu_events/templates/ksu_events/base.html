@@ -18,7 +18,7 @@
                 <li><a href="/models">Schedule</a></li>
                 <li><a href="/profile">Profile</a></li>
                 <li><a href="/register">Registration</a></li>
-                {% if user.is_authenticated and request.user.auth_role == User.AuthLevel.ORGANIZER %}
+                {% if user.is_authenticated and request.user.auth_role == "ORG" %}
                 <li><a href="/orgdash">OrganizerDash</a></li>
                 {% endif %}
                 <li>Auth Role: {{ request.user.auth_role }}</li>
