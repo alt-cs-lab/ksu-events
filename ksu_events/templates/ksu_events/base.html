@@ -18,7 +18,7 @@
                 <li><a href="/models">Schedule</a></li>
                 <li><a href="/profile">Profile</a></li>
                 <li><a href="/register">Registration</a></li>
-                {% if request.user.auth_role == "ORGANIZER" %}
+                {% if request.user.auth_role == User.AuthLevel.ORGANIZER %}
                 <li><a href="/orgdash">OrganizerDash</a></li>
                 {% endif %}
             </ul>
