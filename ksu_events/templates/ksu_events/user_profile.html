@@ -1,51 +1,15 @@
+{% extends "ksu_events/base.html" %}
+
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Profile</title>
-    <link rel="stylesheet" href="{% static 'ksu_events/style.css' %}">
-</head>
-
-<body>
-    <header>
-        <nav>
-            <div class="logo">Club Name</div>
-            <ul class="nav-links">
-                <li><a href="/">Home</a></li>
-                <!--This is a temp fix to allow models page to display for live demo-->
-                <li><a href="/models">Schedule</a></li>
-                <li><a href="#">FAQ</a></li>
-                <li><a href="#">Rules</a></li>
-                <li><a href="#">Last Year's Projects</a></li>
-            </ul>
-            {% if user.is_authenticated %}
-            <div class="sign-in" onclick="location.href='/accounts/logout';" style="cursor: pointer;">
-                Sign out
-            </div>
-            {% else %}
-            <div class="sign-in" onclick="location.href='/accounts/login';" style="cursor: pointer;">
-                Sign in
-            </div>
-            {% endif %}
-        </nav>
-        <div class="proj-box">
-            <h1>User Profile</h1>
-        </div>
-    </header>
-    <main>
-        <div class="centered-list">
-            <ul>
-                {% for field, value in user_fields.items %}
-                {% if field not in hidden_fields %} {# hide some fields #}
-                <li><strong>{{ field|title }}:</strong> {{ value }}</li>
-                {% endif %}
-                {% endfor %}
-            </ul>
-        </div>
-    </main>
-</body>
-
-</html>
+{% block content %}
+<div class="centered-list">
+    <ul>
+        {% for field, value in user_fields.items %}
+        {% if field not in hidden_fields %} {# hide some fields #}
+        <li><strong>{{ field|title }}:</strong> {{ value }}</li>
+        {% endif %}
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}
