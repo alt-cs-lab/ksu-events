@@ -11,7 +11,7 @@
 <form method="post">
     {% csrf_token %}
     {{ form.as_p }}
-    <button type="submit">Register</button>
+    <button type="submit" disabled>Register</button>
 </form>
 <a href="{% url 'view_models' %}">Back to Events</a>
 {% endblock %}
