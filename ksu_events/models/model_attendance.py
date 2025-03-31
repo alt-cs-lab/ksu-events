@@ -7,7 +7,7 @@ from ksu_events.models.mixins import TimeStampMixin
 
 class EventAttendance(TimeStampMixin, models.Model):
 
-    event = models.ForeignKey(Event, on_delete=models.DO_NOTHING)
+    event = models.ForeignKey(Event, on_delete=models.DO_NOTHING, default=Event.objects.first())
     user = models.ForeignKey(User, on_delete=models.DO_NOTHING)
     #registeration_order = models.DateTimeField(auto_now_add=True)
     ethnicity = models.CharField(max_length=500, default='')
@@ -57,7 +57,7 @@ class EventAttendance(TimeStampMixin, models.Model):
                                   verbose_name="Shirt Size")
     
     dietary_restrictions = models.TextField(max_length=250, default='', blank=True, null=True,
-                                            verbose_name='Do you have any dietary restrictions?')
+                                            verbose_name='Do you have any dietary restrictions?') 
     
     class Meta:
         constraints = [
