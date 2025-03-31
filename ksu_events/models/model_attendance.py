@@ -30,7 +30,8 @@ class EventAttendance(TimeStampMixin, models.Model):
         ('NO', 'I prefer not to answer'),
     ]
     education_level= models.CharField(max_length=4, blank=False, null=False,
-                                      choices=EDUCATION_LEVEL_CHOICES,
+                                      choices=EDUCATION_LEVEL_CHOICES, 
+                                      default='NO',
                                       verbose_name="Education Level")
 
     PARTICIPATION_CHOICES = [
@@ -52,6 +53,7 @@ class EventAttendance(TimeStampMixin, models.Model):
         ('XXL', 'XX-Large'),
     ]
     shirt_size = models.CharField(max_length=4, blank=False, null=False, choices=SHIRT_CHOICES,
+                                  default= 'M',
                                   verbose_name="Shirt Size")
     
     dietary_restrictions = models.TextField(max_length=250, default='', blank=True, null=True,
