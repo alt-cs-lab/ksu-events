@@ -15,11 +15,12 @@
             <div class="logo">Title</div>
             <ul class="nav-links">
                 <li><a href="/" id="back-link">Home</a></li>
-                <!--This is a temp fix to allow models page to display for live demo-->
                 <li><a href="/models">Schedule</a></li>
-                <li><a href="#">FAQ</a></li>
-                <li><a href="#">Rules</a></li>
-                <li><a href="#">Last Year's Projects</a></li>
+                <li><a href="/profile">Profile</a></li>
+                <li><a href="/register">Registration</a></li>
+                {% if user.is_authenticated and request.user.auth_role == "ORG" %}
+                <li><a href="/orgdash">OrganizerDash</a></li>
+                {% endif %}
             </ul>
             {% if user.is_authenticated %}
             <div class="sign-in" onclick="location.href='/accounts/logout';" style="cursor: pointer;">
