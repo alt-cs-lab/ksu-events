@@ -35,25 +35,24 @@ class HomeView(TemplateView):
     template_name = 'ksu_events/home_page.html'
 
     def get_context_data(self, **kwargs):
-        i = 1
         context = super().get_context_data(**kwargs)
         today = datetime.now().replace(tzinfo=None)
-        event = Event.objects.order_by('start_date').first()
-
-        if event:
-            
+        events = Event.objects.order_by('start_date')
+        if events.exists():
+            i = 0
+            event = events[i]
+            '''if end date has passed check the next up coming event if not next event then we render without input'''
             while event.end_date.replace(tzinfo=None) < today:
+                i+=1
                 try:
-                    event = Event.objects.order_by('start_date').all()[i]
-                    i+=1
+                    event = events[i]
                 except IndexError:
                     context['clock_end_time'] = None
                     return context
             context['clock_end_time'] = event.start_date
-            return context
         else:
-            context['clock_end_time'] = None
-            return context
+            context['clock_end_time'] = None  # No events in database
+        return context
 
 
 class ViewModelsView(LoginRequiredMixin, ListView):
