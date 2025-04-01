@@ -1,7 +1,7 @@
 from django.db import models
 import json
 
-from ksu_events.settings import AUTH_USER_MODEL
+from ksu_events import settings
 from ksu_events.models import Event, User
 from ksu_events.models.mixins import TimeStampMixin
 #from ksu_events.registration.models.model_registration import Registrations
@@ -9,7 +9,7 @@ from ksu_events.models.mixins import TimeStampMixin
 class EventAttendance(TimeStampMixin, models.Model):
 
     event = models.ForeignKey(Event, on_delete=models.DO_NOTHING, null=True, blank=True)
-    user = models.ForeignKey(AUTH_USER_MODEL, on_delete=models.DO_NOTHING)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.DO_NOTHING)
     #registeration_order = models.DateTimeField(auto_now_add=True)
     ethnicity = models.CharField(max_length=500, default='')
     country = models.CharField(max_length=500, default='')
