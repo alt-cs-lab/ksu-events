@@ -7,7 +7,7 @@ from ksu_events.models.mixins import TimeStampMixin
 
 class EventAttendance(TimeStampMixin, models.Model):
 
-    event = models.ForeignKey(Event, on_delete=models.DO_NOTHING, default=Event.objects.first())
+    event = models.ForeignKey(Event, on_delete=models.DO_NOTHING, null=True, blank=True)
     user = models.ForeignKey(User, on_delete=models.DO_NOTHING)
     #registeration_order = models.DateTimeField(auto_now_add=True)
     ethnicity = models.CharField(max_length=500, default='')
