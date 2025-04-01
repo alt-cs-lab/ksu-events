@@ -6,6 +6,7 @@ from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from ksu_events.models import Event
 from ksu_events.forms import EventForm
+from ksu_events.forms import EventAttendanceForm
 from ksu_events.views.mixins import OrganizerRequiredMixin
 from datetime import datetime
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -88,6 +89,15 @@ class EditEventView(LoginRequiredMixin, UpdateView):
         }
         return render(self.request, 'ksu_events/view_models.html', context)
     
+class EventAttendanceView(LoginRequiredMixin, CreateView):
+    model = Event
+    form_class = EventAttendanceForm
+    template_name = 'ksu_events/attend_event.html'
+    success_url = reverse_lazy('event_list')
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
 
 class ViewParticipantsView(LoginRequiredMixin, ListView):
     model = User

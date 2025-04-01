@@ -1,21 +1,17 @@
 {% extends "ksu_events/base.html" %}
 
-{% load static %}
-
 {% block clock%}
 <div class="proj-box">
-    <h1>Event List</h1>
+    <h1>Event Attendance Form</h1>
 </div>
 {% endblock %}
 
 {% block content %}
-<h2>Edit Event: {{ event.name }}</h2>
-
-<form method="POST">
+<h2>Register for an Event</h2>
+<form method="post">
     {% csrf_token %}
     {{ form.as_p }}
-    <button type="submit">Save Changes</button>
+    <button type="submit" disabled>Attend</button>
 </form>
-
 <a href="{% url 'view_models' %}">Back to Events</a>
 {% endblock %}
