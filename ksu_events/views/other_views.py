@@ -92,7 +92,7 @@ class EditEventView(LoginRequiredMixin, UpdateView):
 class EventAttendanceView(LoginRequiredMixin, CreateView):
     model = Event
     form_class = EventAttendanceForm
-    template_name = 'ksu_events/register_event.html'
+    template_name = 'ksu_events/attend_event.html'
     success_url = reverse_lazy('event_list')
 
     def form_valid(self, form):
