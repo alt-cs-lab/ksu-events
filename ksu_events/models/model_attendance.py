@@ -64,5 +64,5 @@ class EventAttendance(TimeStampMixin, models.Model):
             #models.UniqueConstraint(fields=['user', 'event'], name='cnst_unique_userHackathon')
         #]
 
-    #def __str__(self):
-        #return f"{self.user.full_name()} registered for {self.event.name}"
+    def __str__(self):
+        return "words"#f"{self.user.full_name()} registered for {self.event.name}"
