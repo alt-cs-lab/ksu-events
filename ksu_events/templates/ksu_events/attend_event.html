@@ -1,0 +1,17 @@
+{% extends "ksu_events/base.html" %}
+
+{% block clock%}
+<div class="proj-box">
+    <h1>Event Attendance Form</h1>
+</div>
+{% endblock %}
+
+{% block content %}
+<h2>Register for an Event</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" disabled>Attend</button>
+</form>
+<a href="{% url 'view_models' %}">Back to Events</a>
+{% endblock %}
