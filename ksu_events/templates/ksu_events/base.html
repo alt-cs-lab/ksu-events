@@ -38,12 +38,12 @@
             {% if user.is_authenticated %}
             <button class="btn btn-success" onclick="location.href='/accounts/logout';" style="cursor: pointer;">
                 Sign out
-                </div>
-                {% else %}
-                <button class="btn btn-success" onclick="location.href='/accounts/login';" style="cursor: pointer;">
-                    Sign in
-                    </div>
-                    {% endif %}
+            </button>
+            {% else %}
+            <button class="btn btn-success" onclick="location.href='/accounts/login';" style="cursor: pointer;">
+                Sign in
+            </button>
+            {% endif %}
         </nav>
         {% block clock %}
         {% endblock %}
