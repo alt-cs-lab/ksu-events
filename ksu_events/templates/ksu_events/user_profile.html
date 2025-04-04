@@ -3,8 +3,8 @@
 {% load static django_bootstrap5 %}
 
 {% block clock %}
-<div class="container my-4">
-    <h1 class="text-center">User Profile</h1>
+<div class="container text-center my-4">
+    <h1>User Profile</h1>
 </div>
 {% endblock %}
 
@@ -12,7 +12,7 @@
 <div class="container my-5">
     <div class="row justify-content-center">
         <div class="col-md-10 col-lg-8">
-            <div class="card">
+            <div class="card shadow-sm">
                 <div class="card-body">
                     <ul class="list-group list-group-flush">
                         {% for field, value in user_fields.items %}
