@@ -25,24 +25,26 @@
 <body>
     <header>
         <nav class="navbar navbar-dark bg-dark">
-            <div class="navbar-brand">Title</div>
-            <div class="navbar-nav">
-                <a class="nav-item nav-link" href="/models">Schedule</a>
-                <a class="nav-item nav-link" href="/profile">Profile</a>
-                <a class="nav-item nav-link" href="/register">Registration</a>
-                {% if user.is_authenticated and request.user.auth_role == "ORG" %}
-                <a class="nav-item nav-link" href="/orgdash">OrganizerDash</a>
+            <div class="container-fluid">
+                <div class="navbar-brand">Title</div>
+                <div class="navbar-nav">
+                    <a class="nav-item nav-link" href="/models">Schedule</a>
+                    <a class="nav-item nav-link" href="/profile">Profile</a>
+                    <a class="nav-item nav-link" href="/register">Registration</a>
+                    {% if user.is_authenticated and request.user.auth_role == "ORG" %}
+                    <a class="nav-item nav-link" href="/orgdash">OrganizerDash</a>
+                    {% endif %}
+                </div>
+                {% if user.is_authenticated %}
+                <button class="btn btn-success" onclick="location.href='/accounts/logout';" style="cursor: pointer;">
+                    Sign out
+                </button>
+                {% else %}
+                <button class="btn btn-success" onclick="location.href='/accounts/login';" style="cursor: pointer;">
+                    Sign in
+                </button>
                 {% endif %}
             </div>
-            {% if user.is_authenticated %}
-            <button class="btn btn-success" onclick="location.href='/accounts/logout';" style="cursor: pointer;">
-                Sign out
-            </button>
-            {% else %}
-            <button class="btn btn-success" onclick="location.href='/accounts/login';" style="cursor: pointer;">
-                Sign in
-            </button>
-            {% endif %}
         </nav>
         {% block clock %}
         {% endblock %}
