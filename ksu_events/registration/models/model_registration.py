@@ -54,7 +54,8 @@ class RegistrationProfileManager(models.Manager):
         else:
             return False
 
-
+"""user, event, country, dietary_restristions, phone_number, ethnicity, 
+is_minor, participation, shirt_size, year_in_school, history"""
 class Registrations(TimeStampMixin, models.Model):
     """This class adds a profile linked to a user who is registered"""
 
