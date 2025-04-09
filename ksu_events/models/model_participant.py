@@ -1,9 +1,9 @@
 from django.db import models
 
 from ksu_events.models.mixins import TimeStampMixin
-from ksu_events.registration.models.model_registration import Registrations
-from ksu_events.registration.formatChecker import ContentTypeRestrictedFileField
-from ksu_events.registration.models.model_major_options import MajorOption
+from ksu_events.models.model_registration import Registrations
+from ksu_events.formatChecker import ContentTypeRestrictedFileField
+from ksu_events.models.model_major_options import MajorOption
 
 
 class Participant(TimeStampMixin, models.Model):

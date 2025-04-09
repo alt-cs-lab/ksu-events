@@ -2,3 +2,10 @@ from ksu_events.models.model_events import Event
 from ksu_events.models.model_subevents import SubEvent
 from ksu_events.models.model_users import User
 from ksu_events.models.model_attendance import EventAttendance
+
+from ksu_events.models.model_ethnicity_options import EthnicityOption
+from ksu_events.models.model_major_options import MajorOption
+from ksu_events.models.model_chaperone import Chaperone
+from ksu_events.models.model_participant_chaperone import ParticipantChaperone
+from ksu_events.models.model_participant import Participant
+from ksu_events.models.model_registration import Registrations
