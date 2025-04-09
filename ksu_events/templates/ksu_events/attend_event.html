@@ -7,11 +7,12 @@
 {% endblock %}
 
 {% block content %}
-<h2>Register for an Event</h2>
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit" disabled>Attend</button>
-</form>
-<a href="{% url 'view_models' %}">Back to Events</a>
+<div class="card shadow-sm mx-auto my-5 p-3" style="max-width: 600px;">
+    <h2>Register for an Event</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" disabled>Attend</button>
+    </form>
+</div>
 {% endblock %}
