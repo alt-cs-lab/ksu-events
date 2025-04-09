@@ -9,20 +9,23 @@
 {% endblock %}
 
 {% block content %}
-
-<div class="container">
+<div class="card shadow-sm mx-auto my-5 p-3" style="max-width: 600px;">
+    <h2>Events</h2>
     {% for x in event_models %}
-
-    <div class="tile">
-        <h3>Event: {{ x.name }}</h3>
-        <ul>
-            <li>Start Date: {{ x.start_date }}</li>
-            <li>End Date: {{ x.end_date }}</li>
-            <li>Reg Start: {{ x.registration_start }}</li>
-            <li>Reg End: {{ x.registration_end }}</li>
-            <li>Location: {{ x.location }}</li>
-        </ul>
-        <a href="{% url 'edit_event' x.id %}">Edit</a>
+    <div class="card mb-3">
+        <div class="card-body">
+            <h5 class="card-title">{{ x.name }}</h5>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item"><strong>Start Date:</strong> {{ x.start_date }}</li>
+                <li class="list-group-item"><strong>End Date:</strong> {{ x.end_date }}</li>
+                <li class="list-group-item"><strong>Registration Start:</strong> {{ x.registration_start }}</li>
+                <li class="list-group-item"><strong>Registration End:</strong> {{ x.registration_end }}</li>
+                <li class="list-group-item"><strong>Location:</strong> {{ x.location }}</li>
+            </ul>
+            <div class="text-end mt-3">
+                <a href="{% url 'edit_event' x.id %}" class="btn btn-primary">Edit</a>
+            </div>
+        </div>
     </div>
     {% endfor %}
 </div>

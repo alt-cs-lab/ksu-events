@@ -1,19 +1,21 @@
 {% extends "ksu_events/base.html" %}
 
-{% load static %}
+{% load static django_bootstrap5 %}
 
-{% block clock%}
+{% block clock %}
 <div class="proj-box">
-    <h1>User Profile</h1>
+    <h1 class="text-center my-4">User Profile</h1>
 </div>
 {% endblock %}
 
 {% block content %}
-<div class="centered-list">
-    <ul>
+<div class="card shadow-sm mx-auto my-5" style="max-width: 600px;">
+    <ul class="list-group list-group-flush">
         {% for field, value in user_fields.items %}
-        {% if field not in hidden_fields %} {# hide some fields #}
-        <li><strong>{{ field|title }}:</strong> {{ value }}</li>
+        {% if field not in hidden_fields %}
+        <li class="list-group-item">
+            <strong>{{ field|title }}:</strong> {{ value }}
+        </li>
         {% endif %}
         {% endfor %}
     </ul>
