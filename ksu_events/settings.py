@@ -41,7 +41,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_extensions',
-
     'simple_history',
     'django_countries',
 
@@ -59,7 +58,7 @@ INSTALLED_APPS = [
 
     # my apps
     'ksu_events.apps.KsuEventsConfig',
-    'ksu_events.registration',
+    'ksu_events.apps.RegistrationConfig',
 ]
 
 MIDDLEWARE = [
