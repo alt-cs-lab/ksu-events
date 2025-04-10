@@ -4,8 +4,8 @@ from django.views.generic import FormView
 from django.shortcuts import get_object_or_404, redirect
 
 from ksu_events.models import Event
-from ksu_events.registration.models.model_registration import Registrations
-from ksu_events.registration.forms import RegistrationForm
+from registration.models.model_registration import Registrations
+from registration.forms import RegistrationForm
 
 
 class RegisterView(LoginRequiredMixin, FormView):
