@@ -1,5 +1,5 @@
 from django.urls import path
-from ksu_events.registration.views import RegisterView
+from registration.views import RegisterView
 from ksu_events.views.other_views import HomeView, ViewModelsView, CreateModelsView, EditEventView, UserProfileView, ViewParticipantsView
 
 # Sets the home and models urls
