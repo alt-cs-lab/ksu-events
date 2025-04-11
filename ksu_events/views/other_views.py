@@ -10,6 +10,7 @@ from ksu_events.forms import RegistrationForm
 from ksu_events.views.mixins import OrganizerRequiredMixin
 from datetime import datetime
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib import messages
 from django.views.generic import TemplateView
 from django.contrib.auth import get_user_model
 
@@ -96,7 +97,16 @@ class EventRegistrationView(LoginRequiredMixin, CreateView):
     success_url = reverse_lazy('home_view')
     
     def form_valid(self, form):
-        # Set the user to the currently logged in user
+        event = form.cleaned_data['event']
+        existing_registration = Registration.objects.filter(
+            user=self.request.user,
+            event=event
+        ).exists()
+        
+        if existing_registration:
+            # Add a message to inform the user
+            messages.warning(self.request, f"You are already registered for {event}.")
+            return redirect(self.success_url)
         form.instance.user = self.request.user
         return super().form_valid(form)
 
