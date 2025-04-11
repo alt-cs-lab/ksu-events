@@ -9,12 +9,27 @@
 {% endblock %}
 
 {% block content %}
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.14.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="/resources/demos/style.css">
+<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+<script src="https://code.jquery.com/ui/1.14.1/jquery-ui.js"></script>
+
 <div class="card shadow-sm mx-auto my-5 p-3" style="max-width: 600px;">
     <h2>Create Event</h2>
     <form method="POST">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">Create Event</button>
+        <button class="btn btn-success" type="submit">Create Event</button>
     </form>
 </div>
+
+<script>
+    $(function () {
+        $("#id_start_date").datepicker();
+        $("#id_end_date").datepicker();
+        $("#id_registration_start").datepicker();
+        $("#id_registration_end").datepicker();
+
+    });
+</script>
 {% endblock %}
