@@ -30,7 +30,7 @@
                 <div class="navbar-nav d-flex flex-row gap-3 me-auto">
                     <a class="nav-item nav-link" href="/models">Schedule</a>
                     <a class="nav-item nav-link" href="/profile">Profile</a>
-                    <a class="nav-item nav-link" href="/register">Registration</a>
+                    <a class="nav-item nav-link" href="/registration/register">Registration</a>
                     {% if user.is_authenticated and request.user.auth_role == "ORG" %}
                     <a class="nav-item nav-link" href="/orgdash">OrganizerDash</a>
                     {% endif %}
