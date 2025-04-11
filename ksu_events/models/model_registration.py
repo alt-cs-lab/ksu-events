@@ -13,14 +13,9 @@ from django.db import models
 from ksu_events.models.model_events import Event
 from ksu_events.models.mixins import TimeStampMixin
 from ksu_events.models.model_users import User
-from ksu_events.registration.models.model_ethnicity_options import EthnicityOption
 
 from django.dispatch import receiver
-from simple_history.models import HistoricalRecords
 from django_countries.fields import CountryField
-import django.dispatch
-
-from segno import helpers
 
 # update_qr_code = django.dispatch.Signal()
 
