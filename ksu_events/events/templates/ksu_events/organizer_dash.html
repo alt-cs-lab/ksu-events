@@ -10,8 +10,12 @@
 
 {% block content %}
 
-
-<div class="card shadow-sm mx-auto my-5 p-3" style="max-width: 600px;">
+<style>
+    label {
+        color: black !important;
+    }
+</style>
+<div class="card shadow-sm mx-auto my-5 p-3" style="max-width: 600px; background-color: gray;">
     <h2>Create Event</h2>
     <form method="POST">
         {% csrf_token %}
