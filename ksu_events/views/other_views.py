@@ -93,7 +93,7 @@ class EventRegistrationView(LoginRequiredMixin, CreateView):
     model = Registration
     form_class = RegistrationForm
     template_name = 'ksu_events/attend_event.html'
-    success_url = reverse_lazy('event_list')
+    success_url = reverse_lazy('home_view')
     
     def form_valid(self, form):
         # Set the user to the currently logged in user
