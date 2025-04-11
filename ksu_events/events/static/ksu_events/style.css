@@ -85,7 +85,8 @@ main {
     padding: 2rem;
     margin: 0;
     height: 100vh;
-    background: linear-gradient(to top, black, #2a1547);
+    background-image: linear-gradient(to bottom, #2a1547 0%, #4c2580 40%, #4c2580 60%, black 100%);
+    background-blend-mode: overlay;
 }
 
 .info {
