@@ -41,7 +41,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_extensions',
-
     'simple_history',
     'django_countries',
 
@@ -58,7 +57,8 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
 
     # my apps
-    'ksu_events.apps.KsuEventsConfig',
+    # 'ksu_events.events',
+    'ksu_events.events',
     'ksu_events.registration',
 ]
 
@@ -105,7 +105,7 @@ DATABASES = {
     }
 }
 
-AUTH_USER_MODEL = "ksu_events.User"
+AUTH_USER_MODEL = "events.User"
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators

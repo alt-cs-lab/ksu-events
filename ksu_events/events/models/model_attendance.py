@@ -1,8 +1,8 @@
 from django.db import models
 import json
 
-from ksu_events.models import Event
-from ksu_events.models.mixins import TimeStampMixin
+from ksu_events.events.models import Event
+from ksu_events.events.models.mixins import TimeStampMixin
 from ksu_events.registration.models.model_registration import Registrations
 
 class EventAttendance(TimeStampMixin, models.Model):

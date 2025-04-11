@@ -10,9 +10,9 @@ from datetime import datetime
 from django.core.exceptions import ValidationError
 from django.db import models
 
-from ksu_events.models.model_events import Event
-from ksu_events.models.mixins import TimeStampMixin
-from ksu_events.models.model_users import User
+from ksu_events.events.models.model_events import Event
+from ksu_events.events.models.mixins import TimeStampMixin
+from ksu_events.events.models.model_users import User
 from ksu_events.registration.models.model_ethnicity_options import EthnicityOption
 
 from django.dispatch import receiver
@@ -54,7 +54,8 @@ class RegistrationProfileManager(models.Manager):
         else:
             return False
 
-
+"""user, event, country, dietary_restristions, phone_number, ethnicity, 
+is_minor, participation, shirt_size, year_in_school, history"""
 class Registrations(TimeStampMixin, models.Model):
     """This class adds a profile linked to a user who is registered"""
 

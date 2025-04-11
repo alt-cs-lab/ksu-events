@@ -4,8 +4,8 @@ from django.db import models
 from datetime import datetime
 from django.utils.translation import gettext_lazy as _
 
-from ksu_events.models.mixins import TimeStampMixin
-from ksu_events.models.model_events import Event
+from ksu_events.events.models.mixins import TimeStampMixin
+from ksu_events.events.models.model_events import Event
 
 
 def validate_date_format(value):

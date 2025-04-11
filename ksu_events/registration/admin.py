@@ -5,7 +5,7 @@ from django.contrib import admin
 
 #from registration.forms.form_user import CustomUserCreationForm, CustomUserChangeForm
 from ksu_events.registration.models import Registrations, MajorOption, EthnicityOption
-from ksu_events.models.model_users import User
+from ksu_events.events.models.model_users import User
 #from ksu_events.util.mixins import ExportCsvMixin, EmailSelectedMixin
 from simple_history.admin import SimpleHistoryAdmin
 

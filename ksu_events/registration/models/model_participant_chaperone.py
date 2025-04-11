@@ -2,7 +2,7 @@ from django.contrib.auth import get_user_model
 from django.db import models
 from django.apps import apps
 
-from ksu_events.models.mixins import TimeStampMixin
+from ksu_events.events.models.mixins import TimeStampMixin
 from ksu_events.registration.models.model_chaperone import Chaperone
 
 class ParticipantChaperone(TimeStampMixin, models.Model):
