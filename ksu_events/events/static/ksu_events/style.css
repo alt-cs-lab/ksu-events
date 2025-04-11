@@ -85,7 +85,7 @@ main {
     padding: 2rem;
     margin: 0;
     height: 100vh;
-    background: linear-gradient(to bottom, black, purple);
+    background: linear-gradient(to top, black, #2a1547);
 }
 
 .info {
