@@ -83,6 +83,9 @@ nav .logo {
 
 main {
     padding: 2rem;
+    margin: 0;
+    height: 100vh;
+    background: linear-gradient(to bottom, black, purple);
 }
 
 .info {
