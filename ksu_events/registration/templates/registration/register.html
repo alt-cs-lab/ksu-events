@@ -1,11 +1,90 @@
 {% extends "ksu_events/base.html" %}
 
-{% block content %}
-<h2>Register for {{ event.name }}</h2>
+{% block clock%}
+<div class="proj-box">
+    <h1>Event Attendance Form</h1>
+</div>
+{% endblock %}
 
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Register</button>
-</form>
+{% block content %}
+<div class="card shadow-sm mx-auto my-5 p-3" style="max-width: 600px;">
+    <h2>Register for an Event</h2>
+    <form method="post">
+        {% csrf_token %}
+        
+        <div class="form-group my-2">
+            {{ form.event.label_tag }}
+            {{ form.event }}
+            {% if form.event.errors %}
+            <div class="text-danger">{{ form.event.errors }}</div>
+            {% endif %}
+        </div>
+
+        <div class="form-group my-2">
+            {{ form.country.label_tag }}
+            {{ form.country }}
+            {% if form.country.errors %}
+            <div class="text-danger">{{ form.country.errors }}</div>
+            {% endif %}
+        </div>
+
+        <div class="form-group my-2">
+            {{ form.dietary_restrictions.label_tag }}
+            {{ form.dietary_restrictions }}
+            {% if form.dietary_restrictions.errors %}
+            <div class="text-danger">{{ form.dietary_restrictions.errors }}</div>
+            {% endif %}
+        </div>
+
+        <div class="form-group my-2">
+            {{ form.phone_number.label_tag }}
+            {{ form.phone_number }}
+            {% if form.phone_number.errors %}
+            <div class="text-danger">{{ form.phone_number.errors }}</div>
+            {% endif %}
+        </div>
+
+        <div class="form-group my-2">
+            {{ form.ethnicity.label_tag }}
+            {{ form.ethnicity }}
+            {% if form.ethnicity.errors %}
+            <div class="text-danger">{{ form.ethnicity.errors }}</div>
+            {% endif %}
+        </div>
+
+        <div class="form-check my-2">
+            {{ form.is_minor }}
+            {{ form.is_minor.label_tag }}
+            {% if form.is_minor.errors %}
+            <div class="text-danger">{{ form.is_minor.errors }}</div>
+            {% endif %}
+        </div>
+
+        <div class="form-group my-2">
+            {{ form.participation.label_tag }}
+            {{ form.participation }}
+            {% if form.participation.errors %}
+            <div class="text-danger">{{ form.participation.errors }}</div>
+            {% endif %}
+        </div>
+
+        <div class="form-group my-2">
+            {{ form.shirt_size.label_tag }}
+            {{ form.shirt_size }}
+            {% if form.shirt_size.errors %}
+            <div class="text-danger">{{ form.shirt_size.errors }}</div>
+            {% endif %}
+        </div>
+
+        <div class="form-group my-2">
+            {{ form.year_in_school.label_tag }}
+            {{ form.year_in_school }}
+            {% if form.year_in_school.errors %}
+            <div class="text-danger">{{ form.year_in_school.errors }}</div>
+            {% endif %}
+        </div>
+
+        <button type="submit" class="btn btn-primary">Register</button>
+    </form>
+</div>
 {% endblock %}
