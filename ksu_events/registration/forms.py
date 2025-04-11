@@ -1,7 +1,7 @@
 from django import forms
 
 from ksu_events.events.models import Event
-from ksu_events.registration.models import Registration
+from ksu_events.registration.models import Registrations
 
 
 class RegistrationForm(forms.ModelForm):
@@ -12,7 +12,7 @@ class RegistrationForm(forms.ModelForm):
     )
     
     class Meta:
-        model = Registration
+        model = Registrations
         fields = [
             'event', 
             'country', 
