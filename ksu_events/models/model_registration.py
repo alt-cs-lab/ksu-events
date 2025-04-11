@@ -175,35 +175,3 @@ def age_by_date(date_of_birth: str, compare_date: datetime):
     # https://stackoverflow.com/questions/2217488/age-from-birthdate-in-python
     return compare_date.year - birthday.year - ((compare_date.month, compare_date.day) < (birthday.month, birthday.day))
 
-
-@receiver(models.signals.post_delete, sender=Registrations)
-def auto_delete_file_on_delete(sender, instance, **kwargs):
-    """
-    Deletes file from filesystem
-    when corresponding `MediaFile` object is deleted.
-    """
-    if instance.resume:
-        if os.path.isfile(instance.resume.path):
-            os.remove(instance.resume.path)
-
-
-@receiver(models.signals.pre_save, sender=Registrations)
-def auto_delete_file_on_change(sender, instance, **kwargs):
-    """
-    Deletes old file from filesystem
-    when corresponding `MediaFile` object is updated
-    with new file.
-    """
-    if not instance.pk:
-        return False
-
-    try:
-        userProfile = sender.objects.get(pk=instance.pk)
-        old_file = userProfile.resume
-    except sender.DoesNotExist:
-        return False
-
-    new_file = instance.resume
-    if bool(old_file) and not old_file == new_file:
-        if os.path.isfile(old_file.path):
-            os.remove(old_file.path)
