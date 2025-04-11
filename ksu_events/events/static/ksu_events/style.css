@@ -115,7 +115,7 @@ main {
     color: #4CAF50;
     font-size: 2rem;
     padding: 5rem 2rem;
-    background-image: linear-gradient(to bottom, #2a1547 0%, black 40%, black 60%, #2a1547 100%);
+    background-image: linear-gradient(to bottom, black 0%, black 40%, black 60%, #2a1547 100%);
 
 }
 
