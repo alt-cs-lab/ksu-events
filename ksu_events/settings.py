@@ -59,7 +59,6 @@ INSTALLED_APPS = [
 
     # my apps
     'ksu_events.apps.KsuEventsConfig',
-    'ksu_events.registration',
 ]
 
 MIDDLEWARE = [
