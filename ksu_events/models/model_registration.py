@@ -33,14 +33,14 @@ from django_countries.fields import CountryField
 class RegistrationProfileManager(models.Manager):
     def get_registration_hackation(self, user, event_id):
         try:
-            return Registrations.objects.get(user=user, event_id=event_id)
-        except Registrations.DoesNotExist:
+            return Registration.objects.get(user=user, event_id=event_id)
+        except Registration.DoesNotExist:
             return None
 
     def get_registrations(self, user):
         try:
-            return Registrations.objects.get(user=user)
-        except Registrations.DoesNotExist:
+            return Registration.objects.get(user=user)
+        except Registration.DoesNotExist:
             return None
 
     def is_active(self, profile, active_season):
