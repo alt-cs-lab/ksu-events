@@ -1,20 +1,37 @@
 from django import forms
-from django.forms import ModelForm
-from django.utils.safestring import mark_safe
-from django_countries.widgets import CountrySelectWidget
 
-from ksu_events.registration.models import Registrations
+from ksu_events.events.models import Event
+from ksu_events.registration.models import Registration
 
 
 class RegistrationForm(forms.ModelForm):
+    event = forms.ModelChoiceField(
+        queryset=Event.objects.all(), 
+        empty_label="Select an event",
+        widget=forms.Select(attrs={'class': 'form-control'})
+    )
+    
     class Meta:
-        model = Registrations
-        exclude = ['user', 'event', 'history']  # user and event should probably be set in the view
+        model = Registration
         fields = [
-            'ethnicity', 'country', 'year_in_school', 'shirt_size','dietary_restrictions',
-            'phone_number', 'is_minor', 'participation']
+            'event', 
+            'country', 
+            'dietary_restrictions', 
+            'phone_number',
+            'ethnicity',
+            'is_minor',
+            'participation',
+            'shirt_size',
+            'year_in_school'
+        ]
+        # Exclude the user field since we'll set it automatically
+        exclude = ['user']
+        
         widgets = {
-            'dietary_restrictions': forms.Textarea(attrs={'rows': 2, 'cols': 60}),
-            'ethnicity': forms.CheckboxSelectMultiple(),
-            'country': CountrySelectWidget()
+            'dietary_restrictions': forms.Textarea(attrs={'rows': 3, 'class': 'form-control'}),
+            'phone_number': forms.TextInput(attrs={'class': 'form-control'}),
+            'ethnicity': forms.TextInput(attrs={'class': 'form-control'}),
+            'participation': forms.Select(attrs={'class': 'form-control'}),
+            'shirt_size': forms.Select(attrs={'class': 'form-control'}),
+            'year_in_school': forms.Select(attrs={'class': 'form-control'}),
         }
