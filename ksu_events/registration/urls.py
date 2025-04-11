@@ -1,4 +1,5 @@
 from django.urls import path, include
+from ksu_events.registration.views import EventRegistrationView
 
 
 urlpatterns = [
