@@ -12,7 +12,7 @@
     <form method="post">
         {% csrf_token %}
         
-        <div class="form-group">
+        <div class="form-group my-5">
             {{ form.event.label_tag }}
             {{ form.event }}
             {% if form.event.errors %}
@@ -20,7 +20,7 @@
             {% endif %}
         </div>
 
-        <div class="form-group">
+        <div class="form-group my-5">
             {{ form.country.label_tag }}
             {{ form.country }}
             {% if form.country.errors %}
@@ -28,7 +28,7 @@
             {% endif %}
         </div>
 
-        <div class="form-group">
+        <div class="form-group my-5">
             {{ form.dietary_restrictions.label_tag }}
             {{ form.dietary_restrictions }}
             {% if form.dietary_restrictions.errors %}
@@ -36,7 +36,7 @@
             {% endif %}
         </div>
 
-        <div class="form-group">
+        <div class="form-group my-5">
             {{ form.phone_number.label_tag }}
             {{ form.phone_number }}
             {% if form.phone_number.errors %}
@@ -44,7 +44,7 @@
             {% endif %}
         </div>
 
-        <div class="form-group">
+        <div class="form-group my-5">
             {{ form.ethnicity.label_tag }}
             {{ form.ethnicity }}
             {% if form.ethnicity.errors %}
@@ -52,7 +52,7 @@
             {% endif %}
         </div>
 
-        <div class="form-check">
+        <div class="form-check my-5">
             {{ form.is_minor }}
             {{ form.is_minor.label_tag }}
             {% if form.is_minor.errors %}
@@ -60,7 +60,7 @@
             {% endif %}
         </div>
 
-        <div class="form-group">
+        <div class="form-group my-5">
             {{ form.participation.label_tag }}
             {{ form.participation }}
             {% if form.participation.errors %}
@@ -68,7 +68,7 @@
             {% endif %}
         </div>
 
-        <div class="form-group">
+        <div class="form-group my-5">
             {{ form.shirt_size.label_tag }}
             {{ form.shirt_size }}
             {% if form.shirt_size.errors %}
@@ -76,7 +76,7 @@
             {% endif %}
         </div>
 
-        <div class="form-group">
+        <div class="form-group my-5">
             {{ form.year_in_school.label_tag }}
             {{ form.year_in_school }}
             {% if form.year_in_school.errors %}
@@ -84,7 +84,7 @@
             {% endif %}
         </div>
 
-        <button type="submit" class="btn btn-primary">Register</button>
+        <button type="submit" class="btn btn-primary my-5">Register</button>
     </form>
 </div>
 {% endblock %}
