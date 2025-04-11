@@ -111,11 +111,12 @@ main {
 }
 
 .clock {
-    background-color: #000000;
     font-family: 'Technology';
     color: #4CAF50;
     font-size: 2rem;
     padding: 5rem 2rem;
+    background-image: linear-gradient(to bottom, #2a1547 0%, #4c2580 40%, #4c2580 60%, #2a1547 100%);
+
 }
 
 .container {
