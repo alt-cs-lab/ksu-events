@@ -14,8 +14,17 @@
     <form method="POST">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">Save Changes</button>
+        <button class="btn btn-success" type="submit">Save Changes</button>
     </form>
-    <a href="{% url 'view_models' %}">Back to Events</a>
+    <a type="button" class="btn btn-primary" href="{% url 'view_models' %}">Back to Events</a>
 </div>
+<script>
+    $(function () {
+        $("#id_start_date").datepicker();
+        $("#id_end_date").datepicker();
+        $("#id_registration_start").datepicker();
+        $("#id_registration_end").datepicker();
+
+    });
+</script>
 {% endblock %}
