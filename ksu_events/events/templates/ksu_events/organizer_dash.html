@@ -9,12 +9,23 @@
 {% endblock %}
 
 {% block content %}
+
 <div class="card shadow-sm mx-auto my-5 p-3" style="max-width: 600px;">
     <h2>Create Event</h2>
     <form method="POST">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">Create Event</button>
+        <button class="btn btn-success" type="submit">Create Event</button>
     </form>
 </div>
+
+<script>
+    $(function () {
+        $("#id_start_date").datepicker();
+        $("#id_end_date").datepicker();
+        $("#id_registration_start").datepicker();
+        $("#id_registration_end").datepicker();
+
+    });
+</script>
 {% endblock %}
