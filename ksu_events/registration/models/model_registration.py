@@ -35,7 +35,7 @@ class RegistrationProfileManager(models.Manager):
             return False
 
 
-class Registration(TimeStampMixin, models.Model):
+class Registrations(TimeStampMixin, models.Model):
     """This class adds a profile linked to a user who is registered"""
 
     user = models.ForeignKey(User, on_delete=models.DO_NOTHING)

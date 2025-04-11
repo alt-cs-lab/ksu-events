@@ -7,17 +7,16 @@ from ksu_events.events.models import Event
 from ksu_events.registration.models.model_registration import Registrations
 from ksu_events.registration.forms import RegistrationForm
 from django.contrib import messages
-from ksu_events.registration.models import Registration
 
 class EventRegistrationView(LoginRequiredMixin, CreateView):
-    model = Registration
+    model = Registrations
     form_class = RegistrationForm
     template_name = 'ksu_events/register.html'
     success_url = reverse_lazy('home_view')
     
     def form_valid(self, form):
         event = form.cleaned_data['event']
-        existing_registration = Registration.objects.filter(
+        existing_registration = Registrations.objects.filter(
             user=self.request.user,
             event=event
         ).exists()
