@@ -4,7 +4,7 @@ from django.views.generic import ListView, CreateView, UpdateView, View
 from django.urls import reverse_lazy
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
-from ksu_events.models import Event
+from ksu_events.models import Event, Registration
 from ksu_events.forms import EventForm
 from ksu_events.forms import EventAttendanceForm
 from ksu_events.views.mixins import OrganizerRequiredMixin
@@ -90,7 +90,7 @@ class EditEventView(LoginRequiredMixin, UpdateView):
         return render(self.request, 'ksu_events/view_models.html', context)
     
 class EventAttendanceView(LoginRequiredMixin, CreateView):
-    model = Event
+    model = Registration
     form_class = EventAttendanceForm
     template_name = 'ksu_events/attend_event.html'
     success_url = reverse_lazy('event_list')

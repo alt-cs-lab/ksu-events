@@ -55,24 +55,23 @@ class RegistrationProfileManager(models.Manager):
             return False
 
 
-class Registrations(TimeStampMixin, models.Model):
+class Registration(TimeStampMixin, models.Model):
     """This class adds a profile linked to a user who is registered"""
 
     user = models.ForeignKey(User, on_delete=models.DO_NOTHING)
-    event = models.ForeignKey(Event, models.DO_NOTHING)
+    event = models.ForeignKey(Event, on_delete=models.DO_NOTHING)
     #cardID = models.PositiveIntegerField(default=get_next_card_id)
 
-    country = CountryField(blank=False, blank_label='(select country)')
+    country = CountryField(blank=True, blank_label='(select country)')
     dietary_restrictions = models.TextField(max_length=250, default='', blank=True, null=True,
                                             verbose_name='Do you have any dietary restrictions?')
-    phone_number = models.CharField(max_length=15, blank=False, null=False)
+    phone_number = models.CharField(max_length=15, blank=True, null=False)
 
     # https://stackoverflow.com/questions/18108521/many-to-many-in-list-display-django
-    ethnicity = models.ManyToManyField(EthnicityOption)
-    is_minor = models.BooleanField(default=False, verbose_name='Under 18')
+    ethnicity = models.CharField(max_length=15, blank=True, null=False)
+    is_minor = models.BooleanField(default=True, verbose_name='Under 18')
 
     # mlh_communication = models.BooleanField(default=False, verbose_name='MLH Communication')
-
 
 
     PARTICIPATION_CHOICES = [
@@ -117,26 +116,26 @@ class Registrations(TimeStampMixin, models.Model):
 
 
 
-    history = HistoricalRecords()
+    # history = HistoricalRecords()
     objects = RegistrationProfileManager()
 
     def __str__(self):
         return "{}-{}".format(self.user.get_full_name(), self.user.email)
 
-    def all_ethnicities(self):
+    # def all_ethnicities(self):
         # return ",".join([e.value for e in obj.ethnicity.all()])
-        return ', '.join(self.ethnicity.values_list('value', flat=True))
-    def all_majors(self):
+        # return ', '.join(self.ethnicity.values_list('value', flat=True))
+    #def all_majors(self):
         # return ",".join([e.value for e in obj.ethnicity.all()])
-        return ', '.join(self.major.values_list('value', flat=True))
+    #    return ', '.join(self.major.values_list('value', flat=True))
     #def season_name(self):
     #    # return ",".join([e.value for e in obj.ethnicity.all()])
     #    return self.hackathon.season
 
-    def get_qr_code(self):
-        return helpers.make_vcard(name=self.user.full_name(),
-                                  email=self.user.email,
-                                  displayname=self.user.full_name()).svg_inline(scale=5, omitsize=True)
+    # def get_qr_code(self):
+    #    return helpers.make_vcard(name=self.user.full_name(),
+    #                              email=self.user.email,
+    #                              displayname=self.user.full_name()).svg_inline(scale=5, omitsize=True)
 
     #def mlh_data(self):
     #    return SocialAccount.objects.filter(user=self.user.id).first()
@@ -151,11 +150,11 @@ class Registrations(TimeStampMixin, models.Model):
     #         return data['phone_number']
     #     return ''
 
-    def age_by_competition(self):
-        """
-        Returns the age of the user at the time of the competition
-        """
-        return age_by_date(date_of_birth=str(self.user.date_of_birth), compare_date=self.event.start_date)
+    #def age_by_competition(self):
+    #    """
+    #    Returns the age of the user at the time of the competition
+    #    """
+    #    return age_by_date(date_of_birth=str(self.user.date_of_birth), compare_date=self.event.start_date)
 
     # def clean(self):
     #     """

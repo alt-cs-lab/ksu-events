@@ -1,7 +1,7 @@
 from django import forms
 from django.forms import ModelForm
 
-from .models import Event, EventAttendance
+from .models import Event, EventAttendance, Registration
 
 class EventForm(ModelForm):
     class Meta:
@@ -12,5 +12,5 @@ class EventAttendanceForm(forms.ModelForm):
     event = forms.ModelChoiceField(queryset=Event.objects.all(), empty_label="Select an event")
 
     class Meta:
-        model = EventAttendance
+        model = Registration
         fields = ['event']
