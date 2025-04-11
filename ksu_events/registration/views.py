@@ -11,7 +11,7 @@ from django.contrib import messages
 class EventRegistrationView(LoginRequiredMixin, CreateView):
     model = Registrations
     form_class = RegistrationForm
-    template_name = 'ksu_events/registration/register.html'
+    template_name = 'registration/register.html'
     success_url = reverse_lazy('home_view')
     
     def form_valid(self, form):
