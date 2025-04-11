@@ -9,6 +9,6 @@ urlpatterns = [
     path('orgdash/', CreateModelsView.as_view(), name="organizer_dash"),
     path('edit/<int:event_id>/', EditEventView.as_view(), name='edit_event'),
     path("profile/", UserProfileView.as_view(), name="user-profile"),
-    path('register/<int:event_id>/', RegisterView.as_view(), name='register'),
+    # path('register/<int:event_id>/', RegisterView.as_view(), name='register'),
     path('participants', ViewParticipantsView.as_view(), name="participants")
 ]
