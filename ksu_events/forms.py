@@ -1,7 +1,7 @@
 from django import forms
 from django.forms import ModelForm
 
-from .models import Event, EventAttendance, Registration
+from .models import Event, Registration
 
 class EventForm(ModelForm):
     class Meta:
