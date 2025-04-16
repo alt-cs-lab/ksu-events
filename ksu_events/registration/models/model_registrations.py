@@ -14,19 +14,15 @@ from ksu_events.events.models.mixins import TimeStampMixin
 from ksu_events.events.models.model_users import User
 
 from django_countries.fields import CountryField
+from simple_history.models import HistoricalRecords
+from ksu_events.registration.models.model_ethnicity_options import EthnicityOption
 
 class RegistrationProfileManager(models.Manager):
     def get_registration_hackation(self, user, event_id):
-        try:
-            return Registration.objects.get(user=user, event_id=event_id)
-        except Registration.DoesNotExist:
-            return None
+        return Registrations.objects.get(user=user, event_id=event_id)
 
     def get_registrations(self, user):
-        try:
-            return Registration.objects.get(user=user)
-        except Registration.DoesNotExist:
-            return None
+        return Registrations.objects.get(user=user)
 
     def is_active(self, profile, active_season):
         if profile and active_season and str(profile.event) == str(active_season):
@@ -48,7 +44,7 @@ class Registrations(TimeStampMixin, models.Model):
     phone_number = models.CharField(max_length=15, blank=True, null=False)
 
     # https://stackoverflow.com/questions/18108521/many-to-many-in-list-display-django
-    ethnicity = models.CharField(max_length=15, blank=True, null=False)
+    ethnicity = models.ManyToManyField(EthnicityOption)
     is_minor = models.BooleanField(default=True, verbose_name='Under 18')
 
     # mlh_communication = models.BooleanField(default=False, verbose_name='MLH Communication')
@@ -96,11 +92,11 @@ class Registrations(TimeStampMixin, models.Model):
 
 
 
-    # history = HistoricalRecords()
+    history = HistoricalRecords()
     objects = RegistrationProfileManager()
 
     def __str__(self):
-        return "{}-{}".format(self.user.get_full_name(), self.user.email)
+        return "{}-{}".format(self.user.full_name(), self.user.email)
 
     # def all_ethnicities(self):
         # return ",".join([e.value for e in obj.ethnicity.all()])
