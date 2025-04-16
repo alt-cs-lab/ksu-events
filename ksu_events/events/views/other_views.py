@@ -67,7 +67,7 @@ class CreateModelsView(OrganizerRequiredMixin, CreateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['event_models'] = Event.objects.filter(is_active=True)  # Filter active events
+        context['event_models'] = Event.objects.all()  # Filter active events
         return context
     
     def form_invalid(self, form):
