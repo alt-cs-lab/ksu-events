@@ -29,6 +29,7 @@ class User(AbstractUser, TimeStampMixin):
         PARTICIPANT = 'PAR', _('Participant') 
 
     auth_role = models.CharField(max_length=3, choices=AuthLevel.choices, default=AuthLevel.ORGANIZER, blank=False)
+    email = models.EmailField(_("email address"), blank=True)
     # is_organizer = models.BooleanField(default=False)
 
     """This class extends the base Django Auth User model to allow for additional fields"""
