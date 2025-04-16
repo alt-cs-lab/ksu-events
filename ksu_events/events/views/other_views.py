@@ -64,6 +64,11 @@ class CreateModelsView(OrganizerRequiredMixin, CreateView):
     form_class = EventForm
     template_name = 'ksu_events/organizer_dash.html'
     success_url = reverse_lazy('organizer_dash')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['event_models'] = Event.objects.filter(is_active=True)  # Filter active events
+        return context
     
     def form_invalid(self, form):
         context = {
