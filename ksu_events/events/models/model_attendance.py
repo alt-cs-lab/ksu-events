@@ -3,7 +3,7 @@ import json
 
 from ksu_events.events.models import Event
 from ksu_events.events.models.mixins import TimeStampMixin
-from ksu_events.registration.models.model_registration import Registrations
+from ksu_events.registration.models.model_registrations import Registrations
 
 class EventAttendance(TimeStampMixin, models.Model):
     registration = models.ForeignKey(Registrations, blank=False, null=False, on_delete=models.CASCADE)

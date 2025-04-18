@@ -23,7 +23,9 @@
                 <li class="list-group-item"><strong>Location:</strong> {{ x.location }}</li>
             </ul>
             <div class="text-end mt-3">
+                {% if user.is_authenticated and request.user.auth_role == "ORG" %}
                 <a href="{% url 'edit_event' x.id %}" class="btn btn-primary">Edit</a>
+                {% endif %}
             </div>
         </div>
     </div>

@@ -30,7 +30,7 @@ class RegistrationForm(forms.ModelForm):
         widgets = {
             'dietary_restrictions': forms.Textarea(attrs={'rows': 3, 'class': 'form-control'}),
             'phone_number': forms.TextInput(attrs={'class': 'form-control'}),
-            'ethnicity': forms.TextInput(attrs={'class': 'form-control'}),
+            'ethnicity': forms.SelectMultiple(attrs={'class': 'form-control'}),
             'participation': forms.Select(attrs={'class': 'form-control'}),
             'shirt_size': forms.Select(attrs={'class': 'form-control'}),
             'year_in_school': forms.Select(attrs={'class': 'form-control'}),

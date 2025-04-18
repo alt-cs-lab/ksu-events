@@ -72,7 +72,7 @@ class CreateModelsView(OrganizerRequiredMixin, CreateView):
         return render(self.request, 'ksu_events/view_models.html', context)
     
 
-class EditEventView(LoginRequiredMixin, UpdateView):
+class EditEventView(OrganizerRequiredMixin,  UpdateView):
     model = Event
     form_class = EventForm
     template_name = 'ksu_events/edit_event.html'
