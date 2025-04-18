@@ -3,9 +3,14 @@ from django.contrib.auth.admin import UserAdmin
 from .models import Event, SubEvent, User
 
 class CASUserAdmin(UserAdmin):
-    # Override save_model to make password field optional
+    fieldsets = (
+        ('Basic info', {'fields': ('username', 'email', 'first_name', 'last_name', 'date_of_birth', 'auth_role', 'is_superuser')}),
+        ('Other info', {
+            'fields': ('is_active', 'is_staff', 'groups', 'user_permissions'),
+        }),
+        ('Timestamps', {'fields': ('last_login', 'date_joined')}),
+    )
     def save_model(self, request, obj, form, change):
-        # Don't require a password when saving
         if not obj.password:
             obj.set_unusable_password()
         super().save_model(request, obj, form, change)
