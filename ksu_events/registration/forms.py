@@ -1,8 +1,8 @@
 from django import forms
-from django_bootstrap5.widgets import BootstrapSelectMultiple
 
 from ksu_events.events.models import Event
 from ksu_events.registration.models import Registrations
+
 
 class RegistrationForm(forms.ModelForm):
     event = forms.ModelChoiceField(
@@ -30,7 +30,7 @@ class RegistrationForm(forms.ModelForm):
         widgets = {
             'dietary_restrictions': forms.Textarea(attrs={'rows': 3, 'class': 'form-control'}),
             'phone_number': forms.TextInput(attrs={'class': 'form-control'}),
-            'ethnicity': BootstrapSelectMultiple()(attrs={'class': 'form-control'}),
+            'ethnicity': forms.SelectMultiple(attrs={'class': 'form-control'}),
             'participation': forms.Select(attrs={'class': 'form-control'}),
             'shirt_size': forms.Select(attrs={'class': 'form-control'}),
             'year_in_school': forms.Select(attrs={'class': 'form-control'}),
