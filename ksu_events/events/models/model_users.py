@@ -28,7 +28,7 @@ class User(AbstractUser, TimeStampMixin):
         VOLUNTEER = 'VOL', _('Volunteer')
         PARTICIPANT = 'PAR', _('Participant') 
 
-    auth_role = models.CharField(max_length=3, choices=AuthLevel.choices, default=AuthLevel.ORGANIZER, blank=False)
+    auth_role = models.CharField(max_length=3, choices=AuthLevel.choices, default=AuthLevel.PARTICIPANT, blank=False)
     email = models.EmailField(_("email address"), blank=True)
     # is_organizer = models.BooleanField(default=False)
 
