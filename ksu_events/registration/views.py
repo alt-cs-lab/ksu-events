@@ -1,12 +1,11 @@
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import CreateView
-from django.shortcuts import get_object_or_404, redirect
-
-from ksu_events.events.models import Event
-from ksu_events.registration.models.model_registration import Registrations
-from ksu_events.registration.forms import RegistrationForm
+from django.shortcuts import redirect
 from django.contrib import messages
+
+from ksu_events.registration.models.model_registrations import Registrations
+from ksu_events.registration.forms import RegistrationForm
 
 class EventRegistrationView(LoginRequiredMixin, CreateView):
     model = Registrations
