@@ -5,6 +5,7 @@ from django.urls import reverse_lazy
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from ksu_events.events.models import Event
+from ksu_events.registrations.models import Registrations
 from ksu_events.events.forms import EventForm
 from ksu_events.events.views.mixins import OrganizerRequiredMixin
 from datetime import datetime
@@ -68,11 +69,13 @@ class CreateModelsView(OrganizerRequiredMixin, CreateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['event_models'] = Event.objects.all()  # Filter active events
+        context['registrations_models'] = Registrations.objects.all()  # Filter active registrations
         return context
     
     def form_invalid(self, form):
         context = {
-            'event_models': Event.objects.all()
+            'event_models': Event.objects.all(),
+            'registrations_models': Registrations.objects.all(),
         }
         return render(self.request, 'ksu_events/view_models.html', context)
     

@@ -20,7 +20,7 @@
 </div>
 
 <div class="card shadow-sm mx-auto my-5 p-3" style="max-width: 600px;">
-    <h2>Active Events</h2>
+    <h2>Event Participants</h2>
     <select class="form-select" aria-label="Active Events">
         <option selected>Select an active event</option>
         {% for event in event_models %}
@@ -36,6 +36,11 @@
         $("#id_registration_start").datepicker();
         $("#id_registration_end").datepicker();
 
+    });
+
+    document.querySelector('.form-select').addEventListener('change', function () {
+        const selectedEventId = this.value;
+        console.log('Selected Event ID:', selectedEventId);
     });
 </script>
 {% endblock %}
