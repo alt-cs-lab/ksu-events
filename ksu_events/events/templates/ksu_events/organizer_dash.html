@@ -11,21 +11,35 @@
 {% block content %}
 
 <div class="card shadow-sm mx-auto my-5 p-3" style="max-width: 600px;">
+    {% if is_subevent_form %}
+    <h2>Create SubEvent for {{ parent_event.name }}</h2>
+    {% else %}
     <h2>Create Event</h2>
+    {% endif %}
+
     <form method="POST">
         {% csrf_token %}
         {{ form.as_p }}
+
+        {% if is_subevent_form %}
+        <button class="btn btn-success" type="submit">Create SubEvent</button>
+        {% else %}
         <button class="btn btn-success" type="submit">Create Event</button>
+        {% endif %}
     </form>
 </div>
 
 <script>
     $(function () {
+        // For event form
         $("#id_start_date").datepicker();
         $("#id_end_date").datepicker();
         $("#id_registration_start").datepicker();
         $("#id_registration_end").datepicker();
 
+        // For subevent form
+        $("#id_subevent_start_date").datepicker();
+        $("#id_subevent_end_date").datepicker();
     });
 </script>
 {% endblock %}

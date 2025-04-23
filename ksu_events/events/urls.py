@@ -1,5 +1,5 @@
 from django.urls import path
-from ksu_events.events.views.other_views import HomeView, ViewModelsView, CreateModelsView, EditEventView, UserProfileView, ViewParticipantsView
+from ksu_events.events.views.other_views import HomeView, ViewModelsView, CreateModelsView, EditEventView, UserProfileView, ViewParticipantsView, CreateSubEventView
 
 # Sets the home and models urls
 urlpatterns = [
@@ -9,5 +9,6 @@ urlpatterns = [
     path('edit/<int:event_id>/', EditEventView.as_view(), name='edit_event'),
     path("profile/", UserProfileView.as_view(), name="user-profile"),
     # path('register/<int:event_id>/', RegisterView.as_view(), name='register'),
-    path('participants', ViewParticipantsView.as_view(), name="participants")
+    path('participants', ViewParticipantsView.as_view(), name="participants"),
+    path('events/<int:event_pk>/subevents/create/', CreateSubEventView.as_view(), name='subevent_create'),
 ]

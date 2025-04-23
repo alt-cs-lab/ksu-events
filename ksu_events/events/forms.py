@@ -16,7 +16,7 @@ class EventForm(ModelForm):
 class SubEventForm(ModelForm):
     class Meta:
         model = SubEvent
-        fields = ["parent_event", "subevent_name", "subevent_start_date", "subevent_end_date", "location"]
+        exclude = ["parent_event"]
         
     def __init__(self, *args, **kwargs):
         super(SubEventForm, self).__init__(*args, **kwargs)
