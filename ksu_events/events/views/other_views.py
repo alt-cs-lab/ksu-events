@@ -69,13 +69,20 @@ class CreateModelsView(OrganizerRequiredMixin, CreateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['event_models'] = Event.objects.all()  # Filter active events
-        context['registrations_models'] = Registrations.objects.all()  # Filter active registrations
-        return context
+        context['registrations_models'] = Registrations.objects
+
+        # Get the selected event ID from the query parameters
+        selected_event_id = self.request.GET.get('selected_event_id')
+        if selected_event_id:
+            context['selected_event'] = Event.objects.filter(id=selected_event_id).first()
+        else:
+            context['selected_event'] = None  # Default to None if no event is selected
     
     def form_invalid(self, form):
         context = {
             'event_models': Event.objects.all(),
-            'registrations_models': Registrations.objects.all(),
+            'registrations_models': Registrations.objects,
+            'selected_event': None
         }
         return render(self.request, 'ksu_events/view_models.html', context)
     

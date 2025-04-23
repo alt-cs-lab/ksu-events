@@ -27,6 +27,10 @@
         <option value="{{ event.id }}">{{ event.name }}</option>
         {% endfor %}
     </select>
+
+    {% if selected_event_id %}
+    {{ selected_event_id }}
+
 </div>
 
 <script>
@@ -41,6 +45,9 @@
     document.querySelector('.form-select').addEventListener('change', function () {
         const selectedEventId = this.value;
         console.log('Selected Event ID:', selectedEventId);
+        const url = new URL(window.location.href);
+        url.searchParams.set('selected_event_id', selectedEventId); // Add the selected event ID as a query parameter
+        window.location.href = url; // Redirect to the updated URL
     });
 </script>
 {% endblock %}
