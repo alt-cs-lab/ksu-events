@@ -5,7 +5,7 @@ from django.urls import reverse_lazy
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from ksu_events.events.models import Event
-from ksu_events.registration.models import model_registrations as Registrations
+from ksu_events.registration.models.model_registrations import Registrations
 from ksu_events.events.forms import EventForm
 from ksu_events.events.views.mixins import OrganizerRequiredMixin
 from datetime import datetime
