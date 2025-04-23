@@ -77,6 +77,8 @@ class CreateModelsView(OrganizerRequiredMixin, CreateView):
             context['selected_event'] = Event.objects.filter(id=selected_event_id).first()
         else:
             context['selected_event'] = None  # Default to None if no event is selected
+
+        return context
     
     def form_invalid(self, form):
         context = {
