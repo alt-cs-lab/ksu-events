@@ -4,29 +4,25 @@
 
 {% block clock%}
 <div class="proj-box">
-    <h1>Event List</h1>
+    <h1>Subevent List</h1>
 </div>
 {% endblock %}
 
 {% block content %}
 <div class="card shadow-sm mx-auto my-5 p-3" style="max-width: 600px;">
-    <h2>Events</h2>
-    {% for x in event_models %}
+    <h2>Subevents for {{ event.name }}</h2>
+    {% for x in subevent_models %}
     <div class="card mb-3">
         <div class="card-body">
             <h5 class="card-title">{{ x.name }}</h5>
             <ul class="list-group list-group-flush">
                 <li class="list-group-item"><strong>Start Date:</strong> {{ x.start_date }}</li>
                 <li class="list-group-item"><strong>End Date:</strong> {{ x.end_date }}</li>
-                <li class="list-group-item"><strong>Registration Start:</strong> {{ x.registration_start }}</li>
-                <li class="list-group-item"><strong>Registration End:</strong> {{ x.registration_end }}</li>
                 <li class="list-group-item"><strong>Location:</strong> {{ x.location }}</li>
             </ul>
             <div class="text-end mt-3">
-                <a href="{% url 'view_subevents' x.id %}" class="btn btn-primary">View Subevents</a>
                 {% if user.is_authenticated and request.user.auth_role == "ORG" %}
-                <a href="{% url 'edit_event' x.id %}" class="btn btn-primary">Edit</a>
-                <a href="{% url 'add_subevent' x.id %}" class="btn btn-primary">Add Subevent</a>
+                <a href="{% url 'edit_subevent' event.id x.id %}" class="btn btn-primary">Edit</a>
                 {% endif %}
             </div>
         </div>

@@ -5,16 +5,16 @@ from ksu_events.events.models.model_events import Event
 '''This is the event model it has 5 fields and helps split up the event in theory'''
 class SubEvent(TimeStampMixin, models.Model):
     
-    subevent_name = models.CharField(max_length=500, unique=True)
-    parent_event = models.ForeignKey(Event, on_delete=models.DO_NOTHING)
+    name = models.CharField(max_length=500, unique=True)
+    event = models.ForeignKey(Event, on_delete=models.DO_NOTHING)
     
-    subevent_start_date = models.DateTimeField(null=False, blank=False)
-    subevent_end_date = models.DateTimeField(null=True, blank=True)
+    start_date = models.DateTimeField(null=False, blank=False)
+    end_date = models.DateTimeField(null=True, blank=True)
 
-    location = models.CharField(max_length=500, blank=False) 
+    location = models.CharField(max_length=500, default='') 
 
     def __str__(self):
-        return '{}-{}'.format(self.pk, self.subevent_name)
+        return '{}-{}'.format(self.pk, self.name)
 
     class Meta: 
-        unique_together = (("subevent_name", "parent_event"))
+        unique_together = (("name", "event"))
