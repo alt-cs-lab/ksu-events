@@ -49,12 +49,12 @@
                 {% if registered_users %}
                 {% for registration in registered_users %}
                 <li class="list-group-item">
-                    <td>{{ registration.get_reg_info()['username'] }}</td>
-                    <td>{{ registration.get_reg_info()['name'] }}</td>
-                    <td>{{ registration.get_reg_info()['email'] }}</td>
-                    <td>{{ registration.get_reg_info()['phone_number'] }}</td>
-                    <td>{{ registration.get_reg_info()['country'] }}</td>
-                    <td>{{ registration.get_reg_info()['participation] }}</td>
+                    <td>{{ registration.get_reg_info().username }}</td>
+                    <td>{{ registration.get_reg_info().name }}</td>
+                    <td>{{ registration.get_reg_info().email }}</td>
+                    <td>{{ registration.get_reg_info().phone_number }}</td>
+                    <td>{{ registration.get_reg_info().country }}</td>
+                    <td>{{ registration.get_reg_info().participation }}</td>
                 </li>
                 {% endfor %}
                 {% else %}
