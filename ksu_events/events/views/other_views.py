@@ -86,7 +86,7 @@ class CreateSubEventView(OrganizerRequiredMixin, CreateView):
         return super().form_valid(form)
 
     def get_success_url(self):
-        return redirect('organizer_event_detail', event_id=self.event.id).url
+        return redirect('organizer_dash', event_id=self.event.id).url
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
