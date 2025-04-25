@@ -81,7 +81,7 @@ class Registrations(TimeStampMixin, models.Model):
     objects = RegistrationProfileManager()
 
     def __str__(self):
-        return f"{self.user.full_name()}-{self.user.email}"
+        return f"{self.user}-{self.user.email}"
 
     class Meta:
         constraints = [
