@@ -4,8 +4,8 @@ from django.views.generic import ListView, CreateView, UpdateView, View
 from django.urls import reverse_lazy
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
-from ksu_events.events.models import Event
-from ksu_events.events.forms import EventForm
+from ksu_events.events.models import Event, SubEvent
+from ksu_events.events.forms import EventForm, SubEventForm
 from ksu_events.events.views.mixins import OrganizerRequiredMixin
 from datetime import datetime
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -87,6 +87,54 @@ class EditEventView(OrganizerRequiredMixin,  UpdateView):
             'event_models': Event.objects.all()
         }
         return render(self.request, 'ksu_events/view_models.html', context)
+    
+class AddSubeventView(OrganizerRequiredMixin, CreateView):
+    model = SubEvent
+    form_class = SubEventForm
+    template_name = 'ksu_events/add_subevent.html'
+    success_url = reverse_lazy('view_models')
+    
+    def form_valid(self, form):
+        event_id = self.kwargs.get('event_id')
+        event = get_object_or_404(Event, id=event_id)
+        form.instance.event = event
+        return super().form_valid(form)
+    
+    def form_invalid(self, form):
+        context = {
+            'subevent_models': SubEvent.objects.all()
+        }
+        return render(self.request, 'ksu_events/view_models.html', context)
+
+class ViewSubEventsView(LoginRequiredMixin, ListView):
+    model = SubEvent
+    template_name = 'ksu_events/view_subevents.html'
+    context_object_name = 'subevent_models'
+
+    def get_queryset(self):
+        event_id = self.kwargs.get('event_id')
+        return SubEvent.objects.filter(event_id=event_id)
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        event_id = self.kwargs.get('event_id')
+        context['event'] = Event.objects.get(id=event_id)
+        return context
+
+class EditSubEventView(LoginRequiredMixin, UpdateView):
+    model = SubEvent
+    form_class = SubEventForm
+    template_name = 'ksu_events/edit_subevent.html'
+    pk_url_kwarg = 'subevent_id'
+    
+    def get_success_url(self):
+        return reverse_lazy('view_subevents', kwargs={'event_id': self.kwargs['event_id']})
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        event_id = self.kwargs.get('event_id')
+        context['event'] = Event.objects.get(id=event_id)
+        return context
 
 class ViewParticipantsView(LoginRequiredMixin, ListView):
     model = User

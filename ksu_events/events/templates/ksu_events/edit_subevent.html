@@ -1,0 +1,31 @@
+{% extends "ksu_events/base.html" %}
+{% load static %}
+{% block clock%}
+<div class="proj-box">
+    <h1>Subevent Edit</h1>
+</div>
+{% endblock %}
+{% block content %}
+<div class="card shadow-sm mx-auto my-5 p-3" style="max-width: 600px;">
+    <h2>Edit Subevent: {{ object.name }}</h2>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div class="row">
+            <div class="col">
+                <button class="btn btn-success" type="submit">Save Changes</button>
+            </div>
+            <div class="col">
+                <a type="button" class="btn btn-primary" href="{% url 'view_subevents' event.id %}">Back to
+                    Subevents</a>
+            </div>
+        </div>
+    </form>
+</div>
+<script>
+    $(function () {
+        $("#id_start_date").datepicker();
+        $("#id_end_date").datepicker();
+    });
+</script>
+{% endblock %}
