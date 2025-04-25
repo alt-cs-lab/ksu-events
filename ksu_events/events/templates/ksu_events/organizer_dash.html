@@ -24,7 +24,7 @@
     <select class="form-select" aria-label="Active Events">
         <option>Select an active event</option>
         {% for event in event_models %}
-        <option value="{{ event.id }}" {% if selected_event and event.id==selected_event.id %} selected {% endif %}>
+        <option value="{{ event.id }}">
             {{ event.name }}
         </option>
         {% endfor %}
