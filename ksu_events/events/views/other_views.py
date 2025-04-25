@@ -11,7 +11,6 @@ from datetime import datetime
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import TemplateView
 from django.contrib.auth import get_user_model
-from django.urls import reverse
 
 User = get_user_model()
 
@@ -91,6 +90,11 @@ class CreateSubEventView(OrganizerRequiredMixin, CreateView):
             'event_models': Event.objects.all()
         }
         return render(self.request, 'ksu_events/view_models.html', context)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['event'] = self.event
+        return context
 
 class EditEventView(OrganizerRequiredMixin,  UpdateView):
     model = Event
