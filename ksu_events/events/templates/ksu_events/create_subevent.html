@@ -4,21 +4,20 @@
 
 {% block clock%}
 <div class="proj-box">
-    <h1>Organizer Dashboard</h1>
+    <h1>Create Subevent</h1>
 </div>
 {% endblock %}
 
 {% block content %}
-
 <div class="card shadow-sm mx-auto my-5 p-3" style="max-width: 600px;">
-    <h2>Create Event</h2>
-    <form method="POST">
+    <h2>Create Sub-Event for "{{ event }}"</h2>
+
+    <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        <button class="btn btn-success" type="submit">Create Event</button>
+        <button type="submit" class="btn btn-primary">Create</button>
     </form>
 </div>
-
 <script>
     $(function () {
         $("#id_start_date").datepicker();

@@ -74,20 +74,23 @@ class CreateModelsView(OrganizerRequiredMixin, CreateView):
 class CreateSubEventView(OrganizerRequiredMixin, CreateView):
     model = SubEvent
     form_class = SubEventForm
-    template_name = 'ksu_events/organizer_dash.html'
+    template_name = 'ksu_events/create_subevent.html'
     
+    def dispatch(self, request, *args, **kwargs):
+        self.event = get_object_or_404(Event, pk=self.kwargs['event_id'])
+        return super().dispatch(request, *args, **kwargs)
+
+    def form_valid(self, form):
+        form.instance.parent_event = self.event
+        return super().form_valid(form)
+
     def get_success_url(self):
-        return reverse_lazy('organizer_dash', kwargs={'pk': self.kwargs['event_pk']})
-    
+        return redirect('organizer_event_detail', event_id=self.event.id).url
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['parent_event'] = get_object_or_404(Event, pk=self.kwargs['event_pk'])
-        context['is_subevent_form'] = True
+        context['event'] = self.event
         return context
-    
-    def form_valid(self, form):
-        form.instance.parent_event = get_object_or_404(Event, pk=self.kwargs['event_pk'])
-        return super().form_valid(form)
 
 class EditEventView(OrganizerRequiredMixin,  UpdateView):
     model = Event
