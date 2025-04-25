@@ -82,6 +82,20 @@ class Registrations(TimeStampMixin, models.Model):
 
     def __str__(self):
         return f"{self.user}-{self.user.email}"
+    
+    def get_reg_info(self):
+        return {
+            'username': self.user,
+            'name': self.user.full_name(),
+            'email': self.user.email,
+            'country': self.country,
+            'dietary_restrictions': self.dietary_restrictions,
+            'phone_number': self.phone_number,
+            'shirt_size': self.shirt_size,
+            'year_in_school': self.year_in_school,
+            'participation': self.participation,
+            'is_minor': self.is_minor
+        }
 
     class Meta:
         constraints = [
