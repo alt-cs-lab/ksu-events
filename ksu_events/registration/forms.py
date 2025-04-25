@@ -28,9 +28,11 @@ class RegistrationForm(forms.ModelForm):
         exclude = ['user']
         
         widgets = {
+            'country': forms.Select(attrs={'class': 'form-control'}),
             'dietary_restrictions': forms.Textarea(attrs={'rows': 3, 'class': 'form-control'}),
             'phone_number': forms.TextInput(attrs={'class': 'form-control'}),
             'ethnicity': forms.SelectMultiple(attrs={'class': 'form-control'}),
+            'is_minor': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
             'participation': forms.Select(attrs={'class': 'form-control'}),
             'shirt_size': forms.Select(attrs={'class': 'form-control'}),
             'year_in_school': forms.Select(attrs={'class': 'form-control'}),
