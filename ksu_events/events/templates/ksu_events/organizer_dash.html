@@ -22,7 +22,7 @@
 <div class="card shadow-sm mx-auto my-5 p-3" style="max-width: 600px;">
     <h2>Event Participants</h2>
     <select class="form-select" aria-label="Active Events">
-        <option>Select an active event</option>
+        <option value="-1">Select an active event</option>
         {% for event in event_models %}
         <option value="{{ event.id }}" {% if selected_event.id is event.id %}selected{% endif %}>
             {{ event.name }}
