@@ -41,7 +41,7 @@
             {% if registered_users %}
             {% for registration in registered_users %}
             <li class="list-group-item">
-                {{ registration.user.full_name }} ({{ registration.user.email }})
+                {{ registration }}
             </li>
             {% endfor %}
             {% else %}

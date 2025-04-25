@@ -78,7 +78,7 @@ class CreateModelsView(OrganizerRequiredMixin, CreateView):
             context['selected_event'] = selected_event
             if selected_event:
                 # Get the registrations for the selected event
-                user_list = Registrations.objects.filter(event=selected_event).select_related('user')
+                user_list = Registrations.objects.filter(event=selected_event)
                 print(f"User List: {user_list}")  # Debugging line
                 context['registered_users'] = user_list
         else:
