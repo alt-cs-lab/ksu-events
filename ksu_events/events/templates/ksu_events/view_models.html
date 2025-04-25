@@ -25,7 +25,7 @@
             <div class="text-end mt-3">
                 {% if user.is_authenticated and request.user.auth_role == "ORG" %}
                 <a href="{% url 'edit_event' x.id %}" class="btn btn-primary">Edit</a>
-                <a href="{% url 'add_subevent' %}" class="btn btn-primary">Add Subevent</a>
+                <a href="{% url 'add_subevent' x.id %}" class="btn btn-primary">Add Subevent</a>
                 {% endif %}
             </div>
         </div>
