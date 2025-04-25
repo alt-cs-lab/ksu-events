@@ -11,6 +11,7 @@ from datetime import datetime
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import TemplateView
 from django.contrib.auth import get_user_model
+from django.urls import reverse
 
 User = get_user_model()
 
@@ -86,7 +87,7 @@ class CreateSubEventView(OrganizerRequiredMixin, CreateView):
         return super().form_valid(form)
 
     def get_success_url(self):
-        return redirect('organizer_dash', event_id=self.event.id).url
+        return reverse('orgdash')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
