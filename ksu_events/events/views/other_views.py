@@ -77,7 +77,7 @@ class CreateSubEventView(OrganizerRequiredMixin, CreateView):
     template_name = 'ksu_events/organizer_dash.html'
     
     def get_success_url(self):
-        return reverse_lazy('event_detail', kwargs={'pk': self.kwargs['event_pk']})
+        return reverse_lazy('organizer_dash', kwargs={'pk': self.kwargs['event_pk']})
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
