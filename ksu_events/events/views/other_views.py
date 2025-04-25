@@ -77,6 +77,7 @@ class CreateSubEventView(OrganizerRequiredMixin, CreateView):
     template_name = 'ksu_events/create_subevent.html'
     
     def dispatch(self, request, *args, **kwargs):
+        print("kwargs =", self.kwargs)
         self.event = get_object_or_404(Event, pk=self.kwargs['event_id'])
         return super().dispatch(request, *args, **kwargs)
 

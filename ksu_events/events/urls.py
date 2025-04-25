@@ -10,5 +10,5 @@ urlpatterns = [
     path("profile/", UserProfileView.as_view(), name="user-profile"),
     # path('register/<int:event_id>/', RegisterView.as_view(), name='register'),
     path('participants', ViewParticipantsView.as_view(), name="participants"),
-    path('events/<int:event_pk>/subevents/create/', CreateSubEventView.as_view(), name='subevent_create'),
+    path('events/<int:event_id>/subevents/create/', CreateSubEventView.as_view(), name='create_sub_event'),
 ]
