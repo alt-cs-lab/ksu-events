@@ -118,7 +118,22 @@ class ViewSubEventsView(LoginRequiredMixin, ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         event_id = self.kwargs.get('event_id')
-        context['event'] = Event.objects.get(id=event_id)  # Assuming you have an Event model
+        context['event'] = Event.objects.get(id=event_id)
+        return context
+
+class EditSubEventView(LoginRequiredMixin, UpdateView):
+    model = SubEvent
+    form_class = SubEventForm
+    template_name = 'ksu_events/edit_subevent.html'
+    pk_url_kwarg = 'subevent_id'
+    
+    def get_success_url(self):
+        return reverse_lazy('view_subevents', kwargs={'event_id': self.kwargs['event_id']})
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        event_id = self.kwargs.get('event_id')
+        context['event'] = Event.objects.get(id=event_id)
         return context
 
 class ViewParticipantsView(LoginRequiredMixin, ListView):
