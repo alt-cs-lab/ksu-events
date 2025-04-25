@@ -22,15 +22,36 @@
 <div class="card shadow-sm mx-auto my-5 p-3" style="max-width: 600px;">
     <h2>Event Participants</h2>
     <select class="form-select" aria-label="Active Events">
-        <option selected>Select an active event</option>
+        <option>Select an active event</option>
         {% for event in event_models %}
-        <option value="{{ event.id }}">{{ event.name }}</option>
+        <option value="{{ event.id }}" {% if selected_event and event.id==selected_event.id %}selected{% endif %}>
+            {{ event.name }}
+        </option>
         {% endfor %}
     </select>
 
     {% if selected_event %}
     {{ selected_event.id }}
     {% endif %}
+
+    <div class="card shadow-sm mx-auto my-5 p-3" style="max-width: 600px;">
+        {% if selected_event %}
+        <h3>Participants for {{ selected_event.name }}</h3>
+        <ul class="list-group">
+            {% if registered_users %}
+            {% for registration in registered_users %}
+            <li class="list-group-item">
+                {{ registration.user.full_name }} ({{ registration.user.email }})
+            </li>
+            {% endfor %}
+            {% else %}
+            <li class="list-group-item">No participants registered for this event.</li>
+            {% endif %}
+        </ul>
+        {% else %}
+        <p>Please select an event to view participants.</p>
+        {% endif %}
+    </div>
 
 </div>
 
