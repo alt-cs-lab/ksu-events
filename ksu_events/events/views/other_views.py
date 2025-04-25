@@ -72,10 +72,11 @@ class CreateModelsView(OrganizerRequiredMixin, CreateView):
 
         # Get the selected event ID from the query parameters
         selected_event_id = self.request.GET.get('selected_event_id')
-        print(f"Selected Event ID: {selected_event_id}")  # Debugging line
+
         if selected_event_id and selected_event_id != -1:
             selected_event = Event.objects.filter(id=selected_event_id).first()
             context['selected_event'] = selected_event
+
             if selected_event:
                 # Get the registrations for the selected event
                 registrations = Registrations.objects.filter(event=selected_event)
@@ -83,6 +84,7 @@ class CreateModelsView(OrganizerRequiredMixin, CreateView):
                     reg.get_reg_info() for reg in registrations
                 ]
                 context['registered_users'] = user_list
+                
         else:
             context['selected_event'] = None  # Default to None if no event is selected
             context['registered_users'] = []

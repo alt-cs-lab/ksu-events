@@ -49,8 +49,8 @@
                 {% if registered_users %}
                 {% for registration in registered_users %}
                 <li class="list-group-item">
-                    <td>{{ registration.username }}</td>
                     <td>{{ registration.name }}</td>
+                    <td>{{ registration.username }}</td>
                     <td>{{ registration.email }}</td>
                     <td>{{ registration.phone_number }}</td>
                     <td>{{ registration.country }}</td>
