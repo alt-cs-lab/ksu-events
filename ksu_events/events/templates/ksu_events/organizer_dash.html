@@ -22,15 +22,53 @@
 <div class="card shadow-sm mx-auto my-5 p-3" style="max-width: 600px;">
     <h2>Event Participants</h2>
     <select class="form-select" aria-label="Active Events">
-        <option selected>Select an active event</option>
+        <option value="-1">Select an active event</option>
         {% for event in event_models %}
-        <option value="{{ event.id }}">{{ event.name }}</option>
+        <option value="{{ event.id }}" {% if selected_event.id is event.id %}selected{% endif %}>
+            {{ event.name }}
+        </option>
         {% endfor %}
     </select>
 
-    {% if selected_event_id %}
-    {{ selected_event_id }}
-    {% endif %}
+    <div class="card shadow-sm mx-auto my-5 p-3" style="max-width: 600px;">
+        {% if selected_event %}
+        <h3>Participants for {{ selected_event.name }}</h3>
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Username</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Phone</th>
+                    <th scope="col">Country</th>
+                    <th scope="col">Participation</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if registered_users %}
+                {% for registration in registered_users %}
+                <li class="list-group-item">
+                    <td>{{ registration.name }}</td>
+                    <td>{{ registration.username }}</td>
+                    <td>{{ registration.email }}</td>
+                    <td>{{ registration.phone_number }}</td>
+                    <td>{{ registration.country }}</td>
+                    <td>{{ registration.participation }}</td>
+                </li>
+                {% endfor %}
+                {% else %}
+                <tr>
+                    <td colspan="6" class="text-center">No participants registered for this event.</td>
+                </tr>
+                {% endif %}
+            </tbody>
+
+        </table>
+        {% else %}
+        <p>Please select an event to view participants.</p>
+        {% endif %}
+    </div>
 
 </div>
 
