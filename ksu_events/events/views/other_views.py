@@ -91,14 +91,14 @@ class EditEventView(OrganizerRequiredMixin,  UpdateView):
 class AddSubeventView(OrganizerRequiredMixin, CreateView):
     model = SubEvent
     form_class = SubEventForm
-    template_name = 'add_subevent.html'
+    template_name = 'ksu_events/add_subevent.html'
     success_url = reverse_lazy('organizer_dash')
     
     def form_invalid(self, form):
         context = {
             'subevent_models': SubEvent.objects.all()
         }
-        return render(self.request, '/view_models.html', context)
+        return render(self.request, 'ksu_events/view_models.html', context)
 
 
 
