@@ -72,6 +72,7 @@ class CreateModelsView(OrganizerRequiredMixin, CreateView):
 
         # Get the selected event ID from the query parameters
         selected_event_id = self.request.GET.get('selected_event_id')
+        print(f"Selected Event ID: {selected_event_id}")  # Debugging line
         if selected_event_id:
             selected_event = Event.objects.filter(id=selected_event_id).first()
             context['selected_event'] = selected_event
