@@ -86,13 +86,11 @@ class CreateSubEventView(OrganizerRequiredMixin, CreateView):
         form.instance.parent_event = self.event
         return super().form_valid(form)
 
-    def get_success_url(self):
-        return reverse('orgdash')
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['event'] = self.event
-        return context
+    def form_invalid(self, form):
+        context = {
+            'event_models': Event.objects.all()
+        }
+        return render(self.request, 'ksu_events/view_models.html', context)
 
 class EditEventView(OrganizerRequiredMixin,  UpdateView):
     model = Event
