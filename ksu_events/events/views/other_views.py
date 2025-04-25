@@ -92,7 +92,7 @@ class AddSubeventView(OrganizerRequiredMixin, CreateView):
     model = SubEvent
     form_class = SubEventForm
     template_name = 'ksu_events/add_subevent.html'
-    success_url = reverse_lazy('organizer_dash')
+    success_url = reverse_lazy('view_models')
     
     def form_valid(self, form):
         event_id = self.kwargs.get('event_id')
