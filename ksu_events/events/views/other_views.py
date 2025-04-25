@@ -4,8 +4,8 @@ from django.views.generic import ListView, CreateView, UpdateView, View
 from django.urls import reverse_lazy
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
-from ksu_events.events.models import Event
-from ksu_events.events.forms import EventForm
+from ksu_events.events.models import Event, SubEvent
+from ksu_events.events.forms import EventForm, SubEventForm
 from ksu_events.events.views.mixins import OrganizerRequiredMixin
 from datetime import datetime
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -87,6 +87,18 @@ class EditEventView(LoginRequiredMixin, UpdateView):
             'event_models': Event.objects.all()
         }
         return render(self.request, 'ksu_events/view_models.html', context)
+
+class AddSubeventView(OrganizerRequiredMixin, CreateView):
+    model = SubEvent
+    form_class = SubEventForm
+    template_name = 'add_subevent.html'
+    success_url = reverse_lazy('organizer_dash')
+    
+    def form_invalid(self, form):
+        context = {
+            'subevent_models': SubEvent.objects.all()
+        }
+        return render(self.request, '/view_models.html', context)
 
 class ViewParticipantsView(LoginRequiredMixin, ListView):
     model = User
