@@ -106,7 +106,20 @@ class AddSubeventView(OrganizerRequiredMixin, CreateView):
         }
         return render(self.request, 'ksu_events/view_models.html', context)
 
+class ViewSubEventsView(LoginRequiredMixin, ListView):
+    model = SubEvent
+    template_name = 'ksu_events/view_subevents.html'
+    context_object_name = 'subevent_models'
 
+    def get_queryset(self):
+        event_id = self.kwargs.get('event_id')
+        return SubEvent.objects.filter(event_id=event_id)
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        event_id = self.kwargs.get('event_id')
+        context['event'] = Event.objects.get(id=event_id)  # Assuming you have an Event model
+        return context
 
 class ViewParticipantsView(LoginRequiredMixin, ListView):
     model = User
