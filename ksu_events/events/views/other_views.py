@@ -6,6 +6,7 @@ from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from ksu_events.events.models import Event, SubEvent
 from ksu_events.events.forms import EventForm, SubEventForm
+from ksu_events.registration.models.model_registrations import Registrations
 from ksu_events.events.views.mixins import OrganizerRequiredMixin
 from datetime import datetime
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -64,10 +65,26 @@ class CreateModelsView(OrganizerRequiredMixin, CreateView):
     form_class = EventForm
     template_name = 'ksu_events/organizer_dash.html'
     success_url = reverse_lazy('organizer_dash')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['event_models'] = Event.objects.all()  # Filter active events
+        context['registrations_models'] = Registrations.objects
+
+        # Get the selected event ID from the query parameters
+        selected_event_id = self.request.GET.get('selected_event_id')
+        if selected_event_id:
+            context['selected_event'] = Event.objects.filter(id=selected_event_id).first()
+        else:
+            context['selected_event'] = None  # Default to None if no event is selected
+
+        return context
     
     def form_invalid(self, form):
         context = {
-            'event_models': Event.objects.all()
+            'event_models': Event.objects.all(),
+            'registrations_models': Registrations.objects,
+            'selected_event': None
         }
         return render(self.request, 'ksu_events/view_models.html', context)
     
