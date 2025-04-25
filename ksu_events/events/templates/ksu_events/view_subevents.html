@@ -22,7 +22,7 @@
             </ul>
             <div class="text-end mt-3">
                 {% if user.is_authenticated and request.user.auth_role == "ORG" %}
-                {# <a href="{% url 'edit_subevent' event.id x.id %}" class="btn btn-primary">Edit</a> #}
+                <a href="{% url 'edit_subevent' event.id x.id %}" class="btn btn-primary">Edit</a>
                 {% endif %}
             </div>
         </div>
