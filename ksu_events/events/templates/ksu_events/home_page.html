@@ -18,7 +18,7 @@
     <p id="demo"></p>
 
     <script>
-        if ("{{ clock_end_time }}") {
+        if ("{{ clock_end_time }}" && "{{ clock_end_time }}" !== "None") {
             var countDownDate = new Date("{{clock_end_time|date:'Y-m-d H:i:s'}}").getTime();
             var x = setInterval(function () {
                 var now = new Date().getTime();
