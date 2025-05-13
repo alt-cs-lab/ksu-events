@@ -1,12 +1,15 @@
+# Third-party
 from django.db import models
 
+# Local
 from ksu_events.events.models.mixins import TimeStampMixin
 
 class EventManager(models.Manager):
     """
     """
 
-'''This is the event model it has 5 fields'''
+#This is our event class that contains 5 fields.  
+# This event class is designed to allow a organiser to set up a large event for users to register too.
 class Event(TimeStampMixin, models.Model):
     name = models.CharField(max_length=255, unique=True)
 

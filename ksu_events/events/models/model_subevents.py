@@ -1,8 +1,13 @@
+# Third-party
 from django.db import models
+
+# Local
 from ksu_events.events.models.mixins import TimeStampMixin
 from ksu_events.events.models.model_events import Event
 
-'''This is the event model it has 5 fields and helps split up the event in theory'''
+# Our sub-event contains 5 fields and is designed to split up events into multiple parts.
+# The splitting up of events is primarily done to help illistrate what will be occuring during the events of the day
+# TODO add sub-event attendance at some point
 class SubEvent(TimeStampMixin, models.Model):
     
     name = models.CharField(max_length=500, unique=True)

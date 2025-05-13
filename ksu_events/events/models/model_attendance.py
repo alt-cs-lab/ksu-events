@@ -1,10 +1,15 @@
-from django.db import models
+# Standard library
 import json
 
+# Third-party
+from django.db import models
+
+# Local
 from ksu_events.events.models import Event
 from ksu_events.events.models.mixins import TimeStampMixin
 from ksu_events.registration.models.model_registrations import Registrations
 
+#This class is not used yet so for the next year the idea behind this is that when someone registers for an event this will be used to see if they have attended a sub-event 
 class EventAttendance(TimeStampMixin, models.Model):
     registration = models.ForeignKey(Registrations, blank=False, null=False, on_delete=models.CASCADE)
 
