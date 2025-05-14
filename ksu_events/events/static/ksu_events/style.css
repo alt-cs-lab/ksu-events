@@ -8,7 +8,7 @@
     padding: 0;
     box-sizing: border-box;
     font-family: Arial, sans-serif;
-    background-color: transparent;
+    background-color: black;
 }
 
 html {
@@ -16,7 +16,7 @@ html {
 }
 
 body {
-    background-color: #5f007c;
+    background-color: black;
     color: #000000;
 }
 
