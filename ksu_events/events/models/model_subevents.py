@@ -1,5 +1,6 @@
 # Third-party
 from django.db import models
+from django.core.exceptions import ValidationError
 
 # Local
 from ksu_events.events.models.mixins import TimeStampMixin
@@ -23,3 +24,8 @@ class SubEvent(TimeStampMixin, models.Model):
 
     class Meta: 
         unique_together = (("name", "event"))
+
+    def clean(self):
+        super().clean()
+        if self.start_date >= self.end_date:
+            raise ValidationError("Start date must be before end date.")
