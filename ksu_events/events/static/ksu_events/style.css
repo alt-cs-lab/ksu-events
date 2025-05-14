@@ -11,11 +11,11 @@
 }
 
 html {
-    background-color: #000000;
+    background-color: #000000 !important;
 }
 
 body {
-    background-color: black;
+    background-color: black !important;
     color: #ffffff;
 }
 
