@@ -16,7 +16,7 @@ html {
 
 body {
     background-color: black;
-    color: #000000;
+    color: #ffffff;
 }
 
 header {
@@ -137,4 +137,8 @@ main {
     padding: 25px;
     border: 5px solid grey;
     margin: 10px;
+}
+
+:root {
+    --bs-body-bg: black;
 }
