@@ -183,7 +183,7 @@ class ViewSubEventsView(LoginRequiredMixin, ListView):
 # model_subevents.py
 # This is the class for edit_subevents.html and uses model_subevents.py
 # Allows organizers to edit prexisting subevents
-class EditSubEventView(LoginRequiredMixin, UpdateView):
+class EditSubEventView(OrganizerRequiredMixin, UpdateView):
     model = SubEvent
     form_class = SubEventForm
     template_name = 'ksu_events/edit_subevent.html'
