@@ -1,4 +1,7 @@
+#Django
 from django.urls import path
+
+# Local
 from ksu_events.registration.views import EventRegistrationView
 
 urlpatterns = [

@@ -1,9 +1,11 @@
+# Django
 from django import forms
 
+# Local
 from ksu_events.events.models import Event
 from ksu_events.registration.models import Registrations
 
-
+# Dropdown field for selecting an event, styled with Bootstrap class
 class RegistrationForm(forms.ModelForm):
     event = forms.ModelChoiceField(
         queryset=Event.objects.all(), 
@@ -11,6 +13,7 @@ class RegistrationForm(forms.ModelForm):
         widget=forms.Select(attrs={'class': 'form-control'})
     )
     
+    # Fields from the model to include in the form
     class Meta:
         model = Registrations
         fields = [

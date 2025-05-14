@@ -1,20 +1,32 @@
-from django.views.generic import TemplateView
+# Standard library
+from datetime import datetime
+
+# Third-party
+from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import ListView, CreateView, UpdateView, View
-from django.urls import reverse_lazy
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
-from ksu_events.events.models import Event, SubEvent
+from django.urls import reverse_lazy
+from django.views.generic import (
+    TemplateView,
+    ListView,
+    CreateView,
+    UpdateView,
+    View,
+)
+
+# Local
 from ksu_events.events.forms import EventForm, SubEventForm
-from ksu_events.registration.models.model_registrations import Registrations
+from ksu_events.events.models import Event, SubEvent
 from ksu_events.events.views.mixins import OrganizerRequiredMixin
-from datetime import datetime
-from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import TemplateView
-from django.contrib.auth import get_user_model
+from ksu_events.registration.models.model_registrations import Registrations
 
 User = get_user_model()
 
+# View_Participant.html
+# Model_Users
+# This is the View for View_Participant.html and Model_Users
+# This view displays the information of the currently logged in user
 class UserProfileView(LoginRequiredMixin, TemplateView):
     template_name = "ksu_events/user_profile.html"
 
@@ -29,8 +41,9 @@ class UserProfileView(LoginRequiredMixin, TemplateView):
 
         return context
 
-
-
+# Home_page.html
+# This is the class based view for the Home_page.html
+# In this file you can see the clock logic to determine what should be displayed
 class HomeView(TemplateView):
     template_name = 'ksu_events/home_page.html'
 
@@ -54,12 +67,17 @@ class HomeView(TemplateView):
             context['clock_end_time'] = None  # No events in database
         return context
 
-
+# view_models.html
+# Simple class to display all the events in the view_models.html
 class ViewModelsView(LoginRequiredMixin, ListView):
     model = Event
     template_name = 'ksu_events/view_models.html'
     context_object_name = 'event_models'
 
+# organizer_dashboard.html
+# model_events.py and model_registrations.py
+# This is the class for organizer_dashboard.html and uses both model_events.py and model_registrations.py
+# Allows organizers to create events and view users registered to certain events
 class CreateModelsView(OrganizerRequiredMixin, CreateView):
     model = Event
     form_class = EventForm
@@ -74,6 +92,7 @@ class CreateModelsView(OrganizerRequiredMixin, CreateView):
         selected_event_id = self.request.GET.get('selected_event_id')
 
         if selected_event_id and selected_event_id != -1:
+            # Try to fetch the selected event (safely using .first())
             selected_event = Event.objects.filter(id=selected_event_id).first()
             context['selected_event'] = selected_event
 
@@ -99,7 +118,10 @@ class CreateModelsView(OrganizerRequiredMixin, CreateView):
         }
         return render(self.request, 'ksu_events/view_models.html', context)
     
-
+# edit_event.html
+# model_events.py
+# This is the class for edit_event.html and uses model_events.py
+# Allows organizers to edit events that already exist
 class EditEventView(OrganizerRequiredMixin,  UpdateView):
     model = Event
     form_class = EventForm
@@ -115,7 +137,11 @@ class EditEventView(OrganizerRequiredMixin,  UpdateView):
             'event_models': Event.objects.all()
         }
         return render(self.request, 'ksu_events/view_models.html', context)
-    
+
+# add_subevent.html
+# model_subevents.py
+# This is the class for add_subevent.html and uses model_subevents.py
+# Allows organizers to create subevents for events that exist
 class AddSubeventView(OrganizerRequiredMixin, CreateView):
     model = SubEvent
     form_class = SubEventForm
@@ -134,6 +160,10 @@ class AddSubeventView(OrganizerRequiredMixin, CreateView):
         }
         return render(self.request, 'ksu_events/view_models.html', context)
 
+# view_subevents.html
+# model_subevents.py
+# This is the class for view_subevents.html and uses model_subevents.py
+# Allows organizers to view a comprehensive list of subevents that exist for a given event
 class ViewSubEventsView(LoginRequiredMixin, ListView):
     model = SubEvent
     template_name = 'ksu_events/view_subevents.html'
@@ -149,6 +179,10 @@ class ViewSubEventsView(LoginRequiredMixin, ListView):
         context['event'] = Event.objects.get(id=event_id)
         return context
 
+# edit_subevents.html
+# model_subevents.py
+# This is the class for edit_subevents.html and uses model_subevents.py
+# Allows organizers to edit prexisting subevents
 class EditSubEventView(LoginRequiredMixin, UpdateView):
     model = SubEvent
     form_class = SubEventForm
@@ -164,6 +198,10 @@ class EditSubEventView(LoginRequiredMixin, UpdateView):
         context['event'] = Event.objects.get(id=event_id)
         return context
 
+# view_participant.html
+# model_users.py
+# This is the class for view_participant.html and uses model_users.py
+# Allows users to view their own profile information
 class ViewParticipantsView(LoginRequiredMixin, ListView):
     model = User
     template_name = 'ksu_events/view_participant.html'
@@ -172,6 +210,7 @@ class ViewParticipantsView(LoginRequiredMixin, ListView):
     #def get_queryset(self):
         #return User.objects.filter(auth_role='PAR')
 
+# a redirect for logging in with k-state CAS Auth
 class RedirectView(LoginRequiredMixin, View):
     def get(self, request, *args, **kwargs):
         username = request.user.username

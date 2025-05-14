@@ -1,5 +1,18 @@
+# Django
 from django.urls import path
-from ksu_events.events.views.other_views import HomeView, ViewModelsView, CreateModelsView, EditEventView, UserProfileView, ViewParticipantsView, AddSubeventView, ViewSubEventsView, EditSubEventView
+
+# Local Views
+from ksu_events.events.views.other_views import (
+    HomeView,
+    ViewModelsView,
+    CreateModelsView,
+    EditEventView,
+    UserProfileView,
+    ViewParticipantsView,
+    AddSubeventView,
+    ViewSubEventsView,
+    EditSubEventView,
+)
 
 # Sets the home and models urls
 urlpatterns = [
