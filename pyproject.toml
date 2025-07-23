@@ -4,7 +4,7 @@ version = "0.1.1"
 description = ""
 authors = ["Whipple <94202163+g0ggle@users.noreply.github.com>"]
 readme = "README.md"
-packages = [{ include = "ksu_events" }]
+packages = [{ include = "student_events" }]
 
 [tool.poetry.dependencies]
 python = "^3.10"

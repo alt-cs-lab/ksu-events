@@ -1,0 +1,23 @@
+{% extends "student_events/base.html" %}
+
+{% load static django_bootstrap5 %}
+
+{% block clock %}
+<div class="proj-box">
+    <h1 class="text-center my-4">User Profile</h1>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="card shadow-sm mx-auto my-5" style="max-width: 600px;">
+    <ul class="list-group list-group-flush">
+        {% for field, value in user_fields.items %}
+        {% if field not in hidden_fields %}
+        <li class="list-group-item">
+            <strong>{{ field|title }}:</strong> {{ value }}
+        </li>
+        {% endif %}
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

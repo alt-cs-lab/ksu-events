@@ -1,0 +1,60 @@
+{% extends "student_events/base.html" %}
+
+{% load static %}
+
+{% block title %} Demo Website {% endblock %}
+
+{% block clock %}
+<div class="proj-box">
+    <h1>Check out last year's projects!</h1>
+    <p>From mobile apps to video games, more than 99 projects were submitted to K-State Club 2024,
+        and 138 college and high school students from around the world participated in the event.</p>
+    <button>View Projects</button>
+</div>
+
+<!-- Countdown Timer -->
+<div class="clock">
+    <p>Countdown to Next Event:</p>
+    <p id="demo"></p>
+
+    <script>
+        if ("{{ clock_end_time }}" && "{{ clock_end_time }}" !== "None") {
+            var countDownDate = new Date("{{clock_end_time|date:'Y-m-d H:i:s'}}").getTime();
+            var x = setInterval(function () {
+                var now = new Date().getTime();
+                var distance = countDownDate - now;
+                var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                document.getElementById("demo").innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
+
+                if (distance < 0) {
+                    clearInterval(x);
+                    document.getElementById("demo").innerHTML = "Event in Progress";
+                }
+            }, 1000);
+        } else {
+            document.getElementById("demo").innerHTML = "No Upcoming Events";
+        }
+    </script>
+</div>
+{% endblock %}
+
+{% block content %}
+<section class="info">
+    <div class="info-box text-white">
+        <h2>What is a hackathon?</h2>
+        <p>Hackathon is a competition of inventions and innovations in the field of technology...</p>
+    </div>
+    <div class="info-box text-white">
+        <h2>What is Hack K-State?</h2>
+        <p>Hack K-State is a 36-hour hackathon at Kansas State University...</p>
+    </div>
+    <div class="info-box text-white">
+        <h2>Who can participate?</h2>
+        <p>K-State Club is one of the few hackathons in the region that brings together high school and college
+            students...</p>
+    </div>
+</section>
+{% endblock %}

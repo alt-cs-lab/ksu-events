@@ -4,9 +4,9 @@ from setuptools import setup, find_packages
 os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
 
 setup(
-    name='ksu_events',  # package import name
+    name='student_events',  # package import name
     version='0.1',
-    packages= ['ksu_events', 'ksu_events.registration'],
+    packages= ['student_events', 'student_events.registration'],
     include_package_data=True,
     install_requires=[
         'django>=5',  # package requires django 5
